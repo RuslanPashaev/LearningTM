@@ -1,0 +1,2534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Программа обучения территориальных менеджеров</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --surface2: #1f1f1f;
+    --border: #2a2a2a;
+    --gold: #c9a84c;
+    --gold-light: #e8c96e;
+    --gold-dim: #7a5e28;
+    --text: #e8e2d9;
+    --text-dim: #8a8278;
+    --green: #4caf7d;
+    --red: #e05555;
+    --blue: #5b9bd5;
+    --accent: #c9a84c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1408 100%);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 32px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+  .company-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .header-sub {
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 48px;
+    gap: 32px;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 240px;
+    flex-shrink: 0;
+  }
+  .sidebar-sticky {
+    position: sticky;
+    top: 24px;
+  }
+  .nav-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 4px;
+    border: 1px solid transparent;
+  }
+  .nav-item:hover { background: var(--surface2); }
+  .nav-item.active {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold-dim);
+  }
+  .nav-day {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .nav-item.active .nav-day {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+  }
+  .nav-item.completed .nav-day {
+    background: var(--green);
+    border-color: var(--green);
+    color: #000;
+  }
+  .nav-text { font-size: 13px; line-height: 1.3; }
+  .nav-text-main { font-weight: 500; color: var(--text); }
+  .nav-text-sub { font-size: 11px; color: var(--text-dim); }
+
+  .progress-section { margin-top: 24px; }
+  .progress-bar-wrap {
+    background: var(--surface2);
+    border-radius: 4px;
+    height: 6px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+  .progress-text { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
+
+  /* MAIN CONTENT */
+  .main { flex: 1; min-width: 0; }
+
+  /* VIEW */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* OVERVIEW */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .day-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .day-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+  }
+  .day-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .day-card-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 6px;
+    line-height: 1.3;
+  }
+  .day-card-theme {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .overview-note {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .overview-note h3 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .overview-note p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+
+  /* DAY VIEW */
+  .day-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .day-num-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--gold);
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .day-goal {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+  .day-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+  .tag.gold { border-color: var(--gold-dim); color: var(--gold-light); background: rgba(201,168,76,0.07); }
+
+  .schedule-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .block-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .block-time {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    min-width: 80px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .block-content { flex: 1; }
+  .block-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .block-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .block-methods {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+  }
+  .method-chip {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+  .method-chip.practice { border-color: #4caf7d44; color: var(--green); background: rgba(76,175,125,0.06); }
+  .method-chip.theory { border-color: #5b9bd544; color: var(--blue); background: rgba(91,155,213,0.06); }
+  .method-chip.case { border-color: var(--gold-dim); color: var(--gold-light); background: rgba(201,168,76,0.06); }
+
+  .block-card.break {
+    background: transparent;
+    border-color: var(--border);
+    opacity: 0.5;
+    padding: 10px 20px;
+  }
+  .block-card.important {
+    border-color: var(--gold-dim);
+    background: rgba(201,168,76,0.04);
+  }
+
+  /* HW SECTION */
+  .hw-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .hw-section h3 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .hw-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .hw-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .hw-badge.theory { background: rgba(91,155,213,0.15); color: var(--blue); }
+  .hw-badge.practice { background: rgba(76,175,125,0.15); color: var(--green); }
+  .hw-text { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+
+  /* TEST BUTTON */
+  .test-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: #000;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .test-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .test-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* TEST VIEW */
+  .test-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .test-title { font-family: 'Playfair Display', serif; font-size: 20px; }
+  .test-meta { font-size: 12px; color: var(--text-dim); }
+  .question-counter {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: right;
+  }
+  .question-progress {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .q-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+  }
+  .q-dot.current { background: var(--gold); border-color: var(--gold); }
+  .q-dot.done { background: var(--green); border-color: var(--green); }
+
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+  .q-num { font-size: 11px; color: var(--gold); letter-spacing: 1px; margin-bottom: 10px; }
+  .q-text { font-size: 16px; font-weight: 500; line-height: 1.6; margin-bottom: 20px; }
+  .q-scenario {
+    background: var(--surface2);
+    border-left: 3px solid var(--gold-dim);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option {
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .option:hover { border-color: var(--gold-dim); background: rgba(201,168,76,0.05); }
+  .option.selected { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+  .option.correct { border-color: var(--green); background: rgba(76,175,125,0.1); color: var(--text); }
+  .option.wrong { border-color: var(--red); background: rgba(224,85,85,0.1); color: var(--text); }
+  .option-letter {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .option.selected .option-letter { background: var(--gold); color: #000; }
+  .option.correct .option-letter { background: var(--green); color: #000; }
+  .option.wrong .option-letter { background: var(--red); color: #fff; }
+
+  /* FEEDBACK */
+  .feedback-box {
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.7;
+    display: none;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.positive {
+    background: rgba(76,175,125,0.08);
+    border: 1px solid rgba(76,175,125,0.3);
+    color: #a8d5b8;
+  }
+  .feedback-box.negative {
+    background: rgba(224,85,85,0.08);
+    border: 1px solid rgba(224,85,85,0.3);
+    color: #f0a0a0;
+  }
+  .feedback-label {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .nav-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-secondary {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--text-dim); }
+  .btn-primary {
+    background: var(--gold);
+    color: #000;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* RESULTS */
+  .results-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .score-ring {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .score-ring.excellent { background: rgba(76,175,125,0.15); border: 3px solid var(--green); color: var(--green); }
+  .score-ring.good { background: rgba(201,168,76,0.15); border: 3px solid var(--gold); color: var(--gold); }
+  .score-ring.poor { background: rgba(224,85,85,0.15); border: 3px solid var(--red); color: var(--red); }
+  .result-title { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; }
+  .result-desc { font-size: 14px; color: var(--text-dim); max-width: 500px; margin: 0 auto 24px; line-height: 1.7; }
+
+  .result-breakdown {
+    text-align: left;
+    background: var(--surface2);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .breakdown-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-icon { font-size: 16px; flex-shrink: 0; padding-top: 2px; }
+  .breakdown-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .breakdown-text strong { color: var(--text); }
+
+  /* BACK BTN */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--gold); }
+
+  /* OVERVIEW TABLE */
+  .competency-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .comp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .comp-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+  .comp-list { list-style: none; }
+  .comp-list li {
+    font-size: 12px;
+    color: var(--text-dim);
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .comp-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .layout { flex-direction: column; padding: 16px; }
+    .sidebar { width: 100%; }
+    .sidebar-sticky { position: static; }
+    .header { padding: 20px 16px; }
+    .overview-grid { grid-template-columns: repeat(2, 1fr); }
+    .competency-grid { grid-template-columns: 1fr; }
+    .day-num-big { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" style="
+  position:fixed; inset:0; z-index:9999;
+  background:#0d0d0d;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'IBM Plex Sans',sans-serif;
+">
+  <div style="
+    background:#161616;
+    border:1px solid #7a5e28;
+    border-radius:12px;
+    padding:48px 40px;
+    width:100%; max-width:420px;
+    text-align:center;
+  ">
+    <div style="font-size:11px;letter-spacing:3px;color:#c9a84c;margin-bottom:12px;">ПБО · СЕТЬ КОФЕЕН · ЧР</div>
+    <div style="font-family:'Playfair Display',serif;font-size:26px;color:#e8e2d9;margin-bottom:8px;">Программа обучения</div>
+    <div style="font-size:13px;color:#8a8278;margin-bottom:32px;">Территориальный менеджер</div>
+
+    <div style="text-align:left;margin-bottom:16px;">
+      <label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ИМЯ</label>
+      <input id="inp-name" type="text" placeholder="Введите ваше имя" style="
+        width:100%;padding:12px 16px;
+        background:#1f1f1f;border:1px solid #2a2a2a;
+        border-radius:6px;color:#e8e2d9;font-size:15px;
+        outline:none;font-family:'IBM Plex Sans',sans-serif;
+        transition:border 0.2s;
+      " onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#2a2a2a'">
+    </div>
+
+    <div style="text-align:left;margin-bottom:28px;">
+      <label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ФАМИЛИЯ</label>
+      <input id="inp-surname" type="text" placeholder="Введите вашу фамилию" style="
+        width:100%;padding:12px 16px;
+        background:#1f1f1f;border:1px solid #2a2a2a;
+        border-radius:6px;color:#e8e2d9;font-size:15px;
+        outline:none;font-family:'IBM Plex Sans',sans-serif;
+        transition:border 0.2s;
+      " onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#2a2a2a'">
+    </div>
+
+    <div id="login-error" style="color:#e05555;font-size:12px;margin-bottom:12px;display:none;">Введите имя и фамилию</div>
+
+    <button onclick="doLogin()" style="
+      width:100%;padding:14px;
+      background:#c9a84c;color:#000;
+      border:none;border-radius:6px;
+      font-size:14px;font-weight:600;
+      cursor:pointer;letter-spacing:0.5px;
+      font-family:'IBM Plex Sans',sans-serif;
+      transition:background 0.2s;
+    " onmouseover="this.style.background='#e8c96e'" onmouseout="this.style.background='#c9a84c'">
+      Начать обучение →
+    </button>
+
+    <div style="font-size:11px;color:#8a8278;margin-top:20px;">
+      Доступ к программе · 5 дней · 4 теста
+    </div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="company-tag">ПБО · Чеченская Республика · HoReCa</div>
+    <h1>Программа обучения ТМ</h1>
+    <div class="header-sub">Территориальные менеджеры сети кофеен — интенсив 5 дней</div>
+    <div class="header-meta">
+      <div class="meta-chip">5 дней · очно</div>
+      <div class="meta-chip">3–4 участника</div>
+      <div class="meta-chip">Тесты + ОС после каждого дня</div>
+      <div class="meta-chip">Домашние задания</div>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-sticky">
+      <div class="nav-label">Навигация</div>
+      <div class="nav-item active" onclick="showView('overview')">
+        <div class="nav-day" style="border-radius:4px; font-size:9px;">ОБЗ</div>
+        <div class="nav-text">
+          <div class="nav-text-main">Обзор программы</div>
+          <div class="nav-text-sub">Цели и компетенции</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(1)" id="nav-day-1">
+        <div class="nav-day">1</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 1</div>
+          <div class="nav-text-sub">Роль и мышление ТМ</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(2)" id="nav-day-2">
+        <div class="nav-day">2</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 2</div>
+          <div class="nav-text-sub">Управление командой</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(3)" id="nav-day-3">
+        <div class="nav-day">3</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 3</div>
+          <div class="nav-text-sub">Операционное управление</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(4)" id="nav-day-4">
+        <div class="nav-day">4</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 4</div>
+          <div class="nav-text-sub">Финансы и показатели</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(5)" id="nav-day-5">
+        <div class="nav-day">5</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 5</div>
+          <div class="nav-text-sub">Итоговая аттестация</div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <div class="nav-label">Прогресс</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="main-progress" style="width:0%"></div>
+        </div>
+        <div class="progress-text" id="progress-text">0 из 4 тестов пройдено</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- OVERVIEW -->
+    <div class="view active" id="view-overview">
+      <div class="overview-note">
+        <h3>Цель программы</h3>
+        <p>Сформировать территориальных менеджеров, способных самостоятельно управлять 2–3 кофейнями: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый ТМ знает свою роль, инструменты влияния и умеет применять их в условиях специфики ЧР.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="day-card" onclick="showDayView(1)">
+          <div class="day-card-num">01</div>
+          <div class="day-card-title">Роль и мышление ТМ</div>
+          <div class="day-card-theme">Самоопределение · Зоны ответственности · Переход из исполнителя в управленца</div>
+        </div>
+        <div class="day-card" onclick="showDayView(2)">
+          <div class="day-card-num">02</div>
+          <div class="day-card-title">Управление командой</div>
+          <div class="day-card-theme">Дисциплина · Мотивация · Удержание · Специфика молодых сотрудников</div>
+        </div>
+        <div class="day-card" onclick="showDayView(3)">
+          <div class="day-card-num">03</div>
+          <div class="day-card-title">Операционное управление</div>
+          <div class="day-card-theme">Стандарты · Контроль качества · Проверки точек · Управление менеджером смены</div>
+        </div>
+        <div class="day-card" onclick="showDayView(4)">
+          <div class="day-card-num">04</div>
+          <div class="day-card-title">Финансы и показатели</div>
+          <div class="day-card-theme">P&L кофейни · KPI · Влияние на выручку · Управление себестоимостью</div>
+        </div>
+        <div class="day-card" onclick="showDayView(5)">
+          <div class="day-card-num">05</div>
+          <div class="day-card-title">Итоговая аттестация</div>
+          <div class="day-card-theme">Комплексный тест · Защита плана развития точки · Обратная связь</div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Ключевые компетенции программы</div>
+      <div class="competency-grid">
+        <div class="comp-card">
+          <h4>Управленческие компетенции</h4>
+          <ul class="comp-list">
+            <li>Постановка задач и контроль исполнения</li>
+            <li>Управленческое общение и обратная связь</li>
+            <li>Принятие решений в нестандартных ситуациях</li>
+            <li>Работа с конфликтами в команде</li>
+            <li>Делегирование и распределение полномочий</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h4>Операционные компетенции</h4>
+          <ul class="comp-list">
+            <li>Знание стандартов и процессов кофейни</li>
+            <li>Методология проверки и аудита точки</li>
+            <li>Управление качеством и гостевым сервисом</li>
+            <li>Контроль товарного учёта и списаний</li>
+            <li>Управление расписанием и нагрузкой</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h4>Финансовые компетенции</h4>
+          <ul class="comp-list">
+            <li>Чтение и анализ базового P&L</li>
+            <li>Понимание структуры выручки кофейни</li>
+            <li>Управление ФОТ и себестоимостью</li>
+            <li>Работа с KPI: выручка, ср. чек, трафик</li>
+            <li>Планирование и прогнозирование</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h4>HR-компетенции</h4>
+          <ul class="comp-list">
+            <li>Адаптация и ввод в должность</li>
+            <li>Нематериальная мотивация</li>
+            <li>Работа с молодёжью 16–22 года</li>
+            <li>Удержание ключевых сотрудников</li>
+            <li>Специфика управления в ЧР</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 1 VIEW -->
+    <div class="view" id="view-day-1">
+      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">01</div>
+        <div>
+          <div class="day-title">Роль и мышление территориального менеджера</div>
+          <div class="day-goal">Цель: каждый ТМ чётко понимает, кто он, за что отвечает, и в чём принципиальное отличие его роли от менеджера смены</div>
+          <div class="day-tags">
+            <span class="tag gold">Управленческое мышление</span>
+            <span class="tag">Зоны ответственности</span>
+            <span class="tag">Самооценка</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card">
+        <div class="block-time">09:00–09:30</div>
+        <div class="block-content">
+          <div class="block-title">Открытие. Знакомство. Контракт группы</div>
+          <div class="block-desc">Ожидания участников, правила работы на неделю, формат обучения. Каждый называет свою главную управленческую проблему прямо сейчас.</div>
+          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">09:30–11:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 1. Кто такой ТМ в кофейном бизнесе</div>
+          <div class="block-desc">Структура управления: головной офис → ТМ → менеджер точки → линейный персонал. Чем ТМ отличается от управляющего точкой. Матрица ответственности: что ТМ делает сам, что делегирует, что контролирует. Типичные ошибки первых 3 месяцев в роли.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">11:00–11:15</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:15–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 2. Управленческий стиль и ситуативное лидерство</div>
+          <div class="block-desc">Модель Херси–Бланшара: 4 уровня зрелости сотрудника, 4 стиля управления. Как выбирать стиль под конкретного сотрудника. Применение в кофейне: стажёр, опытный бариста, менеджер смены. Работа в группах: разбор 3 реальных ситуаций из точек ЧР.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">13:00–14:00</div>
+        <div class="block-content"><div class="block-title">🍽 Обед</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">14:00–15:30</div>
+        <div class="block-content">
+          <div class="block-title">Блок 3. Постановка задач и контроль — модель SMART+</div>
+          <div class="block-desc">Почему задачи не выполняются: 5 причин. Структура правильной задачи: результат, срок, ресурс, критерий оценки. Точки контроля: промежуточный и итоговый. Практика: каждый ТМ ставит 2 задачи своему «сотруднику» — группа даёт обратную связь.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">15:30–15:45</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">15:45–17:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 4. Обратная связь как инструмент управления</div>
+          <div class="block-desc">Модель SBI (Situation–Behavior–Impact). Развивающая и корректирующая ОС. Разбор типичных ошибок при даче ОС в восточной культуре (сохранение достоинства, публичность, иерархия). Ролевые игры в парах.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">17:00–17:30</div>
+        <div class="block-content">
+          <div class="block-title">Рефлексия дня + Инструктаж по ДЗ</div>
+          <div class="block-desc">Каждый называет 1 инсайт и 1 вопрос. Выдача домашнего задания.</div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 1</h3>
+        <div class="hw-item">
+          <span class="hw-badge theory">Теория</span>
+          <div class="hw-text">Прочитать материал «10 ошибок нового руководителя в общепите» (выдаётся на бумаге). Выписать 3 ошибки, которые вы уже допускали или рискуете допустить. Написать письменно — что сделаете иначе.</div>
+        </div>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">До завтрашнего утра поставить 1 задачу менеджеру своей кофейни по модели SMART. Записать формулировку. Завтра разбираем в группе.</div>
+        </div>
+      </div>
+
+      <button class="test-btn" onclick="showTestView(1)" id="test-btn-1">
+        ✦ Пройти тест по Дню 1
+      </button>
+    </div>
+
+    <!-- DAY 2 VIEW -->
+    <div class="view" id="view-day-2">
+      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">02</div>
+        <div>
+          <div class="day-title">Управление командой в кофейне</div>
+          <div class="day-goal">Цель: ТМ умеет выстраивать дисциплину без давления, мотивировать молодых сотрудников, снижать текучесть персонала с учётом специфики ЧР</div>
+          <div class="day-tags">
+            <span class="tag gold">Дисциплина</span>
+            <span class="tag">Мотивация</span>
+            <span class="tag">Удержание</span>
+            <span class="tag">Молодёжь 16+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card">
+        <div class="block-time">09:00–09:30</div>
+        <div class="block-content">
+          <div class="block-title">Разбор ДЗ. Задачи по SMART — что получилось, что нет</div>
+          <div class="block-desc">Каждый зачитывает свою задачу. Группа оценивает по чек-листу. Итог — корректировка формулировок.</div>
+          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">09:30–11:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 5. Дисциплина: система, а не крик</div>
+          <div class="block-desc">Почему сотрудники нарушают правила: 3 реальные причины. Система дисциплины: правила → напоминание → предупреждение → последствия. Как реагировать на опоздания, прогулы, нарушение формы. Специфика: молодые сотрудники от 16 лет — особенности трудового законодательства, как говорить с ними и с их родителями. Как вести себя в конфликте — стратегии для восточной культуры.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">11:00–11:15</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:15–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 6. Мотивация в HoReCa: что реально работает</div>
+          <div class="block-desc">Пирамида потребностей Маслоу применительно к линейному персоналу кофейни. Материальная vs нематериальная мотивация — что важнее для молодых сотрудников. Конкретные инструменты: нематериальная мотивация в рамках исламской культуры (признание, уважение, развитие). Признание результатов. Рамадан и его влияние на производительность — как управлять командой в этот период. Разработка карты мотиваторов для каждой точки.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">13:00–14:00</div>
+        <div class="block-content"><div class="block-title">🍽 Обед</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">14:00–15:30</div>
+        <div class="block-content">
+          <div class="block-title">Блок 7. Текучесть персонала — управление и снижение</div>
+          <div class="block-desc">Стоимость текучести: считаем вместе на реальных цифрах. Почему уходят из кофеен ЧР — топ-5 причин. Адаптация нового сотрудника: план первых 2 недель, роль ТМ в нём. Инструменты удержания без повышения зарплаты. Exit-интервью: как проводить и что с этим делать. Разбор кейса: сотрудник собирается уволиться — как ТМ должен действовать.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">15:30–15:45</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">15:45–17:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 8. Работа с менеджером смены — ключевые отношения ТМ</div>
+          <div class="block-desc">Менеджер точки — не подчинённый, а партнёр по результату. Как выстраивать ежедневное взаимодействие. Формат еженедельного 1-on-1: структура, продолжительность, фиксация. Как ТМ развивает менеджера точки. Когда нужно вмешаться напрямую, а когда — дать менеджеру решить.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">17:00–17:30</div>
+        <div class="block-content">
+          <div class="block-title">Рефлексия дня + Инструктаж по ДЗ</div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 2</h3>
+        <div class="hw-item">
+          <span class="hw-badge theory">Теория</span>
+          <div class="hw-text">Написать «Карту мотиваторов» для каждого менеджера своей точки (минимум 2 человека): кто что ценит на работе, что демотивирует, что удержит. Формат — таблица на бумаге.</div>
+        </div>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">Провести короткий 1-on-1 с менеджером своей точки (15 минут). Три вопроса: что идёт хорошо, что мешает работать, что нужно от меня. Записать ответы и принести завтра.</div>
+        </div>
+      </div>
+
+      <button class="test-btn" onclick="showTestView(2)" id="test-btn-2">
+        ✦ Пройти тест по Дню 2
+      </button>
+    </div>
+
+    <!-- DAY 3 VIEW -->
+    <div class="view" id="view-day-3">
+      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">03</div>
+        <div>
+          <div class="day-title">Операционное управление кофейней</div>
+          <div class="day-goal">Цель: ТМ знает, как устроены операции кофейни, умеет проводить аудит точки и влиять на качество через системные инструменты, а не ручное управление</div>
+          <div class="day-tags">
+            <span class="tag gold">Стандарты</span>
+            <span class="tag">Аудит точки</span>
+            <span class="tag">Качество</span>
+            <span class="tag">Процессы</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card">
+        <div class="block-time">09:00–09:30</div>
+        <div class="block-content">
+          <div class="block-title">Разбор ДЗ. Результаты 1-on-1 с менеджерами</div>
+          <div class="block-desc">Что узнали о своих точках. Какие инсайты про мотиваторов получили. Что планируют изменить.</div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">09:30–11:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 9. Стандарты кофейни — основа всего</div>
+          <div class="block-desc">Зачем нужны стандарты в HoReCa: гостевой опыт, безопасность, управляемость. Ключевые блоки стандартов: открытие/закрытие, приготовление, сервис, чистота, товарный учёт. Как внедрять стандарты в уже работающую точку (без сопротивления персонала). Создание чек-листа для ежедневного контроля — работа в группах. Практика: разрабатываем чек-лист открытия кофейни совместно.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">11:00–11:15</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:15–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 10. Аудит точки — методология ТМ</div>
+          <div class="block-desc">Виды визитов ТМ: плановый, внеплановый, проблемный. Структура визита: до прихода, наблюдение, разговор с менеджером, итоги. Что смотреть в первую очередь: топ-10 точек контроля. Как фиксировать нарушения и давать задачи на исправление. Частота визитов при 2–3 точках. Разбор кейса: ТМ приходит на точку и видит 5 нарушений — как действовать. Ролевая игра: один ТМ — инспектор, второй — менеджер.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">13:00–14:00</div>
+        <div class="block-content"><div class="block-title">🍽 Обед</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">14:00–15:30</div>
+        <div class="block-content">
+          <div class="block-title">Блок 11. Управление качеством продукта и сервиса</div>
+          <div class="block-desc">Кофейный продукт: что влияет на качество чашки (кратко, без технологии). Сервис в кофейне ЧР: ожидания гостей, типичные жалобы. Работа с жалобами гостей: модель LAST (Listen–Apologize–Solve–Thank). Как ТМ отслеживает качество без присутствия на точке: тайный гость, отзывы, показатели. Mystery guest: как организовать дёшево.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">15:30–15:45</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">15:45–17:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 12. Планирование рабочего времени ТМ</div>
+          <div class="block-desc">Типичная неделя ТМ — как она должна выглядеть. Распределение времени: точки, административная работа, встречи. Приоритизация по матрице Эйзенхауэра. Что убивает время ТМ — топ-5 ловушек. Каждый составляет идеальную неделю под свои точки.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">17:00–17:30</div>
+        <div class="block-content">
+          <div class="block-title">Рефлексия дня + Инструктаж по ДЗ</div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 3</h3>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">Провести мини-аудит одной своей точки по чек-листу, созданному сегодня (минимум 15 пунктов). Зафиксировать нарушения, поставить задачи менеджеру с дедлайнами. Принести заполненный чек-лист завтра.</div>
+        </div>
+        <div class="hw-item">
+          <span class="hw-badge theory">Теория</span>
+          <div class="hw-text">Прочитать материал «Стандарты HoReCa: зачем и как» (выдаётся). Написать 3 стандарта, которых сейчас нет на вашей точке, но они критически нужны.</div>
+        </div>
+      </div>
+
+      <button class="test-btn" onclick="showTestView(3)" id="test-btn-3">
+        ✦ Пройти тест по Дню 3
+      </button>
+    </div>
+
+    <!-- DAY 4 VIEW -->
+    <div class="view" id="view-day-4">
+      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">04</div>
+        <div>
+          <div class="day-title">Финансовое управление и KPI кофейни</div>
+          <div class="day-goal">Цель: ТМ читает базовую финансовую отчётность точки, понимает из чего складывается прибыль, и знает конкретные рычаги влияния на каждый показатель</div>
+          <div class="day-tags">
+            <span class="tag gold">P&L кофейни</span>
+            <span class="tag">KPI</span>
+            <span class="tag">Выручка</span>
+            <span class="tag">Себестоимость</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card">
+        <div class="block-time">09:00–09:30</div>
+        <div class="block-content">
+          <div class="block-title">Разбор ДЗ. Результаты аудита точек</div>
+          <div class="block-desc">Каждый ТМ представляет чек-лист: какие нарушения нашли, какие задачи поставили. Обсуждение — что было сложно увидеть.</div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">09:30–11:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 13. Финансовая анатомия кофейни</div>
+          <div class="block-desc">Структура P&L кофейни: выручка, себестоимость продуктов (COGS), валовая прибыль, ФОТ, аренда, прочие расходы, EBITDA. Типичные пропорции в кофейном бизнесе. Что находится в зоне влияния ТМ, а что — нет. Разбор реального (обезличенного) P&L кофейни: ищем проблемы вместе. Как читать отчёт за неделю и делать выводы.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">11:00–11:15</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:15–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 14. Выручка кофейни — рычаги роста</div>
+          <div class="block-desc">Формула выручки: трафик × средний чек. Как ТМ влияет на трафик: локация, видимость, часы работы, скорость обслуживания. Как ТМ влияет на средний чек: апселл, ассортимент, акции. Анализ часов пик и провалов: как перераспределить усилия. Расчёт упущенной выручки — практика на цифрах. Локальный маркетинг кофейни: что ТМ может делать без бюджета.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">13:00–14:00</div>
+        <div class="block-content"><div class="block-title">🍽 Обед</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">14:00–15:30</div>
+        <div class="block-content">
+          <div class="block-title">Блок 15. Себестоимость и ФОТ — управление затратами</div>
+          <div class="block-desc">Food cost кофейни: норматив, как считается, что на него влияет. Списания и потери: типичные причины в кофейне. Как ТМ контролирует расход сырья. ФОТ: как считать эффективность персонала (выручка на сотрудника в смену). Планирование графиков под трафик. Практика: составить оптимальный график смен под конкретный профиль трафика.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">15:30–15:45</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">15:45–17:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 16. Еженедельный управленческий цикл ТМ</div>
+          <div class="block-desc">Что ТМ анализирует каждую неделю: топ-5 показателей. Формат еженедельного отчёта ТМ для руководства. Как ставить цели на неделю для каждой точки. Как разговаривать с руководством о результатах. Каждый ТМ создаёт свой шаблон еженедельного отчёта.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">17:00–17:30</div>
+        <div class="block-content">
+          <div class="block-title">Рефлексия дня + Инструктаж по ДЗ + Подготовка к аттестации</div>
+          <div class="block-desc">Объяснение формата завтрашнего финального дня. Что нужно подготовить.</div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 4</h3>
+        <div class="hw-item">
+          <span class="hw-badge theory">Теория</span>
+          <div class="hw-text">Написать «План развития точки» на 1 месяц: минимум 5 конкретных действий с цифровыми целями (что измеряем, какой целевой результат). Формат свободный — главное: конкретно и с цифрами.</div>
+        </div>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">Подготовить устную презентацию плана на 5–7 минут. Завтра каждый защищает его перед группой. Это часть аттестации.</div>
+        </div>
+      </div>
+
+      <button class="test-btn" onclick="showTestView(4)" id="test-btn-4">
+        ✦ Пройти тест по Дню 4
+      </button>
+    </div>
+
+    <!-- DAY 5 VIEW -->
+    <div class="view" id="view-day-5">
+      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">05</div>
+        <div>
+          <div class="day-title">Итоговая аттестация и финальная обратная связь</div>
+          <div class="day-goal">Цель: проверить полноту усвоения программы, зафиксировать индивидуальные зоны роста каждого ТМ, вручить сертификаты</div>
+          <div class="day-tags">
+            <span class="tag gold">Аттестация</span>
+            <span class="tag">Защита плана</span>
+            <span class="tag">Сертификация</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card important">
+        <div class="block-time">09:00–10:30</div>
+        <div class="block-content">
+          <div class="block-title">Итоговый тест — 30 вопросов по всей программе</div>
+          <div class="block-desc">Письменно. Охватывает все 4 дня: управление, команда, операции, финансы. Критерий зачёта: 70% и выше. При 50–69% — пересдача в течение недели. Ниже 50% — повторное обучение по проблемным блокам.</div>
+          <div class="block-methods"><span class="method-chip theory">Аттестация</span></div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">10:30–10:45</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">10:45–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Защита плана развития точки</div>
+          <div class="block-desc">Каждый ТМ: 5–7 минут презентация + 5 минут вопросы от группы и ведущего. Критерии оценки: конкретность целей, реалистичность, понимание рычагов влияния, уверенность изложения. Оценочный лист заполняет ведущий — итоги отдаются каждому лично.</div>
+          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">13:00–14:00</div>
+        <div class="block-content"><div class="block-title">🍽 Обед</div></div>
+      </div>
+
+      <div class="block-card">
+        <div class="block-time">14:00–15:30</div>
+        <div class="block-content">
+          <div class="block-title">Индивидуальные сессии обратной связи</div>
+          <div class="block-desc">Ведущий встречается с каждым ТМ 20–25 минут: сильные стороны, зоны роста, персональные рекомендации. Каждый получает письменный профиль компетенций по итогам недели. Фиксируются 2–3 развивающие задачи на ближайший месяц.</div>
+          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
+        </div>
+      </div>
+
+      <div class="block-card break">
+        <div class="block-time">15:30–15:45</div>
+        <div class="block-content"><div class="block-title">☕ Перерыв</div></div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">15:45–17:00</div>
+        <div class="block-content">
+          <div class="block-title">Закрытие программы. Вручение сертификатов</div>
+          <div class="block-desc">Итоги недели от ведущего. Каждый ТМ называет главное, что уносит с собой. Фиксация договорённостей: что каждый обязуется внедрить за ближайшие 2 недели. Вручение сертификатов об успешном прохождении программы.</div>
+          <div class="block-methods"><span class="method-chip case">Церемония</span></div>
+        </div>
+      </div>
+
+      <div class="hw-section" style="border-color: var(--gold-dim); background: rgba(201,168,76,0.04);">
+        <h3>После программы — план на 30 дней</h3>
+        <div class="hw-item">
+          <span class="hw-badge practice">Неделя 1</span>
+          <div class="hw-text">Провести аудит всех своих точек по чек-листу. Внедрить 1 новый стандарт. Провести 1-on-1 с каждым менеджером своих точек.</div>
+        </div>
+        <div class="hw-item">
+          <span class="hw-badge practice">Неделя 2–3</span>
+          <div class="hw-text">Запустить план развития точки, защищённый на аттестации. Начать еженедельные отчёты по своему шаблону.</div>
+        </div>
+        <div class="hw-item">
+          <span class="hw-badge theory">День 30</span>
+          <div class="hw-text">Встреча с HRD: что внедрено, какие результаты, корректировка целей. Промежуточная оценка компетенций.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTS -->
+    <div class="view" id="view-test">
+      <div class="back-link" id="test-back-link">← Вернуться к дню</div>
+      <div class="test-header">
+        <div>
+          <div class="test-title" id="test-title">Тест по Дню 1</div>
+          <div class="test-meta" id="test-meta">10 вопросов · ~15 минут</div>
+        </div>
+        <div class="question-counter">
+          <div id="q-counter">Вопрос 1 из 10</div>
+          <div class="question-progress" id="q-dots"></div>
+        </div>
+      </div>
+      <div id="question-area"></div>
+      <div class="nav-btns">
+        <button class="btn-secondary" onclick="prevQuestion()" id="btn-prev" style="display:none">← Назад</button>
+        <button class="btn-primary" onclick="nextQuestion()" id="btn-next" disabled>Далее →</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="view" id="view-results">
+      <div class="back-link" id="results-back-link">← Вернуться к дню</div>
+      <div class="results-card">
+        <div class="score-ring" id="score-ring"></div>
+        <div class="result-title" id="result-title"></div>
+        <div class="result-desc" id="result-desc"></div>
+      </div>
+      <div class="result-breakdown" id="result-breakdown"></div>
+      <button class="btn-primary" id="results-btn" style="margin: 0 auto; display:block">Перейти к следующему дню →</button>
+    </div>
+
+  </main>
+</div>
+
+<script>
+
+  let participantName = '';
+
+  function doLogin() {
+    const name = document.getElementById('inp-name').value.trim();
+    const surname = document.getElementById('inp-surname').value.trim();
+    if (!name || !surname) {
+      document.getElementById('login-error').style.display = 'block';
+      return;
+    }
+    participantName = name + ' ' + surname;
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('participant-display').textContent = participantName;
+    localStorage.setItem('tm_participant', participantName);
+  }
+
+  // Allow Enter key on inputs
+  document.addEventListener('DOMContentLoaded', function() {
+    ['inp-name','inp-surname'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+    });
+    // Restore name if page refreshed
+    const saved = localStorage.getItem('tm_participant');
+    if(saved) {
+      participantName = saved;
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('participant-display').textContent = participantName;
+    }
+  });
+
+
+// ============================================================
+// DATA
+// ============================================================
+const tests = {
+  1: {
+    title: "Тест по Дню 1 — Роль и мышление ТМ",
+    meta: "10 вопросов · ~15 минут",
+    questions: [
+      {
+        text: "Вы пришли на точку, менеджер смены на месте. Бариста готовит капучино не по рецептуре — добавляет молока больше нормы. Гости есть, очереди нет. Что делаете?",
+        options: [
+          "Подхожу к бариста, объясняю ошибку, прошу переделать",
+          "Говорю менеджеру: «У тебя бариста нарушает рецептуру» и жду реакции",
+          "Отвожу менеджера в сторону, объясняю что увидел, ставлю задачу — он сам разбирается с бариста",
+          "Фиксирую в отчёт, обсужу с менеджером на плановой встрече в конце недели"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Разница между вариантом Б и В принципиальная. «Говорю менеджеру» публично — тоже подрыв авторитета, потому что бариста видит что его менеджера поправляют. ТМ уводит менеджера приватно, ставит задачу — менеджер сам идёт к бариста и выглядит как управленец.",
+          wrong: [
+            "Прямое обращение к бариста в обход менеджера — классическая ошибка нового ТМ. Команда начинает ориентироваться на ТМ, а не на своего менеджера.",
+            "Близко к верному, но публичность фразы разрушает авторитет менеджера перед командой. Такие вещи говорятся приватно.",
+            null,
+            "Откладывать нарушение рецептуры до конца недели — значит позволить точке весь этот период работать с отклонением от стандарта."
+          ]
+        }
+      },
+      {
+        text: "Менеджер вашей точки — опытный, работает 1,5 года, результаты стабильные. Он перестал проводить утренние планёрки. На ваш вопрос отвечает: «Они бесполезны, команда всё и так знает». Ваши действия?",
+        options: [
+          "Соглашаюсь — раз результат есть, формат не важен",
+          "Выясняю почему перестал, объясняю функцию планёрки, договариваемся о формате — но не навязываю жёсткий скрипт",
+          "Говорю: планёрки обязательны, возобновить с понедельника",
+          "Провожу несколько планёрок сам, показываю как надо"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "С опытным менеджером директивный приказ создаёт сопротивление. Игнорировать — значит позволить стандарту размываться. Правильно: диалог, объяснение смысла, гибкость в форме при сохранении функции.",
+          wrong: [
+            "Результат сегодня не гарантирует результат завтра. Планёрка — инструмент синхронизации команды. Без неё риски копятся незаметно.",
+            null,
+            "Директивный приказ опытному менеджеру без объяснения причин — путь к формальному исполнению и скрытому сопротивлению.",
+            "Проводить планёрки вместо менеджера — ошибка подмены. Вы показываете команде, что их менеджер не справляется."
+          ]
+        }
+      },
+      {
+        text: "Вы поставили задачу: «До пятницы 18:00 провести инструктаж по стандарту приветствия, все бариста расписываются в листе». В пятницу лист есть, подписи стоят. В субботу бариста приветствуют гостей по-старому. Что произошло?",
+        options: [
+          "Менеджер солгал — провести дисциплинарную беседу",
+          "Бариста саботируют — разобраться с каждым лично",
+          "Задача выполнена формально: инструктаж был, но без отработки и проверки понимания. Нужен критерий качества, а не только подписи",
+          "Стандарт плохо написан — нужно переработать"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Ловушка постановки задачи. Формально всё выполнено: инструктаж был, подписи есть. Ошибка ТМ — критерий «подпись» не равен «усвоение стандарта». Следующая версия задачи: инструктаж + практическая отработка + выборочная проверка ТМ в течение недели.",
+          wrong: [
+            "Менеджер выполнил задачу ровно так, как она была поставлена. Обвинять его во лжи несправедливо. Проблема в задаче, не в менеджере.",
+            "Бариста делают то, что им показали. Если проверка была формальной — поведение останется прежним. Это не саботаж.",
+            null,
+            "Стандарт здесь ни при чём — его никто не изучил по-настоящему."
+          ]
+        }
+      },
+      {
+        text: "Два ТМ спорят. Первый: «Я всегда использую один стиль — строгий и последовательный». Второй: «Я меняю стиль под каждого сотрудника». Кто прав?",
+        options: [
+          "Первый — последовательность важнее гибкости, команда должна знать чего ожидать",
+          "Второй — индивидуальный подход всегда эффективнее",
+          "Оба неправы — стиль должен зависеть от ситуации, а не от сотрудника",
+          "Второй ближе к верному, но точнее: стиль зависит от уровня зрелости сотрудника в конкретной задаче, а не от личности в целом"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Нюанс: один и тот же сотрудник может быть R4 в приготовлении кофе и R1 в работе с жалобами. Стиль меняется под задачу, а не под человека целиком. Второй ТМ движется в правильном направлении, но формулировка «под каждого» — упрощение.",
+          wrong: [
+            "Единый строгий стиль необходим для новичков, но демотивирует опытных. Последовательность в ценностях — да, но не в стиле управления.",
+            "«Индивидуальный подход» без привязки к зрелости превращается в хаос. Нельзя строить управление на личных симпатиях.",
+            "Ситуация — один из факторов, но ключевой в модели Херси–Бланшара именно уровень зрелости сотрудника в конкретной задаче.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Какая формулировка обратной связи по модели SBI правильная?",
+        options: [
+          "«Ты всегда опаздываешь с отчётами — это безответственно»",
+          "«Мне не нравится, как ты ведёшь планёрки — нужно работать над этим»",
+          "«Вчера на планёрке ты не дал слово бариста, который поднял руку — в итоге он ушёл со смены без понимания задачи»",
+          "«Ты хорошо справляешься, но планёрки можно проводить эффективнее»"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Три элемента SBI на месте: конкретная ситуация (вчера, планёрка), конкретное поведение без оценки (не дал слово), измеримое последствие (сотрудник ушёл без понимания задачи). Нет оценки личности, нет обобщений.",
+          wrong: [
+            "«Всегда» — обобщение, вызывает защитную реакцию. «Безответственно» — оценка личности. Нет ни ситуации, ни влияния.",
+            "«Мне не нравится» — эмоция, не обратная связь. Нет ситуации, нет конкретного поведения.",
+            null,
+            "Размытый комплимент с намёком. Менеджер не поймёт что конкретно менять."
+          ]
+        }
+      },
+      {
+        text: "На одной точке менеджер всё решает сам, команда работает хорошо. На другой — менеджер звонит вам по любому поводу. Что это означает?",
+        options: [
+          "Первый менеджер нелоялен — нужно усилить контроль. Второй правильно выстраивает субординацию",
+          "Первый — самостоятельный (R4), делегирующий стиль и чёткие точки отчётности. Второй — зависимый (R2), нужно развивать самостоятельность",
+          "Оба неправильно понимают роль — ТМ должен участвовать во всех решениях",
+          "Со вторым проще работать — он управляемый. Первого нужно переориентировать"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Самостоятельный менеджер — актив, а не угроза. Зависимый — риск: если ТМ недоступен, точка встаёт. Задача ТМ — развивать второго до уровня первого.",
+          wrong: [
+            "Самостоятельность — не нелояльность. Усиление контроля над сильным менеджером его демотивирует и снизит результат.",
+            null,
+            "ТМ, который участвует во всех решениях — это микроменеджмент. Цель — точки, работающие без его постоянного присутствия.",
+            "«Управляемый» менеджер без самостоятельных решений — операционный риск при любом сбое в доступности ТМ."
+          ]
+        }
+      },
+      {
+        text: "Что из перечисленного ТМ должен делать лично, а не делегировать?",
+        options: [
+          "Составление графика смен на каждой точке",
+          "Проведение инструктажей с линейным персоналом",
+          "Индивидуальные беседы с менеджерами точек о результатах и развитии",
+          "Контроль чистоты зала в час пик"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Развитие менеджеров — личная функция ТМ, которую нельзя делегировать. Всё остальное — задачи менеджера точки, ТМ контролирует их выполнение.",
+          wrong: [
+            "Графики смен — зона менеджера точки. ТМ задаёт параметры и проверяет соответствие.",
+            "Инструктажи с линейным персоналом — зона менеджера точки. ТМ обучает менеджеров, менеджеры обучают команду.",
+            null,
+            "Контроль чистоты зала — задача менеджера смены. ТМ проверяет систему контроля, а не чистоту лично."
+          ]
+        }
+      },
+      {
+        text: "Расставьте задачи по приоритету по матрице Эйзенхауэра: (1) звонок — кончились стаканы на точке, (2) план развития точки на квартал, (3) ответить на сообщения в рабочем чате, (4) система адаптации для новых бариста",
+        options: [
+          "1 → 3 → 2 → 4",
+          "1 → 2 → 4 → 3",
+          "2 → 4 → 1 → 3",
+          "3 → 1 → 4 → 2"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Стаканы — срочно и важно (точка стоит), решается немедленно. Квартальный план — важно, несрочно, создаёт долгосрочный результат. Адаптация — важно, несрочно, влияет на текучесть. Чат — иллюзия срочности, редко действительно важен.",
+          wrong: [
+            "Чат в приоритете — классическая ловушка «иллюзии занятости». Быстрые ответы не двигают результат.",
+            null,
+            "Откладывать стаканы ради планирования — точка реально теряет выручку прямо сейчас.",
+            "Чат первым — та же ловушка. Срочные операционные блокеры решаются первыми."
+          ]
+        }
+      },
+      {
+        text: "После беседы по модели SBI менеджер ответил: «Я понял, исправлюсь». Через неделю поведение не изменилось. Что пошло не так?",
+        options: [
+          "Модель SBI не работает с этим менеджером — нужен другой подход",
+          "Менеджер намеренно игнорирует — нужны дисциплинарные меры",
+          "SBI описывает ситуацию, но не формирует договорённость. После SBI нужна конкретная договорённость: что меняется, к какому сроку, как проверяем",
+          "Слишком мало одной беседы — нужно повторять SBI еженедельно"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "SBI — инструмент описания, не изменения. «Я понял» без договора — пустое обещание. После обратной связи нужно зафиксировать: «Договорились — с понедельника делаешь Х. Через две недели смотрим результат».",
+          wrong: [
+            "Инструмент работает. Проблема в том, что беседа не была завершена договорённостью.",
+            "Дисциплинарные меры без договорённости об изменении — наказание без обучения.",
+            null,
+            "Повторять SBI без результата — обесценивать обратную связь. Менеджер привыкнет, что беседы ни к чему не приводят."
+          ]
+        }
+      },
+      {
+        text: "Новый ТМ на второй неделе замечает: менеджер точки систематически занижает выручку в отчётах. Как действовать?",
+        options: [
+          "Немедленно сообщить руководству и потребовать увольнения менеджера",
+          "Поговорить с менеджером напрямую: «Я вижу расхождения — объясни»",
+          "Сначала собрать доказательную базу: сопоставить кассовые данные, отчёты, физические показатели. Затем эскалировать с фактами",
+          "Пока не вмешиваться — слишком рано делать выводы на второй неделе"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Ни «немедленно обвинить» ни «ждать». Правильно: действовать, но с фактами. Обвинение без доказательств на второй неделе — удар по своей репутации. Бездействие — соучастие.",
+          wrong: [
+            "Требовать увольнения без доказательной базы — потеря доверия руководства. Это может быть ошибка учёта.",
+            "Прямой разговор без фактов даёт менеджеру возможность скрыть следы. Сначала — данные.",
+            null,
+            "«Слишком рано» — опасная логика. Если факт подтвердится, встанет вопрос: почему ТМ видел и молчал?"
+          ]
+        }
+      }
+    ]
+  },
+  2: {
+    title: "Тест по Дню 2 — Управление командой",
+    meta: "10 вопросов · ~15 минут",
+    questions: [
+      {
+        text: "Бариста 17 лет опоздал второй раз за неделю. После первого — было устное предупреждение. Менеджер точки предлагает уволить «чтобы другим неповадно». Ваше решение?",
+        options: [
+          "Поддерживаю менеджера — дисциплина важнее одного сотрудника",
+          "Провожу беседу сам, без участия менеджера точки",
+          "Отклоняю предложение менеджера, объясняю принцип поэтапной дисциплины, помогаю менеджеру провести беседу с фиксацией",
+          "Предупреждаю ещё раз устно — увольнение на третьем нарушении"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Два решения в одном: отклонить преждевременное увольнение и обучить менеджера правильному инструменту. «Показательное увольнение» создаёт страх, но не систему.",
+          wrong: [
+            "Поддержать увольнение без прохождения этапов — потеря перспективного сотрудника и сигнал команде: «здесь увольняют быстро».",
+            "Проводить беседу самому, минуя менеджера — снова подрыв авторитета.",
+            "Третье устное предупреждение вместо эскалации обесценивает систему."
+          ]
+        }
+      },
+      {
+        text: "Период Рамадана. Менеджер предлагает два варианта: (1) сохранить обычный график, добавить премию за работу в пост; (2) перенести тяжёлые задачи на утро, сократить смены в 14:00–17:00, обеспечить место для ифтара. Что выбрать?",
+        options: [
+          "Вариант 1 — деньги мотивируют лучше любых графиков",
+          "Вариант 2 — адаптация графика снижает ошибки и травмы, ифтар это базовое уважение, которое влияет на лояльность сильнее премии",
+          "Комбинировать: адаптированный график плюс премия",
+          "Ни то ни другое — все обязаны работать в штатном режиме"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Вариант 3 (комбинация) кажется логичным, но в условиях ограниченного бюджета вариант 2 даёт больше за меньшие деньги. Адаптация снижает ошибки и травмы. Ифтар — не привилегия, а базовое уважение в контексте ЧР.",
+          wrong: [
+            "Премия не устраняет физиологическую усталость от поста. В 15:00 человек, не евший с рассвета, будет совершать больше ошибок вне зависимости от размера премии.",
+            null,
+            "Правильное направление, но если бюджет ограничен — адаптация графика важнее премии.",
+            "Игнорировать Рамадан в ЧР — не нейтральная позиция. Это разрушает авторитет управленца быстрее любых операционных ошибок."
+          ]
+        }
+      },
+      {
+        text: "Лучший бариста точки говорит менеджеру что хочет уволиться, причину не называет. Менеджер звонит вам. Как действовать?",
+        options: [
+          "Предложить повышение зарплаты — обычно это решает вопрос",
+          "Попросить менеджера узнать причину и предложить бариста остаться",
+          "Провести разговор с бариста лично — не чтобы удержать любой ценой, а чтобы понять реальную причину",
+          "Не удерживать — кто хочет уйти, всё равно уйдёт"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Ключевое слово — реальная причина. Люди редко называют настоящую причину ухода сразу. Разговор с ТМ (не с прямым руководителем) даёт другой уровень откровенности.",
+          wrong: [
+            "Зарплата редко является реальной причиной ухода лучших сотрудников. Дав деньги без понимания причины — через 2 месяца ситуация повторится.",
+            "Менеджер уже упустил момент для этого разговора — иначе бы знал причину.",
+            null,
+            "«Кто хочет уйти — уйдёт» — позиция, которая гарантирует высокую текучесть."
+          ]
+        }
+      },
+      {
+        text: "На точке трое бариста с разным опытом: 16 лет (первый месяц), 23 года (8 месяцев), 19 лет (3 месяца, быстрый но с ошибками). Менеджер управляет всеми одинаково. Что скажете менеджеру?",
+        options: [
+          "Это правильно — единый стандарт управления создаёт справедливость",
+          "Нужно быть строже с третьим — ошибки недопустимы",
+          "Каждый на разном уровне зрелости: первому — структура и обучение, второму — доверие и самостоятельность, третьему — жёсткий контроль качества с разбором каждой ошибки",
+          "Нужно больше мотивировать всех троих — тогда ошибок станет меньше"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Справедливость — не одинаковость обращения, а соответствие уровню. Одинаковое управление тремя людьми с разным опытом: одного задушит контролем, другого оставит без поддержки, третьему не даст нужной коррекции.",
+          wrong: [
+            "Давать одинаковый стиль управления людям на разных уровнях — как давать одинаковое задание первокласснику и десятикласснику.",
+            "Строгость без разбора ошибок не учит. У третьего проблема не в старании, а в том что скорость он ставит выше точности.",
+            null,
+            "Мотивированный человек, который не понимает где ошибается, будет мотивированно делать ошибки."
+          ]
+        }
+      },
+      {
+        text: "Менеджер жалуется: «Сотрудники не слушаются, делают что хотят». При этом план выручки выполняется, жалоб от гостей нет. Как интерпретировать ситуацию?",
+        options: [
+          "Проблема реальная — дисциплина важна сама по себе, вне зависимости от результата",
+          "Проблемы нет — результат есть, остальное неважно",
+          "Нужно разобраться что именно менеджер называет «не слушаются» — возможно, он применяет директивный стиль к людям которым нужна самостоятельность",
+          "Менеджер слабый — не умеет выстраивать авторитет"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "«Не слушаются» при хорошем результате — часто означает, что команда работает самостоятельно, а менеджер ожидает подчинения вместо результата. Прежде чем решать — нужно понять что реально происходит.",
+          wrong: [
+            "Дисциплина — средство, а не цель. Если результат есть — жёсткое «построение» может разрушить то, что работает.",
+            "Игнорировать сигнал менеджера неверно. Если он испытывает трудности — это риск выгорания.",
+            null,
+            "Вывод о слабости без анализа — поспешная оценка."
+          ]
+        }
+      },
+      {
+        text: "Бюджет ограничен, повысить зарплаты невозможно. Какие три действия дадут наибольший эффект на снижение текучести?",
+        options: [
+          "Корпоративы, форма, бесплатный кофе для персонала",
+          "Штрафы за увольнение раньше срока, обязательная отработка 2 недели",
+          "Структурированная адаптация первых 2 недель, регулярная обратная связь от менеджера, видимый горизонт роста",
+          "Повышение требований на входе — брать только тех кто точно задержится"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Большинство увольнений в первые 3 месяца — из-за плохой адаптации и ощущения невидимости. Оба фактора устраняются без денег — структурой и вниманием.",
+          wrong: [
+            "Корпоративы и кофе — гигиенические факторы. Они не удержат человека, которому не нравится как им управляют.",
+            "Принудительное удержание создаёт токсичную атмосферу.",
+            null,
+            "«Отбор тех кто задержится» — иллюзия. На собеседовании это невозможно предсказать."
+          ]
+        }
+      },
+      {
+        text: "Менеджер-женщина 35 лет. Один из бариста (22 года) систематически игнорирует её указания, при этом технически работает хорошо. На замечания: «Хорошо, сделаю» — и не делает. Как действовать ТМ?",
+        options: [
+          "Поддержать менеджера публично при всей команде — показать кто главный",
+          "Поговорить с бариста лично, объяснить субординацию",
+          "Поговорить с бариста лично: признать его навыки, обозначить что поведение неприемлемо и создаёт риск для его позиции, дать конкретный срок на изменение",
+          "Предложить менеджеру сменить подход — возможно она слишком мягко ставит задачи"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Три элемента: признать ценность (снять защитную реакцию), обозначить проблему поведения конкретно, обозначить последствие с дедлайном. Без признания ценности — разговор воспринимается как атака.",
+          wrong: [
+            "Публичная демонстрация «кто главный» в восточной культуре — прямой путь к открытому конфликту.",
+            "Разговор о субординации без признания позиции и без конкретного поведенческого запроса — абстрактная лекция.",
+            null,
+            "Перекладывать ответственность за поведение сотрудника на менеджера — обесценивание её управленческой позиции."
+          ]
+        }
+      },
+      {
+        text: "На 1-on-1 менеджер говорит: «Всё нормально, проблем нет». Вы знаете, что на точке высокая текучесть и несколько жалоб за месяц. Как реагируете?",
+        options: [
+          "Принимаю ответ — он знает свою точку лучше меня",
+          "Говорю прямо: «Это неправда — у тебя текучесть и жалобы»",
+          "Задаю уточняющие вопросы по конкретным ситуациям: «Расскажи про последнее увольнение — что произошло?»",
+          "Прерываю встречу и прошу подготовить письменный отчёт по проблемам"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "«Всё нормально» при объективных проблемах означает: менеджер не видит проблем (тревожнее) или не доверяет ТМ (исправимо). Конкретные вопросы по фактам обходят защитную реакцию.",
+          wrong: [
+            "Принять «всё нормально» при наличии данных о проблемах — провалить функцию ТМ.",
+            "Прямое опровержение создаёт оборонительную позицию. Менеджер начнёт оправдываться вместо решения проблем.",
+            null,
+            "Письменный отчёт как реакция — бюрократический ответ на управленческую проблему."
+          ]
+        }
+      },
+      {
+        text: "Какова реальная стоимость замены одного бариста в кофейне (подбор, обучение, потеря производительности)?",
+        options: [
+          "Равна одной зарплате сотрудника",
+          "Практически нулевая — линейный персонал легко заменить",
+          "От 1,5 до 3 месячных зарплат с учётом времени менеджера на обучение, ошибок новичка и снижения скорости",
+          "Зависит только от стоимости размещения вакансии"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Большинство руководителей недооценивают стоимость текучести, потому что не считают скрытые потери. Время менеджера на обучение — оплаченные часы. Ошибки новичка — потери продукта. Медленная скорость — потеря выручки в час пик.",
+          wrong: [
+            "Одна зарплата — только прямые расходы на подбор. Реальные потери в 2–3 раза выше.",
+            "«Легко заменить» — иллюзия, которая дорого обходится.",
+            null,
+            "Стоимость вакансии — наименьшая часть реальных потерь."
+          ]
+        }
+      },
+      {
+        text: "Exit-интервью: за квартал трое уходящих сотрудников с разных точек назвали одну причину: «менеджер не слышит». Как действуете?",
+        options: [
+          "Провожу беседу с менеджером: «Три сотрудника сказали одно и то же — ты не слышишь команду»",
+          "Игнорирую — люди часто обвиняют руководителя при уходе",
+          "Провожу с менеджером развивающую беседу на основе паттерна: не обвиняю, показываю данные, вместе ищем что конкретно происходит в его взаимодействии с командой",
+          "Заменяю менеджера — три случая это уже система"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Три одинаковых ответа — сигнал, который нельзя игнорировать. Но прямое обвинение закрывает менеджера. Правильно: «Я вижу паттерн в данных — давай вместе разберёмся».",
+          wrong: [
+            "«Три человека сказали» звучит как обвинение с чужих слов. Менеджер займёт оборонительную позицию.",
+            "Три одинаковых ответа при exit-интервью — редкость. Когда трое говорят одно — это важный сигнал.",
+            null,
+            "Три случая — повод для развивающей работы, не замены. Замена воспроизведёт ту же проблему со следующим менеджером."
+          ]
+        }
+      }
+    ]
+  },
+  3: {
+    title: "Тест по Дню 3 — Операционное управление",
+    meta: "10 вопросов · ~15 минут",
+    questions: [
+      {
+        text: "Вы приходите на плановый визит. Точка выглядит хорошо, команда работает, гостей обслуживают быстро. Но food cost за неделю выше нормы на 8%. Что делаете?",
+        options: [
+          "Ничего — визуально всё хорошо, цифра могла быть разовой",
+          "Немедленно провести инвентаризацию при менеджере",
+          "Задаю менеджеру конкретные вопросы: были ли списания, кто принимал поставки, как контролируется расход — ищу причину до того как делать выводы",
+          "Фиксирую в отчёт, жду следующей недели для подтверждения тренда"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Food cost +8% — деньги уходят прямо сейчас. Инвентаризация сразу без анализа причины — стресс для команды без оснований. Правильно: диагностические вопросы сначала, потом решение.",
+          wrong: [
+            "«Визуально всё хорошо» и «финансово всё хорошо» — разные вещи. Красивая точка с плохим food cost теряет деньги незаметно.",
+            "Возможно, но без предварительного анализа причины это избыточный стресс для команды.",
+            null,
+            "Неделя ожидания при отклонении 8% — это неделя потерь. Отклонение выше 3% требует немедленного анализа."
+          ]
+        }
+      },
+      {
+        text: "Менеджер против чек-листов: «Мои люди профессионалы, им не нужны списки». Что ответите?",
+        options: [
+          "Соглашаюсь — опытной команде чек-листы не нужны",
+          "Объясняю что чек-листы обязательны по регламенту компании",
+          "Объясняю функцию чек-листа: он не для проверки профессионализма, а для защиты от человеческого фактора при усталости и многозадачности. Даже хирурги используют чек-листы",
+          "Предлагаю компромисс — сокращённый чек-лист на 5 пунктов"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Менеджер путает «профессионализм» и «защита от ошибок». Большинство серьёзных ошибок совершают опытные люди — именно потому что они «знают и без списка» и пропускают шаги автоматически.",
+          wrong: [
+            "Опыт не защищает от усталости, отвлечения и переключения задач.",
+            "«Потому что регламент» создаёт формальное исполнение без понимания зачем.",
+            null,
+            "Компромисс из 5 пунктов без объяснения ценности — капитуляция перед сопротивлением."
+          ]
+        }
+      },
+      {
+        text: "Вы организовали тайного гостя. Менеджеры узнали и предупредили команды. Все визиты дают отличные результаты. Что делаете?",
+        options: [
+          "Отлично — значит стандарты соблюдаются",
+          "Ничего — тайный гость дал данные, они положительные",
+          "Меняю систему: другие проверяющие, другое время. Сопоставляю результаты тайного гостя с реальными отзывами и динамикой среднего чека",
+          "Провожу беседу с менеджерами: предупреждать команду о проверке запрещено"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Если все визиты идеальны — система сломана, не точки. Нужно перестроить инструмент и верифицировать данные реальными показателями. Средний чек и жалобы — данные, которые не знают о тайном госте.",
+          wrong: [
+            "Стандарты «соблюдаются» только когда знают о проверке — это театр, а не управление качеством.",
+            "Данные недостоверны — принимать их как факт нельзя.",
+            "Беседа нужна, но недостаточна. Нужно изменить саму систему."
+          ]
+        }
+      },
+      {
+        text: "На точке три нарушения: (1) бариста не здоровается с гостями, (2) беспорядок в подсобке, (3) сроки годности на части продуктов не проверялись 2 дня. Как расставить приоритеты?",
+        options: [
+          "1 → 2 → 3 — в порядке видимости для гостя",
+          "2 → 3 → 1 — начинаем с внутреннего порядка",
+          "3 → 1 → 2 — сначала безопасность продукта, потом сервис, потом внутренний порядок",
+          "Все три одновременно — нарушения равнозначны"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Приоритет всегда: безопасность → гостевой опыт → внутренний порядок. Просроченный продукт — риск здоровья гостя и юридическая ответственность.",
+          wrong: [
+            "Видимость для гостя — не главный критерий. Безопасность продукта невидима, но последствия её нарушения несравнимо серьёзнее.",
+            "Начинать с подсобки при непроверенных сроках годности — неправильная расстановка рисков.",
+            "Когда всё приоритет — ничто не приоритет."
+          ]
+        }
+      },
+      {
+        text: "Пик трафика: 8:00–10:00 и 13:00–14:30. «Мёртвые часы»: 15:30–17:00. В мёртвые часы работает полная смена из 3 человек. Как используете эти данные?",
+        options: [
+          "Сокращаю смену в мёртвые часы до 1 человека",
+          "Перераспределяю выходы: максимум людей в пик, минимум в провал — с учётом трудового законодательства по несовершеннолетним",
+          "Даю задачу менеджеру придумать активности на мёртвые часы для привлечения гостей",
+          "Ничего — трафик определяется локацией, ТМ на него не влияет"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Данные трафика — основа планирования графиков. Цель не просто «сократить», а перераспределить. Важный нюанс: несовершеннолетние сотрудники имеют ограничения по часам работы.",
+          wrong: [
+            "Сократить до 1 человека — риск. Минимум 2 человека в любую смену.",
+            null,
+            "Задача «привлечь гостей» без бюджета и инструментов — пустой приказ.",
+            "ТМ не управляет внешним трафиком, но управляет эффективностью ФОТ."
+          ]
+        }
+      },
+      {
+        text: "Менеджер внедрил стандарт 2 недели назад. Вы приходите — персонал не соблюдает. Менеджер говорит: «Я им объяснил, они всё поняли». Что произошло?",
+        options: [
+          "Персонал саботирует — нужны дисциплинарные меры",
+          "Объяснение без отработки и системы контроля не формирует новое поведение. Стандарт нужно отработать практически и проверять первые 2 недели ежедневно",
+          "Стандарт слишком сложный — нужно упростить",
+          "Менеджер недостаточно авторитетен — команда его не слушает"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "«Объяснил и они поняли» — самая распространённая иллюзия. Понять ≠ изменить поведение. Новое поведение: демонстрация → практика → обратная связь → повторение → проверка.",
+          wrong: [
+            "Саботаж предполагает намеренное неисполнение. Люди просто не перестроили автоматизм — это задача обучения.",
+            null,
+            "Возможно, но это гипотеза. Сначала убедитесь что стандарт был правильно внедрён.",
+            "Даже с высоким авторитетом новые паттерны поведения требуют системного внедрения."
+          ]
+        }
+      },
+      {
+        text: "Гость оставил отзыв: «Ждал капучино 18 минут, бариста не извинился». Менеджер говорит: «Гость сам виноват, был час пик». Как реагирует ТМ?",
+        options: [
+          "Соглашаюсь с менеджером — в час пик ожидание нормально",
+          "Прошу менеджера ответить гостю в отзыве с извинениями",
+          "Два действия: учу менеджера принять ответственность за гостевой опыт, и разбираем операционную причину — почему 18 минут в час пик и что менять",
+          "Отвечаю гостю в отзыве сам от имени компании"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Позиция «гость сам виноват» — токсичная установка, которая множится в команде. Плюс 18 минут — это операционная проблема. Один ответ на отзыв без изменения процесса — PR без управления.",
+          wrong: [
+            "18 минут — не норма даже в час пик. Стандарт приготовления капучино 3–4 минуты.",
+            "Ответ гостю — правильный шаг, но без работы с установкой менеджера ситуация повторится.",
+            null,
+            "Отвечать за менеджера — снова подмена его функции."
+          ]
+        }
+      },
+      {
+        text: "Чек-листы заполняются месяц, всегда без замечаний. Что это означает?",
+        options: [
+          "Стандарты соблюдаются отлично — система работает",
+          "Менеджеры стараются — нужно поощрить",
+          "Чек-лист превратился в формальность. Без нарушений не бывает — нужен внезапный аудит и сравнение с реальным состоянием точки",
+          "Чек-лист слишком простой — нужно добавить пунктов"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Чек-лист без единого замечания за месяц — красный флаг, не зелёный. В реальной операционной среде всегда есть отклонения. Внезапный аудит покажет реальную картину.",
+          wrong: [
+            "Идеальные данные в реальной среде означают проблему с данными, а не идеальную работу.",
+            "Поощрять формальное заполнение — закреплять неправильное поведение.",
+            null,
+            "Сложность чек-листа не решает проблему честности заполнения."
+          ]
+        }
+      },
+      {
+        text: "Как правильно структурировать рабочую неделю ТМ при 3 точках?",
+        options: [
+          "Посещать каждую точку каждый день",
+          "Посещать точки только при проблемах, остальное — административная работа",
+          "2–3 плановых визита на каждую точку в неделю плюс минимум 1 внеплановый, 1 день на административную работу",
+          "1 визит на каждую точку ежедневно, без административного времени"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "При 3 точках: 6–9 плановых визитов в неделю + внеплановые + 1 день офисной работы. Внеплановые визиты критичны — они не позволяют готовиться к проверке.",
+          wrong: [
+            "Ежедневные визиты — микроменеджмент. У менеджеров не формируется самостоятельность.",
+            "Реактивный подход гарантирует опоздание. К моменту появления видимой проблемы она уже большая.",
+            null,
+            "Нет административного времени — ТМ превращается в операционный надзор без стратегической работы."
+          ]
+        }
+      },
+      {
+        text: "Аудит выявил 7 нарушений разной степени. Как правильно передать это менеджеру?",
+        options: [
+          "Перечисляю все 7 устно, прошу исправить до завтра",
+          "Отправляю список в мессенджер с единым дедлайном",
+          "Приоритизирую: критичные исправить сегодня с подтверждением, остальные — письменно с конкретными дедлайнами и способом проверки",
+          "Обсуждаю все 7 пунктов на следующей плановой встрече"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "7 замечаний с одним дедлайном — менеджер не знает с чего начать. Разделить по срочности, дать чёткие сроки и способ подтверждения — это управление, а не список претензий.",
+          wrong: [
+            "Устный список без фиксации — к завтрашнему дню половина забыта или интерпретирована иначе.",
+            "Список без приоритизации — менеджер не понимает что срочно, что может подождать.",
+            null,
+            "Ждать плановой встречи при нарушениях безопасности — недопустимо."
+          ]
+        }
+      }
+    ]
+  },
+  4: {
+    title: "Тест по Дню 4 — Финансы и KPI",
+    meta: "10 вопросов · ~15 минут",
+    questions: [
+      {
+        text: "Выручка точки за неделю: 280 000 руб. Себестоимость продуктов: 91 000 руб. ФОТ: 98 000 руб. Аренда: 75 000 руб. Прочие расходы: 18 000 руб. Чему равна операционная прибыль и это нормально?",
+        options: [
+          "Минус 2 000 руб. — небольшой минус, некритично",
+          "182 000 руб. — хороший результат",
+          "Минус 2 000 руб. — точка убыточна. ФОТ и аренда вместе составляют 62% выручки при норме 45–50%",
+          "91 000 руб. — валовая прибыль в норме, остальное несущественно"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "280 − 91 − 98 − 75 − 18 = −2 000 руб. Точка убыточна. ФОТ 35% + аренда 26,7% = 61,7% от выручки. Норма: ФОТ 25–30%, аренда до 15–18%. Вместе не более 48–50%.",
+          wrong: [
+            "«Небольшой минус некритично» — опасная позиция. Еженедельный убыток 2 000 = 96 000 руб/год, без учёта амортизации.",
+            "182 000 руб — это валовая прибыль (выручка минус только себестоимость). Операционная прибыль считается после всех расходов.",
+            null,
+            "Смотреть только на валовую прибыль и игнорировать операционные расходы — видеть половину картины."
+          ]
+        }
+      },
+      {
+        text: "Трафик в будни: 180 гостей, средний чек 320 руб. В выходные: 95 гостей, средний чек 480 руб. Что это означает и как использовать?",
+        options: [
+          "В выходные работаем хуже — трафик падает вдвое",
+          "Разная аудитория: в будни — поток, в выходные — осознанные гости с высоким чеком. Стратегия апселла должна быть разной",
+          "Нужно снизить цены в выходные чтобы поднять трафик до уровня будней",
+          "Среднечековая разница несущественная — управлять нужно только трафиком"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Будни: 180×320 = 57 600. Выходные: 95×480 = 45 600. В выходные гость готов тратить больше — возможность для апселла десертов и авторских напитков. В будни важнее скорость.",
+          wrong: [
+            "Падение трафика при росте среднего чека — не провал. Это другая аудитория с другим поведением.",
+            null,
+            "Снижение цен уничтожит преимущество высокого чека.",
+            "480 против 320 — 50% разница. Это существенно и требует разных операционных подходов."
+          ]
+        }
+      },
+      {
+        text: "За месяц food cost вырос с 28% до 36%. Менеджер объясняет ростом цен поставщиков на 5%. Это объяснение достаточное?",
+        options: [
+          "Да — если поставщик поднял цены, food cost вырастет",
+          "Нет — нужно уволить менеджера за некомпетентность",
+          "Нет — рост цен на 5% объясняет рост food cost примерно на 1,4 пункта. Разница в 6,6 пунктов — дополнительные потери: списания, нарушение рецептур или хищения",
+          "Да — в кризисный период отклонения нормальны"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Математика: 28% × 1,05 = 29,4% — столько должен был вырасти food cost при росте цен на 5%. Реальный рост до 36% — в 5 раз больше объяснимого. Разница требует расследования.",
+          wrong: [
+            "Рост цен поставщика и рост food cost — не одно и то же. Один процент роста стоимости сырья даёт значительно меньший процент роста food cost.",
+            "Обвинять менеджера без анализа цифр — та же ошибка в другую сторону.",
+            null,
+            "«Кризисный период» не является объяснением математического расхождения."
+          ]
+        }
+      },
+      {
+        text: "Точка безубыточности: 210 000 руб/неделю. Фактическая выручка последние 3 недели: 198 000, 203 000, 195 000 руб. Как описать ситуацию и что делать?",
+        options: [
+          "Небольшое отклонение — подождать ещё месяц для понимания тренда",
+          "Срочно поднять цены на 10%",
+          "Точка системно работает ниже безубыточности три недели подряд — это тренд. Нужен план: анализ трафика, среднего чека, структуры ФОТ",
+          "Закрыть точку — она убыточна"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Три недели ниже безубыточности — тренд, не случайность. Средний убыток ~12 000 руб/неделю = ~50 000 руб/месяц. Три недели устойчивого тренда достаточно для действий.",
+          wrong: [
+            "Ещё месяц ожидания при убытке — ещё +200 000 руб потерь.",
+            "Рост цен при падающем трафике ускорит его снижение.",
+            null,
+            "Закрывать без попытки исправить — преждевременное решение с высокими потерями."
+          ]
+        }
+      },
+      {
+        text: "Два варианта оптимизации ФОТ с одинаковой экономией: (1) сократить смену с 3 до 2 человек; (2) убрать лишних людей в мёртвые часы, усилить в пик. Что выбрать?",
+        options: [
+          "Вариант 1 — проще управлять, меньше людей",
+          "Вариант 2 — сохраняет пропускную способность в пик, снижает ФОТ в провал без потери выручки",
+          "Оба варианта одинаково эффективны — экономия одна",
+          "Ни один — оптимизация ФОТ всегда снижает качество сервиса"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Экономия одинаковая, но последствия разные. Вариант 1: в час пик 2 человека вместо 3 — скорость падает, выручка снижается. Экономия на ФОТ «съедается» потерей выручки.",
+          wrong: [
+            "«Проще управлять» — не финансовый аргумент. Упрощение за счёт потери выручки в пик — ложная экономия.",
+            null,
+            "Одинаковая экономия на бумаге не означает одинаковый операционный результат.",
+            "Оптимизация через перераспределение — не жертва, а управленческий навык."
+          ]
+        }
+      },
+      {
+        text: "Средний чек 310 руб. Хотите поднять до 360 без изменения цен. Какие три действия дадут наибольший эффект?",
+        options: [
+          "Убрать дешёвые позиции из меню, переобучить кассиров говорить быстрее",
+          "Обучить персонал апселлу (предлагать десерт к кофе), дорогие позиции на уровне глаз, ввести комбо-предложения",
+          "Поставить таблички «Попробуйте наш новый напитк» на столах",
+          "Увеличить порции — гость почувствует ценность и будет брать больше"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Три инструмента роста чека без изменения цен: апселл (каждый второй берёт десерт = +80–120 руб к чеку), правильная выкладка (gaze level = buy level), комбо снижают барьер «взять лишнее». Вместе дают 15–20% роста.",
+          wrong: [
+            "Убирать дешёвые позиции — потеря части аудитории. «Говорить быстрее» не влияет на чек.",
+            null,
+            "Таблички дают минимальный эффект по сравнению с активным апселлом.",
+            "Увеличение порций повышает себестоимость, снижает маржу при той же выручке."
+          ]
+        }
+      },
+      {
+        text: "Менеджер предлагает акцию «Второй кофе в подарок при заказе от 500 руб.» для роста трафика. Как оцениваете?",
+        options: [
+          "Отличная идея — акции всегда увеличивают трафик",
+          "Плохая идея — акции снижают выручку",
+          "Нужно посчитать: какой % гостей тратит от 500 руб., какова себестоимость подарочного кофе, какой прирост трафика нужен чтобы акция окупилась",
+          "Хорошая идея, но порог нужно поднять до 700 руб."
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Акции — инструмент который нужно считать, а не оценивать интуитивно. Если средний чек 310 руб., то гостей с чеком 500+ — меньшинство. Нужны цифры чтобы принять решение.",
+          wrong: [
+            "Акции увеличивают трафик только если правильно рассчитаны. Непросчитанная акция — потери.",
+            "Акции не плохие по определению. Они плохие когда не просчитаны.",
+            null,
+            "Поднять порог без расчёта — такое же интуитивное решение."
+          ]
+        }
+      },
+      {
+        text: "Точка А: выручка 320 000 руб/мес, прибыль 45 000 руб. Точка Б: выручка 210 000 руб/мес, прибыль 52 000 руб. Какая точка эффективнее?",
+        options: [
+          "Точка А — выручка выше на 52%",
+          "Точка Б — при меньшей выручке генерирует больше прибыли. Рентабельность Б: 24,8%, А: 14,1%. Нужно понять что делает Б эффективнее и тиражировать",
+          "Они примерно одинаковые — разница в прибыли несущественная",
+          "Нельзя сравнивать — у них разная выручка"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Рентабельность: А = 14,1%, Б = 24,8%. Точка Б зарабатывает почти вдвое больше с каждого рубля выручки. У неё лучше структура затрат. Это повод изучить и применить на точке А.",
+          wrong: [
+            "Высокая выручка при низкой рентабельности — много работы за мало прибыли.",
+            "7 000 руб/месяц разницы = 84 000 руб/год. Несущественной это назвать нельзя.",
+            null,
+            "Сравнивать через показатель рентабельности можно и нужно."
+          ]
+        }
+      },
+      {
+        text: "Еженедельный отчёт: выручка +12%, трафик +3%, средний чек +9%, food cost −1%, ФОТ +18%. Что требует немедленного внимания?",
+        options: [
+          "Всё хорошо — выручка растёт",
+          "Нужно ещё больше растить трафик",
+          "Рост ФОТ на 18% при росте выручки на 12% — опережающий рост затрат. Если тренд продолжится, прибыль начнёт снижаться несмотря на рост выручки",
+          "Снижение food cost подозрительно — нужно проверить качество продукта"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Ловушка на «позитивный фрейм». Выручка растёт — кажется всё хорошо. Но ФОТ растёт быстрее выручки. Если выручка +12%, ФОТ должен расти не более чем на 12%. +18% — либо необоснованное увеличение штата, либо переработки.",
+          wrong: [
+            "Рост выручки при опережающем росте затрат — иллюзия успеха.",
+            "Трафик +3% — нормально. Проблема не в трафике.",
+            null,
+            "Снижение food cost на 1% — позитивный сигнал, не «подозрительный»."
+          ]
+        }
+      },
+      {
+        text: "Выручка упала на 7% за неделю. Как представляете это в отчёте руководству?",
+        options: [
+          "Пишу только цифру падения и жду вопросов",
+          "Не упоминаю — руководство само увидит в сводке",
+          "Указываю факт падения, диагностированную причину (или гипотезу с пометкой), план действий и срок следующей точки контроля",
+          "Указываю падение и список внешних факторов которые его объясняют"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Структура профессионального отчёта при отклонении: факт → причина → план → контроль. Руководство хочет видеть что ТМ управляет ситуацией, а не просто сообщает о потере.",
+          wrong: [
+            "Только цифра без контекста — неполная информация. Руководство задаст вопросы, которые вы могли предвосхитить.",
+            "Скрывать отклонение — потеря доверия когда руководство увидит его само.",
+            null,
+            "Список внешних факторов без плана действий — перекладывание ответственности."
+          ]
+        }
+      }
+    ]
+  }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let currentTest = null;
+let currentQuestion = 0;
+let answers = [];
+let selectedAnswer = null;
+let answered = false;
+let completedTests = {};
+let currentDayView = 1;
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  if (id === 'overview') {
+    document.querySelector('.nav-item').classList.add('active');
+  }
+}
+
+function showDayView(day) {
+  currentDayView = day;
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('view-day-' + day).classList.add('active');
+  document.getElementById('nav-day-' + day).classList.add('active');
+  
+  if (completedTests[day]) {
+    document.getElementById('test-btn-' + day).textContent = '✓ Тест пройден';
+    document.getElementById('test-btn-' + day).style.background = '#4caf7d';
+  }
+}
+
+function showTestView(day) {
+  currentTest = day;
+  currentQuestion = 0;
+  answers = [];
+  selectedAnswer = null;
+  answered = false;
+
+  document.getElementById('test-title').textContent = tests[day].title;
+  document.getElementById('test-meta').textContent = tests[day].meta;
+  document.getElementById('test-back-link').onclick = () => showDayView(day);
+
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-test').classList.add('active');
+
+  renderQuestion();
+}
+
+// ============================================================
+// TEST LOGIC
+// ============================================================
+function renderQuestion() {
+  const test = tests[currentTest];
+  const q = test.questions[currentQuestion];
+  const total = test.questions.length;
+
+  document.getElementById('q-counter').textContent = `Вопрос ${currentQuestion + 1} из ${total}`;
+  
+  let dotsHTML = '';
+  for (let i = 0; i < total; i++) {
+    let cls = 'q-dot';
+    if (i === currentQuestion) cls += ' current';
+    else if (answers[i] !== undefined) cls += ' done';
+    dotsHTML += `<div class="${cls}"></div>`;
+  }
+  document.getElementById('q-dots').innerHTML = dotsHTML;
+
+  let html = `<div class="question-card">
+    <div class="q-num">ВОПРОС ${currentQuestion + 1}</div>`;
+  
+  if (q.type === 'scenario' && q.scenario) {
+    html += `<div class="q-text">${q.text}</div>
+    <div class="q-scenario">📋 Ситуация: ${q.scenario}</div>`;
+  } else {
+    html += `<div class="q-text">${q.text}</div>`;
+  }
+
+  html += `<div class="options">`;
+  const letters = ['А', 'Б', 'В', 'Г'];
+  
+  q.options.forEach((opt, i) => {
+    let cls = 'option';
+    if (answered) {
+      if (i === q.correct) cls += ' correct';
+      else if (i === answers[currentQuestion] && i !== q.correct) cls += ' wrong';
+    } else if (selectedAnswer === i) {
+      cls += ' selected';
+    }
+    html += `<div class="${cls}" onclick="selectAnswer(${i})">
+      <div class="option-letter">${letters[i]}</div>
+      <div>${opt}</div>
+    </div>`;
+  });
+
+  html += `</div>`;
+
+  if (answered) {
+    const isCorrect = answers[currentQuestion] === q.correct;
+    const fbClass = isCorrect ? 'positive' : 'negative';
+    const fbLabel = isCorrect ? '✓ Верно' : '✗ Неверно';
+    let fbText = isCorrect ? q.feedback.correct : (q.feedback.wrong[answers[currentQuestion]] || q.feedback.correct);
+    
+    html += `<div class="feedback-box ${fbClass} show">
+      <div class="feedback-label">${fbLabel}</div>
+      ${fbText}
+    </div>`;
+  }
+
+  html += `</div>`;
+  document.getElementById('question-area').innerHTML = html;
+
+  document.getElementById('btn-prev').style.display = currentQuestion > 0 ? 'block' : 'none';
+  
+  const btnNext = document.getElementById('btn-next');
+  if (answered) {
+    if (currentQuestion === test.questions.length - 1) {
+      btnNext.textContent = 'Завершить тест';
+      btnNext.disabled = false;
+      btnNext.onclick = showResults;
+    } else {
+      btnNext.textContent = 'Далее →';
+      btnNext.disabled = false;
+      btnNext.onclick = nextQuestion;
+    }
+  } else {
+    btnNext.textContent = 'Ответить';
+    btnNext.disabled = selectedAnswer === null;
+    btnNext.onclick = confirmAnswer;
+  }
+}
+
+function selectAnswer(i) {
+  if (answered) return;
+  selectedAnswer = i;
+  document.getElementById('btn-next').disabled = false;
+  renderQuestion();
+}
+
+function confirmAnswer() {
+  if (selectedAnswer === null) return;
+  answers[currentQuestion] = selectedAnswer;
+  answered = true;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (currentQuestion < tests[currentTest].questions.length - 1) {
+    currentQuestion++;
+    selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
+    answered = answers[currentQuestion] !== undefined;
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
+    answered = answers[currentQuestion] !== undefined;
+    renderQuestion();
+  }
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function showResults() {
+  const test = tests[currentTest];
+  const total = test.questions.length;
+  let correct = 0;
+  
+  answers.forEach((ans, i) => {
+    if (ans === test.questions[i].correct) correct++;
+  });
+  
+  const pct = Math.round((correct / total) * 100);
+  completedTests[currentTest] = { score: pct, correct, total };
+  updateProgress();
+
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-results').classList.add('active');
+
+  const ring = document.getElementById('score-ring');
+  ring.textContent = pct + '%';
+  
+  let ringClass, title, desc;
+  if (pct >= 80) {
+    ringClass = 'excellent';
+    title = 'Отличный результат';
+    desc = `${correct} из ${total} правильных ответов. Материал дня усвоен уверенно. Вы понимаете ключевые концепции и умеете применять их в ситуативных задачах.`;
+  } else if (pct >= 60) {
+    ringClass = 'good';
+    title = 'Хороший результат';
+    desc = `${correct} из ${total} правильных ответов. Основа есть, но по некоторым темам есть пробелы. Обратите внимание на вопросы, где вы ошиблись — там зоны роста.`;
+  } else {
+    ringClass = 'poor';
+    title = 'Нужна дополнительная работа';
+    desc = `${correct} из ${total} правильных ответов. Рекомендуется вернуться к материалам дня и повторно пройти тест. Обратитесь к ведущему за разъяснением сложных тем.`;
+  }
+
+  ring.className = 'score-ring ' + ringClass;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-desc').textContent = desc;
+
+  // Breakdown
+  let breakdownHTML = '';
+  const wrongQ = [];
+  answers.forEach((ans, i) => {
+    if (ans !== test.questions[i].correct) wrongQ.push(i);
+  });
+
+  if (pct >= 80) {
+    breakdownHTML += `<div class="breakdown-row">
+      <div class="breakdown-icon">✅</div>
+      <div class="breakdown-text"><strong>Сильные стороны:</strong> Уверенное владение материалом по всем темам дня. Ситуативные задачи решены правильно.</div>
+    </div>`;
+  }
+
+  if (wrongQ.length > 0) {
+    wrongQ.slice(0, 3).forEach(idx => {
+      const q = test.questions[idx];
+      breakdownHTML += `<div class="breakdown-row">
+        <div class="breakdown-icon">⚠️</div>
+        <div class="breakdown-text"><strong>Зона роста — вопрос ${idx + 1}:</strong> ${q.text.substring(0, 80)}... 
+        Правильный ответ: ${q.options[q.correct]}</div>
+      </div>`;
+    });
+  }
+
+  if (pct >= 80) {
+    breakdownHTML += `<div class="breakdown-row">
+      <div class="breakdown-icon">🎯</div>
+      <div class="breakdown-text"><strong>Рекомендация:</strong> Переходите к следующему дню. Закрепите знания через домашнее задание.</div>
+    </div>`;
+  } else if (pct >= 60) {
+    breakdownHTML += `<div class="breakdown-row">
+      <div class="breakdown-icon">📖</div>
+      <div class="breakdown-text"><strong>Рекомендация:</strong> Повторите темы по ошибочным вопросам перед следующим днём. Задайте вопросы ведущему на утреннем разборе.</div>
+    </div>`;
+  } else {
+    breakdownHTML += `<div class="breakdown-row">
+      <div class="breakdown-icon">🔄</div>
+      <div class="breakdown-text"><strong>Рекомендация:</strong> Вернитесь к материалам дня, особенно к темам блоков с ошибками. Поговорите с ведущим до начала следующего дня.</div>
+    </div>`;
+  }
+
+  document.getElementById('result-breakdown').innerHTML = breakdownHTML;
+
+  const nextDay = currentTest < 4 ? currentTest + 1 : null;
+  const btn = document.getElementById('results-btn');
+  document.getElementById('results-back-link').onclick = () => showDayView(currentTest);
+
+  if (nextDay) {
+    btn.textContent = `Перейти к Дню ${nextDay} →`;
+    btn.onclick = () => showDayView(nextDay);
+  } else {
+    btn.textContent = 'Завершить программу →';
+    btn.onclick = () => showView('overview');
+  }
+}
+
+// ============================================================
+// PROGRESS
+// ============================================================
+function updateProgress() {
+  const count = Object.keys(completedTests).length;
+  const pct = (count / 4) * 100;
+  document.getElementById('main-progress').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${count} из 4 тестов пройдено`;
+  
+  Object.keys(completedTests).forEach(day => {
+    const navItem = document.getElementById('nav-day-' + day);
+    if (navItem) {
+      navItem.classList.add('completed');
+    }
+    const btn = document.getElementById('test-btn-' + day);
+    if (btn) {
+      btn.textContent = `✓ Тест пройден (${completedTests[day].score}%)`;
+      btn.style.background = '#4caf7d';
+    }
+  });
+}
+</script>
+</body>
+</html>
