@@ -763,7 +763,7 @@
     <div class="view active" id="view-overview">
       <div class="overview-note">
         <h3>Цель программы</h3>
-        <p>Сформировать территориальных менеджеров, способных самостоятельно управлять 2–3 кофейнями: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый ТМ знает свою роль, инструменты влияния и умеет применять их в условиях специфики ЧР.</p>
+        <p>Сформировать территориальных менеджеров, способных самостоятельно управлять 2–3 кофейнями: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый ТМ знает свою роль, инструменты влияния и умеет применять их в работе.</p>
       </div>
 
       <div class="overview-grid">
@@ -2424,6 +2424,21 @@ function showResults() {
   
   const pct = Math.round((correct / total) * 100);
   completedTests[currentTest] = { score: pct, correct, total };
+
+  // Отправить результат в Google Таблицу
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbz-CNpPwG5K3gVRUlr_bIkdCqYlo3QIPtuuWTU1t5hbVDSI7fZqv_lw2ObTKh49uanVAg/exec";
+  fetch(SHEET_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: participantName || "Не указано",
+      day: currentTest,
+      score: pct,
+      correct: correct,
+      total: total
+    })
+  }).catch(() => {}); // тихая ошибка если нет интернета
   updateProgress();
 
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
