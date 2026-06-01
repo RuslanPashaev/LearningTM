@@ -174,8 +174,8 @@
   .main { flex: 1; min-width: 0; }
 
   /* VIEW */
-  .view { display: none; }
-  .view.active { display: block; }
+  .view { display: none !important; }
+  .view.active { display: block !important; }
 
   /* OVERVIEW */
   .overview-grid {
@@ -332,6 +332,7 @@
     border-radius: 8px;
     padding: 20px;
     margin-top: 20px;
+    max-width: 100%;
   }
   .hw-section h3 {
     font-size: 11px;
@@ -374,9 +375,16 @@
     margin-top: 20px;
     transition: all 0.2s;
     letter-spacing: 0.3px;
+    width: auto;
+    align-self: flex-start;
   }
   .test-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
   .test-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .test-btn-wrap {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+  }
 
   /* TEST VIEW */
   .test-header {
@@ -693,7 +701,7 @@
   <div class="header-inner">
     <div class="company-tag">ПБО · Чеченская Республика · HoReCa</div>
     <h1>Программа обучения ТМ</h1>
-    <div class="header-sub">Территориальные менеджеры сети кофеен — интенсив 5 дней</div>
+    <div class="header-sub">Территориальные менеджеры сети кофеен — интенсив 5 дней &nbsp;|&nbsp; <span id="participant-display" style="color:#c9a84c;font-weight:600;"></span> <span id="logout-btn" onclick="doLogout()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">выйти</span></div>
     <div class="header-meta">
       <div class="meta-chip">5 дней · 11:00–13:00 · очно</div>
       <div class="meta-chip">3–4 участника</div>
@@ -763,7 +771,7 @@
   <main class="main">
 
     <!-- OVERVIEW -->
-    <div class="view active" id="view-overview">
+    <div class="view active" id="view-overview" style="display:block">
       <div class="overview-note">
         <h3>Цель программы</h3>
         <p>Сформировать территориальных менеджеров, способных самостоятельно управлять 2–3 кофейнями: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый ТМ знает свою роль, инструменты влияния и умеет применять их в работе.</p>
@@ -778,7 +786,7 @@
         <div class="day-card" onclick="showDayView(2)">
           <div class="day-card-num">02</div>
           <div class="day-card-title">Управление командой</div>
-          <div class="day-card-theme">Дисциплина · Мотивация · Удержание · Специфика молодых сотрудников</div>
+          <div class="day-card-theme">Дисциплина · Мотивация · Удержание · Работа с молодёжью 16+</div>
         </div>
         <div class="day-card" onclick="showDayView(3)">
           <div class="day-card-num">03</div>
@@ -834,16 +842,16 @@
           <ul class="comp-list">
             <li>Адаптация и ввод в должность</li>
             <li>Нематериальная мотивация</li>
-            <li>Работа с молодёжью 16–22 года</li>
+            <li>Работа с молодёжью 16+</li>
             <li>Удержание ключевых сотрудников</li>
-            <li>Специфика управления в ЧР</li>
+            <li>Exit-интервью и причины ухода</li>
           </ul>
         </div>
       </div>
     </div>
 
     <!-- DAY 1 VIEW -->
-    <div class="view" id="view-day-1">
+    <div class="view" id="view-day-1" style="display:none">
       <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
       <div class="day-header">
         <div class="day-num-big">01</div>
@@ -882,9 +890,8 @@
       </div>
 
       
-      </div>
-
-      <div class="block-card important">
+      
+<div class="block-card important">
         <div class="block-time">12:00–12:50</div>
         <div class="block-content">
           <div class="block-title">Блок 2. Управленческий стиль и ситуативное лидерство</div>
@@ -898,7 +905,6 @@
       </div>
 
       
-      </div>
 
       <div class="block-card important">
         <div class="block-time">14:00–15:00 (опц.)</div>
@@ -913,13 +919,10 @@
       </div>
 
       
-      </div>
 
       
-      </div>
 
       
-      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 1</h3>
@@ -933,13 +936,14 @@
         </div>
       </div>
 
-      <button class="test-btn" onclick="showTestView(1)" id="test-btn-1">
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(1)" id="test-btn-1">
         ✦ Пройти тест по Дню 1
-      </button>
-    </div>
+      </button></div>
 
     <!-- DAY 2 VIEW -->
-    <div class="view" id="view-day-2">
+    </div>
+
+    <div class="view" id="view-day-2" style="display:none">
       <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
       <div class="day-header">
         <div class="day-num-big">02</div>
@@ -970,7 +974,7 @@
         <div class="block-time">11:15–12:00</div>
         <div class="block-content">
           <div class="block-title">Блок 5. Дисциплина: система, а не крик</div>
-          <div class="block-desc">Почему сотрудники нарушают правила: 3 реальные причины. Система дисциплины: правила → напоминание → предупреждение → последствия. Как реагировать на опоздания, прогулы, нарушение формы. Специфика: молодые сотрудники от 16 лет — особенности трудового законодательства, как говорить с ними и с их родителями. Как вести себя в конфликте — стратегии для восточной культуры.</div>
+          <div class="block-desc">Почему сотрудники нарушают правила: 3 реальные причины. Система дисциплины: правила → напоминание → предупреждение → последствия. Как реагировать на опоздания, прогулы, нарушение формы. Специфика: молодые сотрудники от 16 лет — особенности трудового законодательства, как говорить с ними и с их родителями. Как вести себя в конфликте — стратегии для разных ситуаций.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip case">Кейс</span>
@@ -979,9 +983,8 @@
       </div>
 
       
-      </div>
-
-      <div class="block-card important">
+      
+<div class="block-card important">
         <div class="block-time">12:00–12:50</div>
         <div class="block-content">
           <div class="block-title">Блок 6. Мотивация в HoReCa: что реально работает</div>
@@ -994,7 +997,6 @@
       </div>
 
       
-      </div>
 
       <div class="block-card important">
         <div class="block-time">14:00–15:00 (опц.)</div>
@@ -1010,13 +1012,10 @@
       </div>
 
       
-      </div>
 
       
-      </div>
 
       
-      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 2</h3>
@@ -1030,13 +1029,14 @@
         </div>
       </div>
 
-      <button class="test-btn" onclick="showTestView(2)" id="test-btn-2">
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(2)" id="test-btn-2">
         ✦ Пройти тест по Дню 2
-      </button>
-    </div>
+      </button></div>
 
     <!-- DAY 3 VIEW -->
-    <div class="view" id="view-day-3">
+    </div>
+
+    <div class="view" id="view-day-3" style="display:none">
       <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
       <div class="day-header">
         <div class="day-num-big">03</div>
@@ -1075,9 +1075,8 @@
       </div>
 
       
-      </div>
-
-      <div class="block-card important">
+      
+<div class="block-card important">
         <div class="block-time">12:00–12:50</div>
         <div class="block-content">
           <div class="block-title">Блок 10. Аудит точки — методология ТМ</div>
@@ -1091,7 +1090,6 @@
       </div>
 
       
-      </div>
 
       <div class="block-card important">
         <div class="block-time">14:00–15:00 (опц.)</div>
@@ -1106,13 +1104,10 @@
       </div>
 
       
-      </div>
 
       
-      </div>
 
       
-      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 3</h3>
@@ -1126,13 +1121,14 @@
         </div>
       </div>
 
-      <button class="test-btn" onclick="showTestView(3)" id="test-btn-3">
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(3)" id="test-btn-3">
         ✦ Пройти тест по Дню 3
-      </button>
-    </div>
+      </button></div>
 
     <!-- DAY 4 VIEW -->
-    <div class="view" id="view-day-4">
+    </div>
+
+    <div class="view" id="view-day-4" style="display:none">
       <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
       <div class="day-header">
         <div class="day-num-big">04</div>
@@ -1171,9 +1167,8 @@
       </div>
 
       
-      </div>
-
-      <div class="block-card important">
+      
+<div class="block-card important">
         <div class="block-time">12:00–12:50</div>
         <div class="block-content">
           <div class="block-title">Блок 14. Выручка кофейни — рычаги роста</div>
@@ -1186,7 +1181,6 @@
       </div>
 
       
-      </div>
 
       <div class="block-card important">
         <div class="block-time">14:00–15:00 (опц.)</div>
@@ -1201,13 +1195,10 @@
       </div>
 
       
-      </div>
 
       
-      </div>
 
       
-      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 4</h3>
@@ -1221,13 +1212,14 @@
         </div>
       </div>
 
-      <button class="test-btn" onclick="showTestView(4)" id="test-btn-4">
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(4)" id="test-btn-4">
         ✦ Пройти тест по Дню 4
-      </button>
-    </div>
+      </button></div>
 
     <!-- DAY 5 VIEW -->
-    <div class="view" id="view-day-5">
+    </div>
+
+    <div class="view" id="view-day-5" style="display:none">
       <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
       <div class="day-header">
         <div class="day-num-big">05</div>
@@ -1254,9 +1246,8 @@
       </div>
 
       
-      </div>
-
-      <div class="block-card important">
+      
+<div class="block-card important">
         <div class="block-time">12:00–13:00</div>
         <div class="block-content">
           <div class="block-title">Защита плана развития точки</div>
@@ -1266,7 +1257,6 @@
       </div>
 
       
-      </div>
 
       <div class="block-card">
         <div class="block-time">14:00–15:00 (опц.)</div>
@@ -1278,10 +1268,8 @@
       </div>
 
       
-      </div>
 
       
-      </div>
 
       <div class="hw-section" style="border-color: var(--gold-dim); background: rgba(201,168,76,0.04);">
         <h3>После программы — план на 30 дней</h3>
@@ -1298,10 +1286,11 @@
           <div class="hw-text">Встреча с HRD: что внедрено, какие результаты, корректировка целей. Промежуточная оценка компетенций.</div>
         </div>
       </div>
-    </div>
 
     <!-- TESTS -->
-    <div class="view" id="view-test">
+    </div>
+
+    <div class="view" id="view-test" style="display:none">
       <div class="back-link" id="test-back-link">← Вернуться к дню</div>
       <div class="test-header">
         <div>
@@ -1321,7 +1310,7 @@
     </div>
 
     <!-- RESULTS -->
-    <div class="view" id="view-results">
+    <div class="view" id="view-results" style="display:none">
       <div class="back-link" id="results-back-link">← Вернуться к дню</div>
       <div class="results-card">
         <div class="score-ring" id="score-ring"></div>
@@ -1349,7 +1338,24 @@
     participantName = name + ' ' + surname;
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('participant-display').textContent = participantName;
+    document.getElementById('logout-btn').style.display = 'inline';
     localStorage.setItem('tm_participant', participantName);
+
+    // Отправить факт авторизации в таблицу
+    const SHEET_URL = "https://script.google.com/macros/s/AKfycbz-CNpPwG5K3gVRUlr_bIkdCqYlo3QIPtuuWTU1t5hbVDSI7fZqv_lw2ObTKh49uanVAg/exec";
+    const loginParams = new URLSearchParams({ type: "login", name: participantName });
+    fetch(SHEET_URL + "?" + loginParams.toString(), { method: "GET", mode: "no-cors" }).catch(() => {});
+  }
+
+  function doLogout() {
+    localStorage.removeItem('tm_participant');
+    participantName = '';
+    document.getElementById('participant-display').textContent = '';
+    document.getElementById('logout-btn').style.display = 'none';
+    document.getElementById('inp-name').value = '';
+    document.getElementById('inp-surname').value = '';
+    document.getElementById('login-screen').style.display = 'flex';
+    showView('overview');
   }
 
   // Allow Enter key on inputs
@@ -1364,6 +1370,7 @@
       participantName = saved;
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('participant-display').textContent = participantName;
+      document.getElementById('logout-btn').style.display = 'inline';
     }
   });
 
@@ -2170,9 +2177,14 @@ let currentDayView = 1;
 // NAVIGATION
 // ============================================================
 function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.remove('active');
+    v.style.display = 'none';
+  });
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('view-' + id).classList.add('active');
+  const target = document.getElementById('view-' + id);
+  target.classList.add('active');
+  target.style.display = 'block';
   if (id === 'overview') {
     document.querySelector('.nav-item').classList.add('active');
   }
@@ -2180,11 +2192,15 @@ function showView(id) {
 
 function showDayView(day) {
   currentDayView = day;
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.remove('active');
+    v.style.display = 'none';
+  });
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('view-day-' + day).classList.add('active');
+  const target = document.getElementById('view-day-' + day);
+  target.classList.add('active');
+  target.style.display = 'block';
   document.getElementById('nav-day-' + day).classList.add('active');
-  
   if (completedTests[day]) {
     document.getElementById('test-btn-' + day).textContent = '✓ Тест пройден';
     document.getElementById('test-btn-' + day).style.background = '#4caf7d';
@@ -2202,8 +2218,13 @@ function showTestView(day) {
   document.getElementById('test-meta').textContent = tests[day].meta;
   document.getElementById('test-back-link').onclick = () => showDayView(day);
 
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-test').classList.add('active');
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.remove('active');
+    v.style.display = 'none';
+  });
+  const target = document.getElementById('view-test');
+  target.classList.add('active');
+  target.style.display = 'block';
 
   renderQuestion();
 }
@@ -2340,22 +2361,24 @@ function showResults() {
 
   // Отправить результат в Google Таблицу
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbz-CNpPwG5K3gVRUlr_bIkdCqYlo3QIPtuuWTU1t5hbVDSI7fZqv_lw2ObTKh49uanVAg/exec";
-  fetch(SHEET_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: participantName || "Не указано",
-      day: currentTest,
-      score: pct,
-      correct: correct,
-      total: total
-    })
-  }).catch(() => {}); // тихая ошибка если нет интернета
+  const params = new URLSearchParams({
+    type: "test",
+    name: participantName || "Не указано",
+    day: currentTest,
+    score: pct,
+    correct: correct,
+    total: total
+  });
+  fetch(SHEET_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" }).catch(() => {});
   updateProgress();
 
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-results').classList.add('active');
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.remove('active');
+    v.style.display = 'none';
+  });
+  const rTarget = document.getElementById('view-results');
+  rTarget.classList.add('active');
+  rTarget.style.display = 'block';
 
   const ring = document.getElementById('score-ring');
   ring.textContent = pct + '%';
