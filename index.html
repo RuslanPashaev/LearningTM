@@ -677,7 +677,24 @@
       " onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#2a2a2a'">
     </div>
 
-    <div id="login-error" style="color:#e05555;font-size:12px;margin-bottom:12px;display:none;">Введите имя и фамилию</div>
+    <div style="text-align:left;margin-bottom:28px;">
+      <label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ДОЛЖНОСТЬ</label>
+      <select id="inp-role" style="
+        width:100%;padding:12px 16px;
+        background:#1f1f1f;border:1px solid #2a2a2a;
+        border-radius:6px;color:#e8e2d9;font-size:15px;
+        outline:none;font-family:'IBM Plex Sans',sans-serif;
+        transition:border 0.2s;
+      " onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#2a2a2a'">
+        <option value="" disabled selected>Выберите должность</option>
+        <option value="director_coffee">Директор кофейни</option>
+        <option value="manager_coffee">Менеджер кофейни</option>
+        <option value="director_pbo">Директор ПБО</option>
+        <option value="manager_pbo">Менеджер ПБО</option>
+      </select>
+    </div>
+
+    <div id="login-error" style="color:#e05555;font-size:12px;margin-bottom:12px;display:none;">Введите имя, фамилию и выберите должность</div>
 
     <button onclick="doLogin()" style="
       width:100%;padding:14px;
@@ -1882,10 +1899,18 @@
 
   let participantName = '';
 
+  const ROLE_LABELS = {
+    director_coffee: 'Директор кофейни',
+    manager_coffee: 'Менеджер кофейни',
+    director_pbo: 'Директор ПБО',
+    manager_pbo: 'Менеджер ПБО',
+  };
+
   function doLogin() {
     const name = document.getElementById('inp-name').value.trim();
     const surname = document.getElementById('inp-surname').value.trim();
-    if (!name || !surname) {
+    const role = document.getElementById('inp-role').value;
+    if (!name || !surname || !role) {
       document.getElementById('login-error').style.display = 'block';
       return;
     }
@@ -1894,11 +1919,16 @@
     document.getElementById('participant-display').textContent = participantName;
     document.getElementById('logout-btn').style.display = 'inline';
     localStorage.setItem('tm_participant', participantName);
+    localStorage.setItem('tm_role', role);
 
-    // Отправить факт авторизации в таблицу
+    // Отправить факт авторизации в таблицу (включая роль)
     const SHEET_URL = "https://script.google.com/macros/s/AKfycbz-CNpPwG5K3gVRUlr_bIkdCqYlo3QIPtuuWTU1t5hbVDSI7fZqv_lw2ObTKh49uanVAg/exec";
-    const loginParams = new URLSearchParams({ type: "login", name: participantName });
+    const loginParams = new URLSearchParams({ type: "login", name: participantName, role: ROLE_LABELS[role] || role });
     fetch(SHEET_URL + "?" + loginParams.toString(), { method: "GET", mode: "no-cors" }).catch(() => {});
+
+    // Роль определяет трек программы автоматически
+    const track = role.indexOf('pbo') !== -1 ? 'pbo' : 'coffee';
+    selectTrack(track);
   }
 
   function doLogout() {
