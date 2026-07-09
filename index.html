@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Программа обучения территориальных менеджеров</title>
+<title>Программа обучения директоров точек</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
@@ -651,9 +651,9 @@
     width:100%; max-width:420px;
     text-align:center;
   ">
-    <div style="font-size:11px;letter-spacing:3px;color:#c9a84c;margin-bottom:12px;">ПБО · СЕТЬ КОФЕЕН · ЧР</div>
+    <div style="font-size:11px;letter-spacing:3px;color:#c9a84c;margin-bottom:12px;">СЕТЬ КОФЕЕН · ЧР</div>
     <div style="font-family:'Playfair Display',serif;font-size:26px;color:#e8e2d9;margin-bottom:8px;">Программа обучения</div>
-    <div style="font-size:13px;color:#8a8278;margin-bottom:32px;">Территориальный менеджер</div>
+    <div style="font-size:13px;color:#8a8278;margin-bottom:32px;">Директор точки</div>
 
     <div style="text-align:left;margin-bottom:16px;">
       <label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ИМЯ</label>
@@ -692,16 +692,16 @@
     </button>
 
     <div style="font-size:11px;color:#8a8278;margin-top:20px;">
-      Доступ к программе · 5 дней · 4 теста
+      Доступ к программе · 5 дней · 5 тестов
     </div>
   </div>
 </div>
 
 <div class="header">
   <div class="header-inner">
-    <div class="company-tag">ПБО · Чеченская Республика · HoReCa</div>
-    <h1>Программа обучения ТМ</h1>
-    <div class="header-sub">Территориальные менеджеры сети кофеен — интенсив 5 дней &nbsp;|&nbsp; <span id="participant-display" style="color:#c9a84c;font-weight:600;"></span> <span id="logout-btn" onclick="doLogout()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">выйти</span></div>
+    <div class="company-tag" id="header-tag">Сеть кофеен · Чеченская Республика · HoReCa</div>
+    <h1 id="header-title">Программа обучения директоров точек</h1>
+    <div class="header-sub"><span id="header-track-sub">Директора точек сети кофеен — интенсив 5 дней</span> &nbsp;|&nbsp; <span id="participant-display" style="color:#c9a84c;font-weight:600;"></span> <span id="logout-btn" onclick="doLogout()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">выйти</span> <span id="switch-track-btn" onclick="showTrackSelect()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">сменить программу</span></div>
     <div class="header-meta">
       <div class="meta-chip">5 дней · 11:00–13:00 · очно</div>
       <div class="meta-chip">3–4 участника</div>
@@ -713,7 +713,7 @@
 
 <div class="layout">
   <aside class="sidebar">
-    <div class="sidebar-sticky">
+    <div class="sidebar-sticky" id="sidebar-coffee" style="display:none">
       <div class="nav-label">Навигация</div>
       <div class="nav-item active" onclick="showView('overview')">
         <div class="nav-day" style="border-radius:4px; font-size:9px;">ОБЗ</div>
@@ -726,7 +726,7 @@
         <div class="nav-day">1</div>
         <div class="nav-text">
           <div class="nav-text-main">День 1</div>
-          <div class="nav-text-sub">Роль и мышление ТМ</div>
+          <div class="nav-text-sub">Роль и мышление директора</div>
         </div>
       </div>
       <div class="nav-item" onclick="showDayView(2)" id="nav-day-2">
@@ -763,7 +763,61 @@
         <div class="progress-bar-wrap">
           <div class="progress-bar-fill" id="main-progress" style="width:0%"></div>
         </div>
-        <div class="progress-text" id="progress-text">0 из 4 тестов пройдено</div>
+        <div class="progress-text" id="progress-text">0 из 5 тестов пройдено</div>
+      </div>
+    </div>
+
+    <div class="sidebar-sticky" id="sidebar-pbo" style="display:none">
+      <div class="nav-label">Навигация · ПБО</div>
+      <div class="nav-item active" onclick="showView('overview-pbo')">
+        <div class="nav-day" style="border-radius:4px; font-size:9px;">ОБЗ</div>
+        <div class="nav-text">
+          <div class="nav-text-main">Обзор программы</div>
+          <div class="nav-text-sub">Цели и компетенции</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(1)" id="nav-pbo-day-1">
+        <div class="nav-day">1</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 1</div>
+          <div class="nav-text-sub">Роль и мышление директора</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(2)" id="nav-pbo-day-2">
+        <div class="nav-day">2</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 2</div>
+          <div class="nav-text-sub">Дисциплина и мотивация</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(3)" id="nav-pbo-day-3">
+        <div class="nav-day">3</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 3</div>
+          <div class="nav-text-sub">Станции, стандарты, food safety</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(4)" id="nav-pbo-day-4">
+        <div class="nav-day">4</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 4</div>
+          <div class="nav-text-sub">Финансы и показатели</div>
+        </div>
+      </div>
+      <div class="nav-item" onclick="showDayView(5)" id="nav-pbo-day-5">
+        <div class="nav-day">5</div>
+        <div class="nav-text">
+          <div class="nav-text-main">День 5</div>
+          <div class="nav-text-sub">Итоговая аттестация</div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <div class="nav-label">Прогресс</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="pbo-main-progress" style="width:0%"></div>
+        </div>
+        <div class="progress-text" id="pbo-progress-text">0 из 4 тестов пройдено</div>
       </div>
     </div>
   </aside>
@@ -771,32 +825,125 @@
   <main class="main">
 
     <!-- OVERVIEW -->
-    <div class="view active" id="view-overview" style="display:block">
+    <!-- TRACK SELECT -->
+    <div class="view active" id="view-track-select" style="display:block">
+      <div class="overview-note">
+        <h3>Выберите программу обучения</h3>
+        <p>Управленческий костяк программы общий для всех форматов. Кейсы, метрики и специалистные блоки различаются по концепции точки.</p>
+      </div>
+      <div class="overview-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="day-card" onclick="selectTrack('coffee')" style="cursor:pointer;">
+          <div class="day-card-num">☕</div>
+          <div class="day-card-title">Директор кофейни</div>
+          <div class="day-card-theme">Coffee Story · Nutland — 5 дней, готовая программа с тестами</div>
+        </div>
+        <div class="day-card" onclick="selectTrack('pbo')" style="cursor:pointer;">
+          <div class="day-card-num">🍗</div>
+          <div class="day-card-title">Директор ПБО</div>
+          <div class="day-card-theme">Маковский · Crispy — 5 дней, станции и food safety</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW: PBO -->
+    <div class="view" id="view-overview-pbo" style="display:none">
       <div class="overview-note">
         <h3>Цель программы</h3>
-        <p>Сформировать территориальных менеджеров, способных самостоятельно управлять 2–3 кофейнями: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый ТМ знает свою роль, инструменты влияния и умеет применять их в работе.</p>
+        <p>Обучить и развить директоров точек ПБО, способных самостоятельно управлять предприятием быстрого обслуживания: обеспечивать дисциплину, мотивацию команды, работу по станциям, food safety и рост показателей. Управленческий костяк общий с программой для директоров кофеен — отличия в кейсах, метриках и специалистных блоках.</p>
       </div>
 
       <div class="overview-grid">
         <div class="day-card" onclick="showDayView(1)">
           <div class="day-card-num">01</div>
-          <div class="day-card-title">Роль и мышление ТМ</div>
-          <div class="day-card-theme">Самоопределение · Зоны ответственности · Переход из исполнителя в управленца</div>
+          <div class="day-card-title">Роль и мышление директора</div>
+          <div class="day-card-theme">Матрица ответственности · SMART · SBI · Ситуативное лидерство на станциях · Битрикс24</div>
         </div>
         <div class="day-card" onclick="showDayView(2)">
           <div class="day-card-num">02</div>
-          <div class="day-card-title">Управление командой</div>
-          <div class="day-card-theme">Дисциплина · Мотивация · Удержание · Работа с молодёжью 16+</div>
+          <div class="day-card-title">Дисциплина и мотивация</div>
+          <div class="day-card-theme">Кассовая дисциплина · Красные линии food safety · 1-on-1 · Служба безопасности</div>
         </div>
         <div class="day-card" onclick="showDayView(3)">
           <div class="day-card-num">03</div>
-          <div class="day-card-title">Операционное управление</div>
-          <div class="day-card-theme">Стандарты · Контроль качества · Проверки точек · Управление менеджером смены</div>
+          <div class="day-card-title">Станции, стандарты, food safety</div>
+          <div class="day-card-theme">Аудит по станциям · МПК · Критические контрольные точки · Ротация персонала · Техобслуживание</div>
         </div>
         <div class="day-card" onclick="showDayView(4)">
           <div class="day-card-num">04</div>
           <div class="day-card-title">Финансы и показатели</div>
-          <div class="day-card-theme">P&L кофейни · KPI · Влияние на выручку · Управление себестоимостью</div>
+          <div class="day-card-theme">Формула выручки · Скорость обслуживания · BSC · Маркетинг · iiko</div>
+        </div>
+        <div class="day-card" onclick="showDayView(5)">
+          <div class="day-card-num">05</div>
+          <div class="day-card-title">Итоговая аттестация</div>
+          <div class="day-card-theme">Категория «Директор ПБО» в общем инструменте аттестации</div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Чем программа ПБО отличается от программы кофеен</div>
+      <div class="competency-grid">
+        <div class="comp-card">
+          <h4>Станции вместо общей точки</h4>
+          <ul class="comp-list">
+            <li>Гриль, фритюр, сборка, касса, хранение, зал — отдельный аудит по каждой</li>
+            <li>Ротация персонала между станциями</li>
+            <li>Кросс-обучение как элемент карьерного трека</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h4>Food safety выше по критичности</h4>
+          <ul class="comp-list">
+            <li>Критические контрольные точки (температура, сроки, ККТ)</li>
+            <li>Ежедневный чек-лист на 12 пунктов</li>
+            <li>Нарушение = красная линия, не рядовая ошибка</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h4>Скорость обслуживания</h4>
+          <ul class="comp-list">
+            <li>Новый фактор формулы выручки — секунды на гостя</li>
+            <li>Ограничивает трафик в час пик физически</li>
+            <li>Отдельная колонка в еженедельном отчёте</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h4>Кассовая дисциплина</h4>
+          <ul class="comp-list">
+            <li>Выше приоритет, чем в кофейне — выше оборот на точку</li>
+            <li>Инкассация, сторно, возвраты — зона СБ</li>
+            <li>Эскалация выше рядового нарушения стандарта</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW: COFFEE -->
+    <div class="view" id="view-overview" style="display:none">
+      <div class="overview-note">
+        <h3>Цель программы</h3>
+        <p>Обучить и развить директоров точек, способных самостоятельно управлять своей кофейней: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый директор знает свою роль, инструменты влияния и умеет применять их в работе.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="day-card" onclick="showDayView(1)">
+          <div class="day-card-num">01</div>
+          <div class="day-card-title">Роль и мышление директора</div>
+          <div class="day-card-theme">Самоопределение · Зоны ответственности · Переход из исполнителя в управленца · Битрикс24</div>
+        </div>
+        <div class="day-card" onclick="showDayView(2)">
+          <div class="day-card-num">02</div>
+          <div class="day-card-title">Управление командой</div>
+          <div class="day-card-theme">Дисциплина · Мотивация · Удержание · Работа с молодёжью 16+ · Финансовая безопасность</div>
+        </div>
+        <div class="day-card" onclick="showDayView(3)">
+          <div class="day-card-num">03</div>
+          <div class="day-card-title">Операционное управление</div>
+          <div class="day-card-theme">Стандарты · Ежедневный контроль качества · Работа с менеджером · Техобслуживание · Оборудование</div>
+        </div>
+        <div class="day-card" onclick="showDayView(4)">
+          <div class="day-card-num">04</div>
+          <div class="day-card-title">Финансы и показатели</div>
+          <div class="day-card-theme">P&L кофейни · KPI · Влияние на выручку · Управление себестоимостью · Маркетинг · iiko</div>
         </div>
         <div class="day-card" onclick="showDayView(5)">
           <div class="day-card-num">05</div>
@@ -856,8 +1003,8 @@
       <div class="day-header">
         <div class="day-num-big">01</div>
         <div>
-          <div class="day-title">Роль и мышление территориального менеджера</div>
-          <div class="day-goal">Цель: каждый ТМ чётко понимает, кто он, за что отвечает, и в чём принципиальное отличие его роли от менеджера смены</div>
+          <div class="day-title">Роль и мышление директора точки</div>
+          <div class="day-goal">Цель: каждый директор чётко понимает, кто он, за что отвечает, и в чём принципиальное отличие его роли от менеджера</div>
           <div class="day-tags">
             <span class="tag gold">Управленческое мышление</span>
             <span class="tag">Зоны ответственности</span>
@@ -880,8 +1027,8 @@
       <div class="block-card important">
         <div class="block-time">11:15–12:00</div>
         <div class="block-content">
-          <div class="block-title">Блок 1. Кто такой ТМ в кофейном бизнесе</div>
-          <div class="block-desc">Структура управления: головной офис → ТМ → менеджер точки → линейный персонал. Чем ТМ отличается от управляющего точкой. Матрица ответственности: что ТМ делает сам, что делегирует, что контролирует. Типичные ошибки первых 3 месяцев в роли.</div>
+          <div class="block-title">Блок 1. Кто такой директор в кофейном бизнесе</div>
+          <div class="block-desc">Структура управления: головной офис → директор → менеджер → линейный персонал. Чем директор отличается от управляющего точкой. Матрица ответственности: что директор делает сам, что делегирует, что контролирует. Типичные ошибки первых 3 месяцев в роли.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip case">Кейс</span>
@@ -895,7 +1042,7 @@
         <div class="block-time">12:00–12:50</div>
         <div class="block-content">
           <div class="block-title">Блок 2. Управленческий стиль и ситуативное лидерство</div>
-          <div class="block-desc">Модель Херси–Бланшара: 4 уровня зрелости сотрудника, 4 стиля управления. Как выбирать стиль под конкретного сотрудника. Применение в кофейне: стажёр, опытный бариста, менеджер смены. Работа в группах: разбор 3 реальных ситуаций из реальных ситуаций.</div>
+          <div class="block-desc">Модель Херси–Бланшара: 4 уровня зрелости сотрудника, 4 стиля управления. Как выбирать стиль под конкретного сотрудника. Применение в кофейне: стажёр, опытный бариста, менеджер. Работа в группах: разбор 3 реальных ситуаций из реальных ситуаций.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip case">Кейс</span>
@@ -910,7 +1057,7 @@
         <div class="block-time">14:00–15:00 (опц.)</div>
         <div class="block-content">
           <div class="block-title">Блок 3. Постановка задач и контроль — модель SMART+</div>
-          <div class="block-desc">Почему задачи не выполняются: 5 причин. Структура правильной задачи: результат, срок, ресурс, критерий оценки. Точки контроля: промежуточный и итоговый. Практика: каждый ТМ ставит 2 задачи своему «сотруднику» — группа даёт обратную связь.</div>
+          <div class="block-desc">Почему задачи не выполняются: 5 причин. Структура правильной задачи: результат, срок, ресурс, критерий оценки. Точки контроля: промежуточный и итоговый. Практика: каждый директор ставит 2 задачи своему «сотруднику» — группа даёт обратную связь.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip practice">Практика</span>
@@ -923,6 +1070,17 @@
       
 
       
+
+      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+        <div class="block-time">15:00–15:25 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 4. Битрикс24 — частые вопросы</div>
+          <div class="block-desc">Специалист отвечает на частые вопросы директоров по работе в Битрикс24: постановка и контроль задач, документооборот, чаты и согласования. Формат FAQ — приносите свои вопросы заранее.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+          </div>
+        </div>
+      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 1</h3>
@@ -949,7 +1107,7 @@
         <div class="day-num-big">02</div>
         <div>
           <div class="day-title">Управление командой в кофейне</div>
-          <div class="day-goal">Цель: ТМ умеет выстраивать дисциплину без давления, мотивировать молодых сотрудников, снижать текучесть персонала и применять инструменты в работе</div>
+          <div class="day-goal">Цель: директор умеет выстраивать дисциплину без давления, мотивировать молодых сотрудников, снижать текучесть персонала и применять инструменты в работе</div>
           <div class="day-tags">
             <span class="tag gold">Дисциплина</span>
             <span class="tag">Мотивация</span>
@@ -1002,7 +1160,7 @@
         <div class="block-time">14:00–15:00 (опц.)</div>
         <div class="block-content">
           <div class="block-title">Блок 7. Текучесть персонала — управление и снижение</div>
-          <div class="block-desc">Стоимость текучести: считаем вместе на реальных цифрах. Почему уходят из кофеен — топ-5 причин. Адаптация нового сотрудника: план первых 2 недель, роль ТМ в нём. Инструменты удержания без повышения зарплаты. Exit-интервью: как проводить и что с этим делать. Разбор кейса: сотрудник собирается уволиться — как ТМ должен действовать.</div>
+          <div class="block-desc">Стоимость текучести: считаем вместе на реальных цифрах. Почему уходят из кофеен — топ-5 причин. Адаптация нового сотрудника: план первых 2 недель, роль директора в нём. Инструменты удержания без повышения зарплаты. Exit-интервью: как проводить и что с этим делать. Разбор кейса: сотрудник собирается уволиться — как директор должен действовать.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip case">Кейс</span>
@@ -1016,6 +1174,18 @@
       
 
       
+
+      <div class="block-card" style="border-color: var(--red, #e05555);">
+        <div class="block-time">15:00–15:35 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 8. Служба безопасности — превенция краж и обмана</div>
+          <div class="block-desc">Представитель СБ разбирает реальные кейсы краж и обмана на точках: типичные схемы, как их распознать на раннем этапе. Превентивные меры: контроль кассы, контроль поставок, работа с подозрениями без обвинений. Обсуждение текущих проблем с группой — что директора уже замечали на своих точках.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+            <span class="method-chip case">Кейсы</span>
+          </div>
+        </div>
+      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 2</h3>
@@ -1042,7 +1212,7 @@
         <div class="day-num-big">03</div>
         <div>
           <div class="day-title">Операционное управление кофейней</div>
-          <div class="day-goal">Цель: ТМ знает, как устроены операции кофейни, умеет проводить аудит точки и влиять на качество через системные инструменты, а не ручное управление</div>
+          <div class="day-goal">Цель: директор знает, как устроены операции кофейни, умеет проводить аудит точки и влиять на качество через системные инструменты, а не ручное управление</div>
           <div class="day-tags">
             <span class="tag gold">Стандарты</span>
             <span class="tag">Аудит точки</span>
@@ -1079,8 +1249,8 @@
 <div class="block-card important">
         <div class="block-time">12:00–12:50</div>
         <div class="block-content">
-          <div class="block-title">Блок 10. Аудит точки — методология ТМ</div>
-          <div class="block-desc">Виды визитов ТМ: плановый, внеплановый, проблемный. Структура визита: до прихода, наблюдение, разговор с менеджером, итоги. Что смотреть в первую очередь: топ-10 точек контроля. Как фиксировать нарушения и давать задачи на исправление. Частота визитов при 2–3 точках. Разбор кейса: ТМ приходит на точку и видит 5 нарушений — как действовать. Ролевая игра: один ТМ — инспектор, второй — менеджер.</div>
+          <div class="block-title">Блок 10. Ежедневный контроль качества на точке</div>
+          <div class="block-desc">Структура ежедневного контроля директора: утром (отчёт за вчера, проверка предыдущих замечаний), в течение дня («пульс» точки, наблюдение за пиком), вечером (разговор с менеджером, приоритеты, задачи на завтра). Что смотреть в первую очередь: топ-10 точек контроля. Как фиксировать нарушения и давать задачи на исправление. Разбор кейса: за день директор замечает 5 нарушений — как расставить приоритеты. Ролевая игра: директор проводит вечерний разговор с менеджером.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip case">Кейс</span>
@@ -1095,7 +1265,7 @@
         <div class="block-time">14:00–15:00 (опц.)</div>
         <div class="block-content">
           <div class="block-title">Блок 11. Управление качеством продукта и сервиса</div>
-          <div class="block-desc">Кофейный продукт: что влияет на качество чашки (кратко, без технологии). Сервис в кофейне: ожидания гостей, типичные жалобы. Работа с жалобами гостей: модель LAST (Listen–Apologize–Solve–Thank). Как ТМ отслеживает качество без присутствия на точке: тайный гость, отзывы, показатели. Mystery guest: как организовать дёшево.</div>
+          <div class="block-desc">Кофейный продукт: что влияет на качество чашки (кратко, без технологии). Сервис в кофейне: ожидания гостей, типичные жалобы. Работа с жалобами гостей: модель LAST (Listen–Apologize–Solve–Thank). Как директор объективно проверяет качество, даже находясь на точке постоянно: тайный гость, отзывы, независимые показатели. Mystery guest: как организовать дёшево.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip practice">Практика</span>
@@ -1108,6 +1278,29 @@
       
 
       
+
+      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+        <div class="block-time">15:00–15:25 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 12. Техобслуживание — частые поломки и скорость решения</div>
+          <div class="block-desc">Специалист департамента техобслуживания разбирает частые поломки оборудования на точках: кофемашины, кофемолки, холодильное оборудование. Как директору правильно описывать проблему для быстрого решения. Норматив скорости реагирования. Что директор может сделать сам до приезда специалиста.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card" style="border-color: var(--gold);">
+        <div class="block-time">15:25–16:05 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 13. Шеф-бариста — глубокая чистка оборудования</div>
+          <div class="block-desc">Шеф-бариста разбирает полный цикл чистки: почему кофейные масла окисляются за несколько часов и портят вкус, ежедневная чистка кофемолки и жерновов (чистящие гранулы + периодическая полная разборка), вечерняя чистка эспрессо-машины и Backflush — обратная промывка группы (5 циклов по 10 секунд + тестовая порция), уход за паровыми трубками, замачивание холдеров и корзин (нельзя замачивать деревянные ручки). Каждый директор получает чек-лист закрытия кофейной станции — 12 пунктов для проверки перед уходом смены.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 3</h3>
@@ -1134,7 +1327,7 @@
         <div class="day-num-big">04</div>
         <div>
           <div class="day-title">Финансовое управление и KPI кофейни</div>
-          <div class="day-goal">Цель: ТМ читает базовую финансовую отчётность точки, понимает из чего складывается прибыль, и знает конкретные рычаги влияния на каждый показатель</div>
+          <div class="day-goal">Цель: директор читает базовую финансовую отчётность точки, понимает из чего складывается прибыль, и знает конкретные рычаги влияния на каждый показатель</div>
           <div class="day-tags">
             <span class="tag gold">P&L кофейни</span>
             <span class="tag">KPI</span>
@@ -1150,7 +1343,7 @@
         <div class="block-time">11:00–11:15</div>
         <div class="block-content">
           <div class="block-title">Разбор ДЗ. Результаты аудита точек</div>
-          <div class="block-desc">Каждый ТМ представляет чек-лист: какие нарушения нашли, какие задачи поставили. Обсуждение — что было сложно увидеть.</div>
+          <div class="block-desc">Каждый директор представляет чек-лист: какие нарушения нашли, какие задачи поставили. Обсуждение — что было сложно увидеть.</div>
         </div>
       </div>
 
@@ -1158,7 +1351,7 @@
         <div class="block-time">11:15–12:00</div>
         <div class="block-content">
           <div class="block-title">Блок 13. Финансовая анатомия кофейни</div>
-          <div class="block-desc">Структура P&L кофейни: выручка, себестоимость продуктов (COGS), валовая прибыль, ФОТ, аренда, прочие расходы, EBITDA. Типичные пропорции в кофейном бизнесе. Что находится в зоне влияния ТМ, а что — нет. Разбор реального (обезличенного) P&L кофейни: ищем проблемы вместе. Как читать отчёт за неделю и делать выводы.</div>
+          <div class="block-desc">Структура P&L кофейни: выручка, себестоимость продуктов (COGS), валовая прибыль, ФОТ, аренда, прочие расходы, EBITDA. Типичные пропорции в кофейном бизнесе. Что находится в зоне влияния директор, а что — нет. Разбор реального (обезличенного) P&L кофейни: ищем проблемы вместе. Как читать отчёт за неделю и делать выводы.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip case">Кейс</span>
@@ -1172,7 +1365,7 @@
         <div class="block-time">12:00–12:50</div>
         <div class="block-content">
           <div class="block-title">Блок 14. Выручка кофейни — рычаги роста</div>
-          <div class="block-desc">Формула выручки: трафик × средний чек. Как ТМ влияет на трафик: локация, видимость, часы работы, скорость обслуживания. Как ТМ влияет на средний чек: апселл, ассортимент, акции. Анализ часов пик и провалов: как перераспределить усилия. Расчёт упущенной выручки — практика на цифрах. Локальный маркетинг кофейни: что ТМ может делать без бюджета.</div>
+          <div class="block-desc">Формула выручки: трафик × средний чек. Как директор влияет на трафик: локация, видимость, часы работы, скорость обслуживания. Как директор влияет на средний чек: апселл, ассортимент, акции. Анализ часов пик и провалов: как перераспределить усилия. Расчёт упущенной выручки — практика на цифрах. Локальный маркетинг кофейни: что директор может делать без бюджета.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip practice">Практика</span>
@@ -1186,7 +1379,7 @@
         <div class="block-time">14:00–15:00 (опц.)</div>
         <div class="block-content">
           <div class="block-title">Блок 15. Себестоимость и ФОТ — управление затратами</div>
-          <div class="block-desc">Food cost кофейни: норматив, как считается, что на него влияет. Списания и потери: типичные причины в кофейне. Как ТМ контролирует расход сырья. ФОТ: как считать эффективность персонала (выручка на сотрудника в смену). Планирование графиков под трафик. Практика: составить оптимальный график смен под конкретный профиль трафика.</div>
+          <div class="block-desc">Food cost кофейни: норматив, как считается, что на него влияет. Списания и потери: типичные причины в кофейне. Как директор контролирует расход сырья. ФОТ: как считать эффективность персонала (выручка на сотрудника в смену). Планирование графиков под трафик. Практика: составить оптимальный график смен под конкретный профиль трафика.</div>
           <div class="block-methods">
             <span class="method-chip theory">Теория</span>
             <span class="method-chip practice">Практика</span>
@@ -1199,6 +1392,29 @@
       
 
       
+
+      <div class="block-card" style="border-color: var(--green, #4caf7d);">
+        <div class="block-time">15:00–15:30 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 16. Маркетинг — что нужно знать директору</div>
+          <div class="block-desc">Специалист отдела маркетинга рассказывает: какие акции и активности планируются на ближайший период, как директор может локально поддержать федеральную акцию на своей точке, какие материалы и POS присылает маркетинг и как их использовать. Обратная связь от маркетинга в обе стороны.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card" style="border-color: var(--purple, #8b6fe8);">
+        <div class="block-time">15:30–16:15 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 17. iiko и отчётность — обучение от финансового отдела</div>
+          <div class="block-desc">Специалист финансового отдела разбирает 6 ключевых процессов в iiko: акты списания (заносятся в реальном времени, комментарий обязателен — без него акт удаляется и уходит в инвентаризацию), накладные на закупки «на стороне» (контрагент «Я Беркат», оплата через торговую кассу, изъятия на продукты запрещены), запрещённые счета на точке (5xx — склад Локали Маркет, 7xx — Главный офис, 8xx — расходы УК, 9xx — стройобъекты), правила изъятий с корректным комментарием и счётом, платёжная ведомость (проверка расписания и явок сотрудников), инвентаризация (заносится 30/31 числа, заготовки — отдельным листом), и заполнение БСЦ (данные из Отчёта о прибылях и убытках, дедлайн отправки финансисту — до 5 числа).</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+            <span class="method-chip practice">Практика в iiko</span>
+          </div>
+        </div>
+      </div>
 
       <div class="hw-section">
         <h3>Домашнее задание — День 4</h3>
@@ -1225,7 +1441,7 @@
         <div class="day-num-big">05</div>
         <div>
           <div class="day-title">Итоговая аттестация и финальная обратная связь</div>
-          <div class="day-goal">Цель: проверить полноту усвоения программы, зафиксировать индивидуальные зоны роста каждого ТМ, вручить сертификаты</div>
+          <div class="day-goal">Цель: проверить полноту усвоения программы, зафиксировать индивидуальные зоны роста каждого директора, вручить сертификаты</div>
           <div class="day-tags">
             <span class="tag gold">Аттестация</span>
             <span class="tag">Защита плана</span>
@@ -1245,13 +1461,17 @@
         </div>
       </div>
 
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(5)" id="test-btn-5">
+        ✦ Пройти итоговый тест
+      </button></div>
+
       
       
 <div class="block-card important">
         <div class="block-time">12:00–13:00</div>
         <div class="block-content">
           <div class="block-title">Защита плана развития точки</div>
-          <div class="block-desc">Каждый ТМ: 5–7 минут презентация + 5 минут вопросы от группы и ведущего. Критерии оценки: конкретность целей, реалистичность, понимание рычагов влияния, уверенность изложения. Оценочный лист заполняет ведущий — итоги отдаются каждому лично.</div>
+          <div class="block-desc">Каждый директор: 5–7 минут презентация + 5 минут вопросы от группы и ведущего. Критерии оценки: конкретность целей, реалистичность, понимание рычагов влияния, уверенность изложения. Оценочный лист заполняет ведущий — итоги отдаются каждому лично.</div>
           <div class="block-methods"><span class="method-chip practice">Практика</span></div>
         </div>
       </div>
@@ -1262,7 +1482,7 @@
         <div class="block-time">14:00–15:00 (опц.)</div>
         <div class="block-content">
           <div class="block-title">Индивидуальные сессии обратной связи</div>
-          <div class="block-desc">Ведущий встречается с каждым ТМ 20–25 минут: сильные стороны, зоны роста, персональные рекомендации. Каждый получает письменный профиль компетенций по итогам недели. Фиксируются 2–3 развивающие задачи на ближайший месяц.</div>
+          <div class="block-desc">Ведущий встречается с каждым директором 20–25 минут: сильные стороны, зоны роста, персональные рекомендации. Каждый получает письменный профиль компетенций по итогам недели. Фиксируются 2–3 развивающие задачи на ближайший месяц.</div>
           <div class="block-methods"><span class="method-chip practice">Практика</span></div>
         </div>
       </div>
@@ -1275,7 +1495,7 @@
         <h3>После программы — план на 30 дней</h3>
         <div class="hw-item">
           <span class="hw-badge practice">Неделя 1</span>
-          <div class="hw-text">Провести аудит всех своих точек по чек-листу. Внедрить 1 новый стандарт. Провести 1-on-1 с каждым менеджером своих точек.</div>
+          <div class="hw-text">Провести полный аудит своей точки по чек-листу. Внедрить 1 новый стандарт. Провести 1-on-1 с каждым ключевым менеджером своей точки.</div>
         </div>
         <div class="hw-item">
           <span class="hw-badge practice">Неделя 2–3</span>
@@ -1288,6 +1508,340 @@
       </div>
 
     <!-- TESTS -->
+    </div>
+
+    <!-- ============ PBO DAYS ============ -->
+    <div class="view" id="view-pbo-day-1" style="display:none">
+      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">01</div>
+        <div>
+          <div class="day-title">Роль и мышление директора ПБО</div>
+          <div class="day-goal">Цель: директор понимает свою роль, матрицу ответственности и умеет применять SMART, SBI и ситуативное лидерство на кейсах станций</div>
+          <div class="day-tags">
+            <span class="tag gold">Управленческое мышление</span>
+            <span class="tag">Зоны ответственности</span>
+            <span class="tag">Станции</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card important">
+        <div class="block-time">11:00–11:45</div>
+        <div class="block-content">
+          <div class="block-title">Блок 1. Матрица ответственности директора ПБО</div>
+          <div class="block-desc">Отличие от кофейни: больше станций и людей в смене одновременно, выше цена ошибки в моменте. Директор физически не может стоять на станции — его роль ещё дальше от исполнения и ближе к системе контроля. Разбор: что директор делает лично (присутствие в час пик, контроль критических точек food safety, беседы с менеджерами, P&L), что делегирует (ротация по станциям, инструктажи, график смен).</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:45–12:20</div>
+        <div class="block-content">
+          <div class="block-title">Блок 2. SMART — цели по скорости и точности</div>
+          <div class="block-desc">Формула не меняется, меняются метрики: не средний чек, а скорость сборки, точность заказа, время ожидания на кассе/выдаче. Практика: «За 4 недели снизить среднее время сборки заказа с 95 до 75 секунд за счёт перераспределения менеджеров на станцию сборки в часы пик». Каждый директор формулирует SMART-цель по своей точке на основе показателя скорости или точности за последний месяц.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">12:20–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 3. SBI и ситуативное лидерство на станциях</div>
+          <div class="block-desc">SBI на кейсе фритюра: ситуация («вчера в час пик на станции фритюра»), поведение («не проверил температуру масла по графику»), влияние («продукт вышел ниже стандарта, гость вернул заказ»). Ситуативное лидерство: кейс с тремя сотрудниками разного уровня зрелости — новичок на фритюре, опытный на гриле, быстрый, но с ошибками на сборке. Разбор: каждому — свой стиль управления.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+        <div class="block-time">14:00–14:25 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 4. Битрикс24 — частые вопросы</div>
+          <div class="block-desc">Без изменений от программы кофеен — кросс-брендовый материал.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 1</h3>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">Сформулировать одну SMART-цель по своей точке на основе показателя скорости обслуживания или точности заказа за последний месяц. Записать формулировку — завтра разбираем в группе.</div>
+        </div>
+      </div>
+
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo1')" id="test-btn-pbo-1">
+        ✦ Пройти тест по Дню 1
+      </button></div>
+    </div>
+
+    <div class="view" id="view-pbo-day-2" style="display:none">
+      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">02</div>
+        <div>
+          <div class="day-title">Дисциплина, мотивация, удержание, 1-on-1</div>
+          <div class="day-goal">Цель: директор умеет применять поэтапную дисциплину с учётом красных линий ПБО (касса, food safety) и вести 1-on-1 с фокусом на кросс-обучение</div>
+          <div class="day-tags">
+            <span class="tag gold">Кассовая дисциплина</span>
+            <span class="tag">Красные линии</span>
+            <span class="tag">Удержание</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card important">
+        <div class="block-time">11:00–11:45</div>
+        <div class="block-content">
+          <div class="block-title">Блок 1. Система дисциплины — акценты для ПБО</div>
+          <div class="block-desc">В кофейне ключевой риск — рецептура и сервис. В ПБО добавляются два риска выше по значимости: кассовая дисциплина (расхождения при инкассации, недокументированные возвраты и сторно) и нарушение критических точек food safety (не проверил температуру, не соблюдал сроки годности) — это красная линия, а не рядовая ошибка. Обычные нарушения стандарта — по прежней логике поэтапной дисциплины.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:45–12:15</div>
+        <div class="block-content">
+          <div class="block-title">Блок 2. Кейс: третье нарушение подряд</div>
+          <div class="block-desc">Сотрудник опоздал второй раз за неделю, менеджер предлагает уволить «чтобы другим неповадно». Решение: отклонить, объяснить принцип поэтапной дисциплины, помочь провести беседу с фиксацией. Отдельно: если нарушение — сокрытие недостачи или срыв food safety, поэтапность не применяется, это немедленная эскалация в СБ.</div>
+          <div class="block-methods">
+            <span class="method-chip case">Кейс</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">12:15–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 3. 1-on-1 и мотивация — новые темы для ПБО</div>
+          <div class="block-desc">Структура встречи не меняется. Новые темы: готовность к кросс-обучению на другую станцию как элемент карьерного трека, личная статистика по точности/скорости, причины частых просьб поменяться сменами — ранний сигнал выгорания от станции с высокой нагрузкой. Мотивация при ограниченном бюджете: видимый карьерный трек линейный персонал → тренер станции → менеджер смены → замдиректора → директор — работает сильнее любой разовой премии.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+        <div class="block-time">14:00–14:30 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 4. Служба безопасности — превенция хищений</div>
+          <div class="block-desc">Зона риска шире, чем в кофейне: несколько станций с сырьём одновременно, выше кассовый оборот, приём поставок большего объёма. Акцент на кассовой дисциплине и контроле перемещения продукта между станциями.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 2</h3>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">Карта мотиваторов — заполнить бланк по своей команде (структура без изменений от программы кофеен).</div>
+        </div>
+      </div>
+
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo2')" id="test-btn-pbo-2">
+        ✦ Пройти тест по Дню 2
+      </button></div>
+    </div>
+
+    <div class="view" id="view-pbo-day-3" style="display:none">
+      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">03</div>
+        <div>
+          <div class="day-title">Стандарты, ежедневный контроль, МПК + Станции и food safety</div>
+          <div class="day-goal">Цель: директор умеет провести аудит по каждой станции отдельно и понимает критические контрольные точки food safety</div>
+          <div class="day-tags">
+            <span class="tag gold">Станции</span>
+            <span class="tag">Food safety</span>
+            <span class="tag">МПК</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card important">
+        <div class="block-time">11:00–11:40</div>
+        <div class="block-content">
+          <div class="block-title">Блок 1. Чек-лист аудита по станциям</div>
+          <div class="block-desc">В кофейне аудит идёт по общей логике точки. В ПБО директор проводит аудит по каждой станции отдельно: гриль (температура, чистота, соответствие нарезки), фритюр (температура масла, фильтрация, маркировка партий), сборка (скорость, точность состава), касса (дисциплина, инкассация), хранение (сроки годности, ротация FIFO), зал (чистота, скорость выдачи).</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:40–12:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 2. Приоритизация нарушений и МПК</div>
+          <div class="block-desc">Три нарушения одновременно: не поздоровался с гостем, беспорядок в хранении, сроки годности не проверялись 2 дня. Порядок: сначала безопасность продукта, затем сервис, затем внутренний порядок — логика та же, что в кофейне, но нарушение по срокам годности сырья для гриля/фритюра несёт кратно больший риск. МПК проверяет по тем же принципам, но по каждой станции отдельно.</div>
+          <div class="block-methods">
+            <span class="method-chip case">Кейс</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">12:00–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 3. Новый блок — Станции и food safety</div>
+          <div class="block-desc">Директор не готовит на станциях сам, но должен уметь провести полноценный аудит без участия менеджера, отличить системную проблему от разовой ошибки, обучить нового менеджера принципам станции. Критические контрольные точки (по аналогии с HACCP): температура готового продукта, время удержания на раздаче, срок годности сырья на каждой станции, температура холодильного оборудования, раздельный инвентарь для сырого и готового продукта. Ежедневный чек-лист food safety на 12 пунктов — директор выборочно проверяет заполнение лично минимум раз в неделю. Ротация персонала между 4–5 станциями — не менее 60% команды должны владеть двумя и более станциями.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+        <div class="block-time">14:00–14:30 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 4. Техобслуживание оборудования</div>
+          <div class="block-desc">Фритюрницы, грили, льдогенераторы — простой станции в час пик стоит выручки на порядок дороже, чем простой кофемашины: альтернативной станции чаще всего нет.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 3</h3>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">Заполнить чек-лист станций своей точки по всем 6 зонам (гриль, фритюр, сборка, касса, хранение, зал) — фактическое состояние. Принести на разбор в начале Дня 4.</div>
+        </div>
+      </div>
+
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo3')" id="test-btn-pbo-3">
+        ✦ Пройти тест по Дню 3
+      </button></div>
+    </div>
+
+    <div class="view" id="view-pbo-day-4" style="display:none">
+      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">04</div>
+        <div>
+          <div class="day-title">P&L, BSC, формула выручки, iiko</div>
+          <div class="day-goal">Цель: директор видит скорость обслуживания как ограничитель трафика и умеет читать еженедельный отчёт с новыми метриками</div>
+          <div class="day-tags">
+            <span class="tag gold">P&L</span>
+            <span class="tag">Скорость обслуживания</span>
+            <span class="tag">BSC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Расписание дня</div>
+
+      <div class="block-card important">
+        <div class="block-time">11:00–11:45</div>
+        <div class="block-content">
+          <div class="block-title">Блок 1. Формула выручки — новый фактор</div>
+          <div class="block-desc">В кофейне: трафик × средний чек. В ПБО добавляется третий фактор — скорость обслуживания напрямую ограничивает трафик в час пик: точка физически не может обслужить больше гостей, чем позволяет пропускная способность станций и кассы. Кейс: выручка +12%, трафик +3%, средний чек +9%, ФОТ +18%, среднее время обслуживания выросло с 78 до 94 секунд — рост времени обслуживания в моменте съедает потенциальный трафик, более высокий средний чек может маскировать потерю гостей, которые не достояли в очереди.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+            <span class="method-chip case">Кейс</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">11:45–12:15</div>
+        <div class="block-content">
+          <div class="block-title">Блок 2. BSC и еженедельный отчёт — новые метрики</div>
+          <div class="block-desc">Предложение весов BSC для обсуждения: МПК (включая проверку тайминга и food safety по станциям) — 15%, скорость обслуживания отдельным показателем — 10%. Новые колонки еженедельного отчёта: среднее время обслуживания в секундах, доля заказов с ошибкой сборки, food cost по ключевым станциям отдельно.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Теория</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card important">
+        <div class="block-time">12:15–13:00</div>
+        <div class="block-content">
+          <div class="block-title">Блок 3. Матрица Эйзенхауэра и план развития точки</div>
+          <div class="block-desc">Расставить по приоритету: сломался фритюр, план развития точки на квартал, сообщения в рабочем чате, система адаптации для новых сотрудников на кассе. Логика приоритизации: сначала критичное операционное (простой оборудования = прямая потеря выручки прямо сейчас), затем стратегическое важное несрочное. Разбор ДЗ Дня 3 (чек-лист станций) как основа для плана развития точки.</div>
+          <div class="block-methods">
+            <span class="method-chip practice">Практика</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+        <div class="block-time">14:00–14:30 (опц.)</div>
+        <div class="block-content">
+          <div class="block-title">Блок 4. Маркетинг + Финансовый отдел</div>
+          <div class="block-desc">Без изменений от программы кофеен — кросс-брендовые материалы.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Специалист</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hw-section">
+        <h3>Домашнее задание — День 4</h3>
+        <div class="hw-item">
+          <span class="hw-badge practice">Практика</span>
+          <div class="hw-text">План развития точки — бланк без изменений в структуре, заполнить с учётом показателей скорости обслуживания и food safety из ДЗ Дня 3.</div>
+        </div>
+      </div>
+
+      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo4')" id="test-btn-pbo-4">
+        ✦ Пройти тест по Дню 4
+      </button></div>
+    </div>
+
+    <div class="view" id="view-pbo-day-5" style="display:none">
+      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+      <div class="day-header">
+        <div class="day-num-big">05</div>
+        <div>
+          <div class="day-title">Итоговая аттестация</div>
+          <div class="day-goal">Структурных изменений от общей модели нет — инструмент аттестации уже поддерживает категорию «Директор ПБО»</div>
+          <div class="day-tags">
+            <span class="tag gold">Аттестация</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-label">Компоненты аттестации — без изменений от общей модели</div>
+
+      <div class="block-card important">
+        <div class="block-content">
+          <div class="block-title">Тест — 20% · Защита плана точки (до/после) — 35% · Кейс-интервью — 30% · Наблюдение за 5 дней — 15%</div>
+          <div class="block-desc">Отличие только в содержании кейс-интервью и итогового теста — они должны отражать специфику ПБО (станции, food safety, скорость обслуживания, кассовая дисциплина), а не кофейный контекст. Итоговый тест на 30 вопросов и сценарии кейс-интервью для комиссии по 6 компетентностным блокам — в разработке, отдельный по объёму блок работы.</div>
+          <div class="block-methods">
+            <span class="method-chip theory">Аттестация</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="view" id="view-test" style="display:none">
@@ -1355,7 +1909,7 @@
     document.getElementById('inp-name').value = '';
     document.getElementById('inp-surname').value = '';
     document.getElementById('login-screen').style.display = 'flex';
-    showView('overview');
+    showTrackSelect();
   }
 
   // Allow Enter key on inputs
@@ -1372,6 +1926,11 @@
       document.getElementById('participant-display').textContent = participantName;
       document.getElementById('logout-btn').style.display = 'inline';
     }
+    // Маршрутизация по треку: если трек уже выбран ранее — сразу открываем его обзор
+    applyTrackChrome();
+    if (currentTrack === 'coffee') showView('overview');
+    else if (currentTrack === 'pbo') showView('overview-pbo');
+    else showView('track-select');
   });
 
 
@@ -1379,12 +1938,797 @@
 // DATA
 // ============================================================
 const tests = {
+  'pbo1': {
+    title: "Тест — День 1 (ПБО)",
+    meta: "Роль и мышление директора · 10 вопросов",
+    questions: [
+      {
+        text: "Вы на точке, менеджер тоже на месте. На станции сборки скопилась очередь в час пик, а оба менеджера заняты кассой. Что делаете?",
+        options: [
+          "Оперативно перераспределяю менеджера на сборку, оценив что в моменте важнее не удерживать обе кассы",
+          "Даю менеджерам команду разобраться самим, кто идёт на сборку, не вмешиваясь в конкретное решение",
+          "Сам встаю на станцию сборки и лично собираю заказы, пока очередь не рассосётся",
+          "Ничего не делаю — очередь в час пик это нормальная ситуация, которая пройдёт сама"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Директор управляет системой, а не встаёт на станцию — эффективное решение здесь это быстрое перераспределение ресурса, а не личное исполнение.",
+          wrong: [
+            null,
+            "В критический момент час пик директор должен принять решение сам, а не ждать, пока менеджеры разберутся между собой — это цена промедления в выручке.",
+            "Директор, вставший на станцию, решает разовую проблему, но снимает с себя роль управленца в моменте — теряется тот, кто должен видеть картину целиком.",
+            "Пассивность в момент явной операционной проблемы — это не нейтралитет, а упущенная выручка и потерянные гости в очереди."
+          ]
+        }
+      },
+      {
+        text: "Менеджер станции работает 10 месяцев, результаты стабильные. Он перестал проводить предсменные брифинги перед часом пик, объясняя: «Команда и так знает свои станции». Ваши действия?",
+        options: [
+          "Провожу брифинги сам вместо менеджера несколько дней подряд, чтобы показать, как это должно выглядеть",
+          "Говорю прямо: брифинги обязательны по регламенту, возобновить с завтрашнего дня без обсуждений",
+          "Соглашаюсь с менеджером — раз результаты стабильны, формат брифинга не так важен для опытной команды сейчас",
+          "Выясняю причину, напоминаю про пользу брифинга перед пиком, договариваемся о формате без жёсткого сценария"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Стабильный результат в прошлом не отменяет функцию брифинга — актуальные стоп-листы и перестановки по станциям меняются каждый день, и директор договаривается о формате, не подавляя менеджера.",
+          wrong: [
+            "Директор, который делает работу менеджера за него, не решает системную причину и лишает менеджера возможности исправить привычку самому.",
+            "Жёсткое требование без выяснения причины разрушает доверие с опытным менеджером и не объясняет, зачем именно нужен брифинг перед пиком.",
+            "Стабильность результата — это отставание на шаг, а не гарантия, что информация по стоп-листам и перестановкам всё ещё доходит до команды без брифинга.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Вы поставили задачу провести инструктаж по станции фритюра для новых сотрудников, все распишутся в листе прохождения. Лист заполнен, подписи стоят. Через неделю новые сотрудники всё равно не проверяют температуру масла по графику. Что произошло?",
+        options: [
+          "Сотрудники сознательно солгали, что прошли инструктаж — нужна дисциплинарная беседа с каждым из них",
+          "Инструктаж прошёл формально: подписи есть, но без отработки и проверки понимания — нужен критерий качества",
+          "Стандарт проверки температуры слишком сложный для новичков — нужно упростить процедуру",
+          "Менеджер станции недостаточно строг с новичками на этой станции — нужно немедленно заменить менеджера"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Подпись в листе — это факт присутствия, а не факт усвоения. Без практической отработки и проверки понимания инструктаж не формирует новое поведение.",
+          wrong: [
+            "Обвинение во лжи — это самое простое объяснение, но оно не учитывает, что формальный инструктаж без отработки часто не даёт реального понимания.",
+            null,
+            "Процедура проверки температуры стандартна во всей индустрии — упрощение снижает food safety, а не решает проблему обучения.",
+            "Замена менеджера не решает системную проблему формата обучения — на его месте окажется тот же результат при том же процессе инструктажа."
+          ]
+        }
+      },
+      {
+        text: "Два директора ПБО спорят. Первый: «Со всеми сотрудниками использую один стиль — строгий и последовательный, независимо от станции». Второй: «Меняю стиль под каждого человека». Кто прав?",
+        options: [
+          "Второй ближе к верному, но точнее: стиль зависит от зрелости сотрудника в задаче, а не от личности",
+          "Второй прав — индивидуальный подход к каждому сотруднику всегда эффективнее любого единого стандарта",
+          "Оба неправы одинаково — стиль должен определяться конкретной рабочей ситуацией, а не характером сотрудника или директора",
+          "Первый прав — последовательность важнее гибкости, команда должна точно знать правила на любой станции"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Ситуативное лидерство — это про зрелость сотрудника в конкретной задаче (станции), а не про его личность в целом и не про единый стиль директора для всех.",
+          wrong: [
+            null,
+            "Подход «под каждого человека» без критерия рискует стать непоследовательным и непредсказуемым для команды, если не привязан к конкретной задаче.",
+            "Формулировка верна отчасти, но теряет ключевое уточнение — зависимость именно от уровня зрелости в задаче, а не абстрактно от ситуации.",
+            "Единый стиль для всех игнорирует разницу между новичком на фритюре и опытным сотрудником на гриле — это управленческая слепота, а не последовательность."
+          ]
+        }
+      },
+      {
+        text: "Какая формулировка обратной связи по модели SBI правильная для ситуации с проверкой температуры фритюра?",
+        options: [
+          "«В целом ты справляешься неплохо, но за температурой можно следить тщательнее»",
+          "«Мне не нравится, как ты работаешь на фритюре в последнее время — нужно быть внимательнее к делу»",
+          "«Ты всегда халатно относишься к проверкам — это недопустимо для станции фритюра совсем»",
+          "«Сегодня в 13:20 ты не отметил температуру масла — партия вышла ниже стандарта, гость вернул заказ»"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Только этот вариант называет конкретную ситуацию, конкретное поведение и конкретное измеримое последствие — остальные это оценочные обобщения без фактов.",
+          wrong: [
+            "«В целом неплохо» смягчает обратную связь до неинформативности — сотрудник не поймёт, что именно нужно изменить.",
+            "«Не нравится» и «внимательнее» — субъективная оценка без ссылки на конкретный факт и его последствие.",
+            "«Всегда» и «халатно» — это ярлык и обобщение, а не факт конкретной ситуации, поведения и последствия.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Что из перечисленного директор точки ПБО должен делать лично, а не делегировать?",
+        options: [
+          "Индивидуальные беседы с каждым менеджером о результатах его работы и плане развития",
+          "Проведение ежедневных предсменных инструктажей с линейным персоналом",
+          "Оперативная расстановка персонала по станциям в течение смены",
+          "Составление графика смен персонала на каждой станции"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Развитие менеджеров — это прямая зона личной ответственности директора, которую нельзя делегировать без потери управляемости точкой.",
+          wrong: [
+            null,
+            "Ежедневные инструктажи с линейным персоналом — это зона ответственности менеджеров смены, а не директора напрямую.",
+            "Расстановка по станциям в моменте — оперативная функция менеджера смены, директор вмешивается только в критических случаях.",
+            "Составление графика — операционная задача менеджера, директор утверждает, но не составляет сам."
+          ]
+        }
+      },
+      {
+        text: "На точке три сотрудника: новичок на фритюре (первая неделя), опытный на гриле (10 месяцев, стабилен), быстрый, но с ошибками на сборке (2 месяца, 8% брака). Директор управляет всеми одинаково. Что скажете директору?",
+        options: [
+          "Проведение ежедневных предсменных инструктажей лично с линейным персоналом каждой станции",
+          "Индивидуальные беседы с каждым менеджером о результатах его работы и планах развития",
+          "Оперативная расстановка персонала по станциям в течение всей смены в час пик",
+          "Составление и утверждение графика смен персонала на каждой станции точки"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Ситуативное лидерство именно про это: разный уровень зрелости в задаче требует разного стиля, а не единого подхода или единой меры мотивации.",
+          wrong: [
+            "Строгость сама по себе не учит точности — без структурированного разбора ошибок ужесточение не изменит поведение на сборке.",
+            null,
+            "Мотивация не заменяет разницу в потребностях: новичку нужна структура, а не воодушевление, а опытному — самостоятельность, а не контроль.",
+            "Единый стандарт для новичка и опытного сотрудника игнорирует разницу в зрелости — это не справедливость, а управленческая негибкость."
+          ]
+        }
+      },
+      {
+        text: "Какая формулировка цели соответствует модели SMART для директора точки ПБО?",
+        options: [
+          "Улучшить скорость обслуживания на точке в ближайшее время",
+          "Сделать так, чтобы гости меньше ждали заказ на кассе",
+          "За 4 недели снизить время сборки заказа с 95 до 75 секунд перестановкой менеджеров в пик",
+          "Повысить эффективность работы станции сборки насколько это в целом возможно"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Только этот вариант содержит измеримый показатель, конкретный срок и конкретное действие, которое приведёт к результату.",
+          wrong: [
+            "«В ближайшее время» и «улучшить» — не измеримо и не ограничено сроком, это пожелание, а не цель.",
+            "«Меньше ждали» не измеримо конкретной цифрой и не имеет срока достижения.",
+            null,
+            "«Насколько это возможно» — размытый критерий без числового ориентира и срока."
+          ]
+        }
+      },
+      {
+        text: "Менеджер жалуется: «Персонал не слушается, делает по-своему». При этом план по скорости обслуживания выполняется, жалоб от гостей нет. Как интерпретировать?",
+        options: [
+          "Проблемы на самом деле нет — раз показатели точки выполняются, остальное не имеет значения вообще",
+          "Менеджер слабый управленец — не умеет выстраивать авторитет перед своей командой сейчас",
+          "Нужно разобраться, что менеджер называет «не слушаются» — возможно, стиль слишком директивный",
+          "Проблема реальная — дисциплина важна сама по себе, независимо от текущих показателей точки"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Формулировка жалобы менеджера может маскировать конфликт стилей управления, а не реальную дисциплинарную проблему — нужно смотреть на факты, а не на ярлык.",
+          wrong: [
+            "Отсутствие жалоб гостей не отменяет управленческий вопрос внутри команды, который со временем может привести к текучести.",
+            "Ярлык «слабый управленец» — это вывод без диагностики; сначала нужно понять, что реально происходит между менеджером и командой.",
+            null,
+            "Дисциплина не существует в вакууме — если результат есть и жалоб нет, стоит сначала понять природу конфликта, а не действовать вслепую."
+          ]
+        }
+      },
+      {
+        text: "Опытный сотрудник гриля отказывается осваивать вторую станцию, говорит: «Я и так хорошо делаю своё дело». Как реагирует директор с точки зрения ситуативного лидерства и карьерного трека?",
+        options: [
+          "Настаивает на немедленном переводе на вторую станцию без обсуждения, это требование регламента",
+          "Обсуждает с сотрудником пользу кросс-обучения для карьерного трека, ищет мотивацию, не продавливая приказом",
+          "Поручает менеджеру разобраться самостоятельно, не вовлекаясь лично в разговор",
+          "Соглашается — раз сотрудник хорош на своей станции, кросс-обучение необязательно"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Кросс-обучение — часть карьерного трека, а не формальность; директор должен показать сотруднику личную выгоду, а не просто продавить решение приказом.",
+          wrong: [
+            "Приказ без объяснения причины разрушает мотивацию и не решает вопрос долгосрочно — сотрудник выполнит формально и без вовлечённости.",
+            null,
+            "Такой разговор про карьерный трек — это прямая зона личного участия директора, не то, что стоит полностью передавать менеджеру.",
+            "Согласие без объяснений закрепляет статус-кво и лишает точку гибкости в час пик, а сотрудника — перспективы роста."
+          ]
+        }
+      }
+    ]
+  },
+  'pbo2': {
+    title: "Тест — День 2 (ПБО)",
+    meta: "Дисциплина, мотивация, удержание · 10 вопросов",
+    questions: [
+      {
+        text: "Сотрудник опоздал второй раз за неделю, после первого было устное предупреждение. Менеджер предлагает уволить «чтобы другим неповадно». Ваше решение?",
+        options: [
+          "Провожу беседу сам, без участия менеджера, чтобы не тратить время на промежуточные этапы",
+          "Отклоняю предложение, объясняю принцип поэтапной дисциплины, помогаю менеджеру провести беседу с фиксацией нарушения",
+          "Предупреждаю ещё раз устно, но фиксирую: при следующем нарушении — увольнение без разговоров",
+          "Поддерживаю менеджера — дисциплина важнее сохранения одного сотрудника в команде"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Поэтапная дисциплина — это система, а не разовое решение под настроение менеджера; директор поддерживает процесс, а не пропускает этапы.",
+          wrong: [
+            "Обход менеджера в его собственной зоне ответственности лишает его возможности научиться проводить такие беседы самостоятельно.",
+            null,
+            "«Без разговоров» на следующем этапе противоречит самому принципу поэтапности — каждый этап должен документироваться и обсуждаться.",
+            "Пропуск этапов дисциплины ради устрашения разрушает саму систему и создаёт прецедент произвольных решений."
+          ]
+        }
+      },
+      {
+        text: "Менеджер докладывает о двух ситуациях за неделю: (1) сотрудник опоздал на 15 минут, (2) при инкассации выявлено расхождение в кассе на 3000 руб. без объяснения. Как расставить приоритеты реагирования?",
+        options: [
+          "Ни то ни другое не требует немедленной реакции — обе ситуации можно обсудить в конце месяца",
+          "Расхождение в кассе — красная линия, эскалация в СБ немедленно; опоздание — по стандартной поэтапной процедуре",
+          "Оба нарушения равнозначны — разбираем по очереди на ближайшей плановой встрече",
+          "Опоздание серьёзнее — оно системно влияет на работу смены, расхождение в кассе разово"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Необъяснённое расхождение в кассе — это финансовый риск и потенциальное хищение, что требует немедленной эскалации, в отличие от рядового опоздания.",
+          wrong: [
+            "Откладывание разбора необъяснённого кассового расхождения увеличивает риск повторения и затрудняет последующее расследование.",
+            null,
+            "Уравнивание кассового расхождения с опозданием размывает приоритет реагирования на реальный финансовый риск.",
+            "Опоздание не несёт финансового риска сопоставимого масштаба — расхождение в кассе объективно требует более срочной реакции."
+          ]
+        }
+      },
+      {
+        text: "Сотрудник фритюра не отметил проверку температуры масла по графику дважды за смену. Менеджер называет это «мелкой недоработкой» и предлагает устное замечание. Ваша позиция?",
+        options: [
+          "Нужно сначала проверить, не устал ли сотрудник — если да, замечание не нужно вообще",
+          "Соглашаюсь с менеджером — это действительно мелкая недоработка, если продукт визуально в порядке",
+          "Достаточно напомнить о графике проверок в общем чате точки, без личной беседы",
+          "Нарушение критической точки food safety — красная линия вне зависимости от вида продукта визуально"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Визуальная норма продукта не отменяет риск: без регулярной проверки температуры точка не может гарантировать безопасность каждой партии, поэтому это красная линия.",
+          wrong: [
+            "Причина усталости важна для понимания контекста, но не отменяет необходимость зафиксировать нарушение критической точки.",
+            "Визуальный результат — не показатель безопасности партии, температура должна проверяться независимо от того, как выглядит продукт.",
+            "Общий чат — не инструмент фиксации персонального нарушения, здесь нужна личная беседа с документированием.",
+            null
+          ]
+        }
+      },
+      {
+        text: "На 1-on-1 менеджер говорит: «Всё нормально, проблем нет». Вы знаете, что на точке текучесть выше нормы и несколько сотрудников отказываются от кросс-обучения. Как реагируете?",
+        options: [
+          "Говорю прямо: «Это неправда — у тебя текучесть и отказы от кросс-обучения, не ври мне в лицо»",
+          "Принимаю ответ — менеджер находится на точке каждый день и знает ситуацию лучше меня",
+          "Прерываю встречу и прошу подготовить письменный отчёт по всем проблемам к следующей неделе",
+          "Задаю уточняющие вопросы по конкретным ситуациям: «Расскажи про последний отказ от кросс-обучения — что произошло?»"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Уточняющие вопросы по конкретным фактам вскрывают реальную картину без конфронтации и дают менеджеру возможность рассказать своими словами.",
+          wrong: [
+            "Прямая конфронтация без фактов рискует закрыть менеджера от честного разговора вместо того, чтобы его открыть.",
+            "Молчаливое принятие общего ответа при известных данных о текучести не даёт понять реальную причину происходящего.",
+            "Требование письменного отчёта вместо разговора формализует то, что должно решаться через живой диалог на 1-on-1.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Сотрудник станции фритюра третий раз за месяц просит поменяться сменами, ссылаясь на личные обстоятельства. Менеджер считает это несущественным. Что должен заметить директор?",
+        options: [
+          "Возможный ранний сигнал выгорания от станции с высокой нагрузкой — стоит обсудить на 1-on-1 сразу",
+          "Нужно сразу перевести сотрудника на менее нагруженную станцию без обсуждения причин",
+          "Ничего особенного — личные обстоятельства бывают у всех, вмешиваться не нужно",
+          "Три просьбы подряд — повод для дисциплинарной беседы за нестабильность графика"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Частота и станция с высокой нагрузкой вместе — это сигнал, который стоит проверить на 1-on-1, прежде чем считать его случайностью.",
+          wrong: [
+            null,
+            "Перевод без разговора не выясняет реальную причину и может быть неверным решением, если проблема не в станции, а в графике или личной ситуации.",
+            "Игнорирование повторяющегося паттерна лишает директора возможности заметить проблему до того, как она перерастёт в увольнение.",
+            "Дисциплинарная реакция на просьбу о переносе смены превращает потенциальный сигнал выгорания в наказание, что скорее ускорит уход сотрудника."
+          ]
+        }
+      },
+      {
+        text: "Бюджет ограничен, повысить зарплаты невозможно. Какие действия дадут наибольший эффект на удержание персонала ПБО?",
+        options: [
+          "Структурированная адаптация первых 2 недель и регулярная обратная связь плюс наглядный карьерный трек",
+          "Корпоративные мероприятия, фирменная форма и бесплатное питание для персонала на смене",
+          "Повышение требований к кандидатам на входе — брать только тех, кто точно задержится",
+          "Штрафы за досрочное увольнение и обязательная двухнедельная отработка при уходе"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Наглядный карьерный трек и качественная адаптация системно влияют на удержание сильнее разовых бонусов, при этом не требуют увеличения бюджета на зарплаты.",
+          wrong: [
+            null,
+            "Приятные, но разовые меры создают ощущение принадлежности, но не решают системную причину ухода в первые недели работы.",
+            "Ужесточение отбора на входе не решает проблему удержания уже работающих сотрудников и сокращает воронку найма.",
+            "Штрафные меры повышают напряжение в отношениях с сотрудником и не устраняют причину, по которой он хочет уйти."
+          ]
+        }
+      },
+      {
+        text: "За квартал трое уходящих сотрудников одной точки назвали одну причину: «менеджер не даёт освоить вторую станцию, держит на одном месте». Как действует директор?",
+        options: [
+          "Игнорирую — уходящие сотрудники часто задним числом придумывают причины",
+          "Провожу с менеджером развивающую беседу на основе паттерна, не обвиняю, вместе ищем причину проблемы",
+          "Провожу беседу с менеджером: «Три человека сказали одно и то же — ты придерживаешь людей», жду объяснений",
+          "Сразу заменяю менеджера — три случая подряд это уже система, а не совпадение"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Развивающая беседа на основе данных даёт менеджеру возможность увидеть паттерн и изменить поведение, а не просто получить обвинение или наказание.",
+          wrong: [
+            "Три совпадающих случая подряд — это уже не случайность, которую можно списать на субъективность уходящих сотрудников.",
+            null,
+            "Прямое обвинение без разбора конкретных случаев рискует вызвать защитную реакцию вместо честного диалога.",
+            "Немедленная замена без разговора лишает менеджера шанса исправить управленческую практику и теряет потенциально сильного сотрудника на его месте."
+          ]
+        }
+      },
+      {
+        text: "Директор физически не может лично проверять кассовую дисциплину на каждой смене каждой станции. Как правильно выстроить контроль?",
+        options: [
+          "Директор проверяет лично только раз в месяц, остальное время полагается на честность сотрудников",
+          "Контроль кассы полностью передаётся службе безопасности, директор в процессе не участвует",
+          "Систему ежедневной сверки ведёт менеджер, директор выборочно перепроверяет и разбирает крупные расхождения",
+          "Достаточно установить камеры над кассой — личное вовлечение директора не требуется"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Ежедневная сверка на уровне менеджера плюс выборочный, но обязательный личный контроль директора по значимым расхождениям — рабочий баланс делегирования и ответственности.",
+          wrong: [
+            "Раз в месяц — слишком редко для риска, который накапливается ежедневно и требует более частой сверки на уровне менеджера.",
+            "Полная передача СБ без участия директора снимает с директора операционную ответственность за собственную точку.",
+            null,
+            "Камеры фиксируют факт, но не заменяют систему сверки и личного разбора значимых расхождений директором."
+          ]
+        }
+      },
+      {
+        text: "В команде несколько сотрудников младше 18 лет, работающих на кассе и сборке. Менеджер предлагает более мягкую дисциплинарную политику для них по кассовым нарушениям. Позиция директора?",
+        options: [
+          "Соглашаюсь — возраст сотрудника должен смягчать степень его ответственности за кассовые нарушения на смене",
+          "Дисциплинарная политика по кассе — вопрос службы безопасности, директора это не касается",
+          "Кассовая дисциплина едина для всех, но обучение и профилактика для молодых сотрудников должны быть усилены",
+          "Молодых сотрудников вообще не стоит допускать к кассе, чтобы избежать вопроса"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Профилактика и обучение можно усиливать по возрасту, но сама дисциплинарная реакция на уже случившееся нарушение кассы должна оставаться единой для всех.",
+          wrong: [
+            "Смягчение реакции на нарушение по возрасту создаёт двойной стандарт и риск повторения нарушения без последствий.",
+            "Директор не может полностью устраниться от кассовой дисциплины на своей точке — это часть его прямой ответственности.",
+            null,
+            "Полный запрет для младше 18 лет не решает вопрос дисциплины и лишает точку рабочих рук без необходимости."
+          ]
+        }
+      },
+      {
+        text: "Директор хочет понять, что реально удерживает каждого сотрудника команды, а не полагаться на общие предположения. Какой инструмент из программы для этого предназначен?",
+        options: [
+          "Карта мотиваторов — структурированное заполнение по каждому сотруднику команды на основе 1-on-1",
+          "Чек-лист аудита состояния станций и соблюдения стандартов на точке",
+          "Матрица Эйзенхауэра для приоритизации текущих задач директора",
+          "Еженедельный отчёт директора по выручке и другим финансовым показателям точки"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Карта мотиваторов — единственный из перечисленных инструментов, специально предназначенный для фиксации индивидуальных факторов удержания по каждому сотруднику.",
+          wrong: [
+            null,
+            "Чек-лист станций — операционный инструмент контроля стандартов, не связан с диагностикой мотивации персонала.",
+            "Матрица Эйзенхауэра — инструмент приоритизации задач директора, не имеет отношения к мотивации сотрудников.",
+            "Отчёт по выручке отражает финансовый результат точки, а не индивидуальные факторы удержания сотрудников."
+          ]
+        }
+      }
+    ]
+  },
+  'pbo3': {
+    title: "Тест — День 3 (ПБО)",
+    meta: "Станции, стандарты, food safety · 10 вопросов",
+    questions: [
+      {
+        text: "На точке три проблемы одновременно: (1) сотрудник не поздоровался с гостем, (2) беспорядок в зоне хранения, (3) сроки годности сырья на станции гриля не проверялись 2 дня. Как расставить приоритеты?",
+        options: [
+          "Разбираем все три нарушения одновременно на одной встрече с менеджером — они равнозначны",
+          "2 → 3 → 1 — сначала наводим порядок в зоне хранения, это база для остального",
+          "3 → 1 → 2 — сначала безопасность продукта, затем сервис, затем внутренний порядок",
+          "1 → 2 → 3 — начинаем с того, что видит гость, это формирует первое впечатление"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Безопасность продукта всегда выше по приоритету, чем видимость для гостя или внутренний порядок, потому что несёт прямой риск здоровью.",
+          wrong: [
+            "Три нарушения не равнозначны по риску — уравнивание их скрывает разницу в серьёзности последствий.",
+            "Внутренний порядок — не критичнее непроверенного срока годности сырья, который может привести к реальному инциденту.",
+            null,
+            "Видимость для гостя важна, но не важнее непроверенных сроков годности сырья, которые несут прямой риск."
+          ]
+        }
+      },
+      {
+        text: "МПК проверяет точку ПБО. В чём отличие его работы от МПК в кофейне?",
+        options: [
+          "МПК проверяет каждую станцию отдельно по своему набору точек, а не всю точку одним общим чек-листом",
+          "МПК в ПБО работает по тем же самым пунктам, что и в кофейне, без адаптации под станции",
+          "МПК в ПБО проверяет только кассу, остальные станции вне его зоны ответственности",
+          "МПК в ПБО не нужен вообще — станции проверяет только менеджер смены"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Множественность станций с разными рисками требует адаптированного чек-листа по каждой станции отдельно, а не единой проверки всей точки сразу.",
+          wrong: [
+            null,
+            "Прямой перенос кофейного чек-листа без адаптации не покрывает специфические риски станций производства ПБО.",
+            "Ограничение только кассой оставляет без контроля станции с наибольшим риском food safety — гриль и фритюр.",
+            "Отказ от МПК снимает независимый контроль качества, который важен именно там, где рисков больше, чем в кофейне."
+          ]
+        }
+      },
+      {
+        text: "Какая из перечисленных проверок является критической контрольной точкой (ККТ) food safety, а не просто элементом общего порядка?",
+        options: [
+          "Температура готового продукта на выдаче и время его удержания до подачи гостю",
+          "Скорость движения очереди в зале в час пик",
+          "Цвет форменной одежды сотрудников на смене",
+          "Аккуратность выкладки соусов на станции сборки"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Температура и время удержания напрямую влияют на безопасность продукта для здоровья гостя — это признак критической контрольной точки.",
+          wrong: [
+            null,
+            "Скорость очереди в зале — операционный показатель сервиса, не критическая точка безопасности продукта.",
+            "Цвет формы — вопрос стандарта внешнего вида, не связан с безопасностью пищевого продукта.",
+            "Аккуратность выкладки — это про презентацию продукта, а не про его безопасность."
+          ]
+        }
+      },
+      {
+        text: "Зачем нужен ежедневный чек-лист food safety на 12 пунктов, если директор и так доверяет своей команде?",
+        options: [
+          "Чек-лист заменяет необходимость личного участия директора в аудите станций",
+          "Чек-лист — защита от человеческого фактора при усталости, а не проверка профессионализма сотрудника",
+          "Чек-лист не нужен опытной команде — это лишняя бюрократия, если результаты стабильны",
+          "Чек-лист нужен только для проверяющих органов, на реальную работу точки не влияет"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Чек-лист существует не потому, что команде не доверяют, а потому что даже профессионал может пропустить шаг при высокой нагрузке и усталости.",
+          wrong: [
+            "Заполненный чек-лист без выборочной личной проверки директора теряет часть контрольной функции.",
+            null,
+            "Опыт команды не устраняет риск человеческого фактора при усталости и многозадачности в час пик.",
+            "Чек-лист влияет на реальную безопасность продукта ежедневно, а не только формально существует для проверок."
+          ]
+        }
+      },
+      {
+        text: "Директор задаёт минимальный уровень кросс-обученности команды. Какой ориентир используется в программе ПБО?",
+        options: [
+          "100% персонала должны одинаково владеть всеми станциями без исключения",
+          "Кросс-обучение не является целевым показателем, остаётся на усмотрение каждого сотрудника",
+          "Не менее 60% линейного персонала должны владеть двумя и более станциями",
+          "Кросс-обучение нужно только тренерам станций, остальным не требуется"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "60% — реалистичный целевой ориентир, который даёт точке гибкость в час пик, не требуя от каждого сотрудника владения абсолютно всеми станциями.",
+          wrong: [
+            "Требование 100% владения всеми станциями нереалистично и избыточно для большинства линейных позиций.",
+            "Без целевого ориентира кросс-обучение легко откладывается «на потом» и не даёт точке нужной гибкости.",
+            null,
+            "Ограничение кросс-обучения только тренерами лишает точку гибкости расстановки в пиковые часы."
+          ]
+        }
+      },
+      {
+        text: "Скорость на станции сборки падает третью неделю подряд, хотя состав команды не менялся. Менеджер объясняет это «просто неудачным периодом». Как оценивает ситуацию директор, разбирающийся в станциях?",
+        options: [
+          "Соглашается с менеджером — три недели недостаточно, чтобы делать выводы о системной проблеме",
+          "Проводит собственный аудит станции: расстановка, загрузка, реальная причина — без слепого доверия менеджеру",
+          "Сразу меняет состав команды на станции сборки, не разбираясь в причине",
+          "Поручает решить вопрос отделу маркетинга — возможно, проблема в притоке гостей"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Три недели подряд — уже устойчивый паттерн, а не случайность; директор, разбирающийся в станциях, проверяет факты сам, а не принимает объяснение на веру.",
+          wrong: [
+            "Три недели подряд без изменения состава — это уже сигнал тренда, который не стоит списывать на «неудачный период».",
+            null,
+            "Замена состава без диагностики причины рискует не решить проблему, если она в организации станции, а не в людях.",
+            "Скорость станции сборки — операционный, а не маркетинговый вопрос, и решается диагностикой процесса, а не переносом ответственности."
+          ]
+        }
+      },
+      {
+        text: "В середине смены ломается одна из двух фритюрниц на точке. Что делает директор в первую очередь?",
+        options: [
+          "Сразу закрывает станцию фритюра до конца смены и снимает позиции меню с фритюром",
+          "Поручает решение полностью менеджеру смены, сам не вовлекается, пока проблема не станет критической",
+          "Ждёт окончания смены, чтобы не отвлекать команду от текущей работы, и решает вопрос завтра",
+          "Немедленная эскалация в техобслуживание плюс перераспределение нагрузки на вторую фритюрницу и станции"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Одновременная эскалация и перераспределение нагрузки минимизирует потерю выручки в моменте, не дожидаясь худшего сценария и не откладывая решение.",
+          wrong: [
+            "Полное закрытие станции без попытки перераспределения нагрузки на вторую фритюрницу — избыточная мера при наличии резерва.",
+            "Полная передача вопроса менеджеру без вовлечения директора в критический операционный момент снижает скорость реакции точки.",
+            "Ожидание до конца смены увеличивает потери выручки и риск полной остановки станции при поломке второй фритюрницы.",
+            null
+          ]
+        }
+      },
+      {
+        text: "На станции обнаружено, что один и тот же разделочный инвентарь используется для сырого мяса и готового продукта без промежуточной обработки. Как это классифицировать?",
+        options: [
+          "Нарушение критической точки — риск перекрёстного загрязнения, устранить немедленно",
+          "Незначительное отклонение от порядка, можно устранить в плановом текущем порядке",
+          "Вопрос эстетики кухни, не связанный с безопасностью продукта",
+          "Ответственность полностью на сотруднике станции, директора не касается"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Перекрёстное загрязнение сырого и готового продукта — прямой риск для здоровья гостя, поэтому классифицируется как критическая точка, а не как плановое отклонение.",
+          wrong: [
+            null,
+            "Это не «плановое» нарушение — риск перекрёстного загрязнения требует немедленного, а не отложенного устранения.",
+            "Разделение инвентаря для сырого и готового продукта — вопрос безопасности, а не внешнего вида кухни.",
+            "Директор отвечает за систему контроля станций своей точки, поэтому такое нарушение — часть его зоны ответственности."
+          ]
+        }
+      },
+      {
+        text: "При проверке зоны хранения директор видит, что новая поставка сырья размещена перед старой партией с более ранним сроком годности. Что это означает?",
+        options: [
+          "Это нормальная практика, если обе партии в пределах срока годности",
+          "Нарушена ротация FIFO — новую партию возьмут раньше старой, риск списаний и просрочки",
+          "Ошибка приёмки, за которую отвечает исключительно поставщик, а не точка",
+          "Проблема решится сама, когда старая партия закончится естественным образом"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Нарушение порядка ротации напрямую увеличивает риск того, что старая партия просрочится раньше, чем будет использована — это ответственность точки, а не поставщика.",
+          wrong: [
+            "Формальное нахождение обеих партий в пределах срока не отменяет риск, что старая партия просрочится, пока используется новая.",
+            null,
+            "Правильное размещение при приёмке — обязанность персонала точки при получении товара, а не только поставщика.",
+            "Без вмешательства нарушенный порядок ротации не исправится сам — персонал продолжит забирать более доступную партию первой."
+          ]
+        }
+      },
+      {
+        text: "Новый менеджер выходит на точку. Как директор, разбирающийся в станциях, должен его обучать?",
+        options: [
+          "Поручить обучение полностью тренеру станции, самому не участвовать в процессе",
+          "Ограничиться обучением по кассе — станции производства осваиваются менеджером самостоятельно со временем",
+          "Показать станции один раз в общих чертах — дальше менеджер разберётся сам в процессе работы",
+          "Проводит полноценный аудит станций вместе с менеджером, объясняя контрольные точки и приоритеты нарушений"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Совместный полноценный аудит передаёт не просто факты о станциях, а логику принятия решений — то, что менеджер не освоит по одному показу.",
+          wrong: [
+            "Полная передача обучения тренеру лишает нового менеджера прямого контакта с директором и пониманием управленческой логики, а не только техники станции.",
+            "Ограничение только кассой оставляет менеджера без понимания станций производства, где сосредоточены основные риски food safety.",
+            "Однократный общий показ не даёт менеджеру понимания логики приоритизации, только поверхностное знакомство со станциями.",
+            null
+          ]
+        }
+      }
+    ]
+  },
+  'pbo4': {
+    title: "Тест — День 4 (ПБО)",
+    meta: "P&L, BSC, формула выручки · 10 вопросов",
+    questions: [
+      {
+        text: "В кофейне формула выручки — трафик × средний чек. Что дополнительно ограничивает трафик в ПБО в час пик?",
+        options: [
+          "Средний чек — чем он выше, тем меньше гостей может обслужить точка физически",
+          "Количество сотрудников на смене не влияет на пропускную способность, если оборудование исправно",
+          "Пропускная способность станций и кассы физически ограничивает число гостей, которых обслужит точка",
+          "Трафик в ПБО ничем не ограничен физически, в отличие от кофейни"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Пропускная способность станций и кассы — это физическое ограничение трафика в час пик, которого нет в такой же степени в формуле кофейни.",
+          wrong: [
+            "Средний чек влияет на выручку, но не является физическим ограничением количества гостей, которых можно обслужить.",
+            "Количество сотрудников напрямую влияет на пропускную способность станций даже при исправном оборудовании.",
+            null,
+            "Трафик в ПБО ограничен физически пропускной способностью так же, как и в любом формате обслуживания с очередью."
+          ]
+        }
+      },
+      {
+        text: "Еженедельный отчёт: выручка +12%, трафик +3%, средний чек +9%, ФОТ +18%, среднее время обслуживания выросло с 78 до 94 секунд. Что требует немедленного внимания?",
+        options: [
+          "Рост времени обслуживания незначителен и не связан с ростом ФОТ",
+          "Рост ФОТ на 18% при выручке +12% — рост чека может маскировать потерю гостей в очереди",
+          "Нужно сосредоточиться только на росте среднего чека — он показывает лучшую динамику сейчас",
+          "Всё хорошо — выручка растёт быстрее всех остальных показателей"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Два опережающих показателя — рост ФОТ и рост времени обслуживания — вместе говорят о риске, который простой рост выручки может маскировать.",
+          wrong: [
+            "Рост времени обслуживания на 20% — существенное отклонение, напрямую связанное с ограничением трафика в час пик.",
+            null,
+            "Фокус только на среднем чеке игнорирует риск потери гостей из-за возросшего времени ожидания.",
+            "Рост выручки сам по себе не гарантирует здоровье экономики точки, если затраты и время обслуживания растут быстрее."
+          ]
+        }
+      },
+      {
+        text: "Для ПБО предложено ввести отдельный вес BSC на скорость обслуживания вместо того, чтобы полностью растворять её в общем весе МПК. Почему это разумно?",
+        options: [
+          "Скорость обслуживания — измеримый показатель, отдельный от стандартов, заслуживает свой вес",
+          "Потому что скорость обслуживания невозможно измерить объективно вообще никак",
+          "Потому что скорость обслуживания важнее food safety и должна иметь наибольший вес из всех показателей",
+          "Потому что МПК в принципе больше не нужен для точек формата ПБО"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Отдельный измеримый показатель заслуживает собственного веса в BSC, чтобы не размываться внутри общей оценки стандартов МПК.",
+          wrong: [
+            null,
+            "Скорость обслуживания измеряется объективно в секундах по данным iiko — это не субъективный показатель.",
+            "Скорость обслуживания важна, но не важнее food safety — оба показателя нужны, просто с разными весами.",
+            "МПК остаётся необходимым инструментом проверки стандартов независимо от введения отдельного веса на скорость."
+          ]
+        }
+      },
+      {
+        text: "Какие колонки добавлены в еженедельный отчёт директора ПБО по сравнению с отчётом для кофейни?",
+        options: [
+          "Полностью новый набор колонок, вообще не пересекающийся с кофейным отчётом",
+          "Только среднее время обслуживания, остальное совпадает с кофейней",
+          "Колонки не менялись — отчёт идентичен кофейне",
+          "Время обслуживания, доля заказов с ошибкой сборки, food cost по станциям отдельно"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Три конкретные новые колонки отражают специфику ПБО, при этом базовая структура отчёта (выручка, трафик, средний чек, ФОТ) остаётся общей с кофейней.",
+          wrong: [
+            "Базовые показатели выручки, трафика и среднего чека остаются общими с кофейным отчётом, набор не полностью новый.",
+            "Помимо времени обслуживания добавлены ещё точность сборки и food cost по станциям — только одной колонки недостаточно.",
+            "Специфика ПБО требует нескольких новых колонок, отчёт не может остаться идентичным кофейному.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Расставьте по приоритету: (1) звонок — сломался фритюр на точке, (2) план развития точки на квартал, (3) сообщения в рабочем чате, (4) система адаптации для новых сотрудников на кассе.",
+        options: [
+          "3 → 1 → 4 → 2",
+          "1 → 3 → 2 → 4",
+          "1 → 2 → 4 → 3",
+          "2 → 4 → 1 → 3"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Сначала критичное срочное операционное (поломка = прямая потеря выручки), затем важное несрочное стратегическое, затем важное несрочное системное, в конце — срочное неважное.",
+          wrong: [
+            "Чат в приоритете выше поломки оборудования — явная ошибка расстановки срочного и важного.",
+            "Сообщения в чате не должны идти раньше стратегического плана развития точки по важности.",
+            null,
+            "Плановые задачи не должны обгонять реальную поломку оборудования, которая теряет выручку прямо сейчас."
+          ]
+        }
+      },
+      {
+        text: "Выручка точки за неделю: 410 000 руб. Себестоимость продуктов: 143 000 руб. ФОТ: 145 000 руб. Аренда: 90 000 руб. Прочие расходы: 24 000 руб. Чему равна операционная прибыль и это нормально?",
+        options: [
+          "143 000 руб. — валовая прибыль в норме, остальные расходы несущественны",
+          "8 000 руб. прибыль есть, но ФОТ и аренда — 57% выручки, выше здоровой нормы для формата ПБО",
+          "267 000 руб. — хороший результат, если считать только выручку минус себестоимость продуктов",
+          "8 000 руб. — небольшая прибыль, ситуация в целом нормальная"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Прибыль формально положительная, но структура затрат (ФОТ + аренда 57% выручки) сигнализирует о проблеме, которую голая цифра прибыли не показывает.",
+          wrong: [
+            "143 000 руб. — это себестоимость продуктов, а не валовая прибыль; такое прочтение цифр ошибочно.",
+            null,
+            "267 000 руб. — это валовая прибыль без учёта ФОТ, аренды и прочих расходов, а не операционная прибыль.",
+            "Небольшая положительная прибыль не означает здоровую экономику, если структура затрат превышает норму."
+          ]
+        }
+      },
+      {
+        text: "За месяц food cost вырос с 30% до 37%. Менеджер объясняет ростом закупочных цен на 4%. Это объяснение достаточное?",
+        options: [
+          "Рост цен на 4% объясняет рост food cost на 1,2 пункта, остальное — списания и потери на станциях",
+          "Нет, объяснение недостаточное — нужно немедленно уволить менеджера за некомпетентность",
+          "Да, это объяснение достаточное — в текущей экономической ситуации подобные отклонения нормальны",
+          "Да — если поставщик поднял цены, food cost точки закономерно вырастет вслед за этим"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Арифметически рост закупочных цен объясняет лишь малую часть отклонения — остальное требует отдельного расследования причины, а не принятия объяснения на веру.",
+          wrong: [
+            null,
+            "Немедленное увольнение — избыточная и преждевременная мера прежде, чем установлена реальная причина отклонения.",
+            "Ссылка на «текущую ситуацию» без расчёта не объясняет разрыв между 1,2 пункта ожидаемого роста и фактическими 7 пунктами.",
+            "Прямое согласие без проверки арифметики скрывает реальный разрыв между объяснением и фактическим отклонением."
+          ]
+        }
+      },
+      {
+        text: "Директор видит рост среднего чека и делает вывод, что точка работает лучше. Что важно проверить дополнительно, прежде чем согласиться с этим выводом?",
+        options: [
+          "Ничего дополнительного проверять не нужно — рост среднего чека уже достаточный показатель успеха",
+          "Нужно проверить динамику скорости обслуживания и трафика — рост чека при падении скорости может означать потерю части гостей",
+          "Нужно сравнить средний чек с показателем соседней точки той же сети, больше ничего не требуется",
+          "Нужно проверить только food cost, средний чек и скорость обслуживания не связаны между собой"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Средний чек и скорость обслуживания взаимосвязаны в ПБО — рост одного при ухудшении другого может означать скрытую потерю гостей, а не однозначный успех.",
+          wrong: [
+            "Один показатель без контекста скорости и трафика не даёт полной картины эффективности точки.",
+            null,
+            "Сравнение с другой точкой полезно, но не заменяет проверку внутренней динамики скорости и трафика этой же точки.",
+            "Скорость обслуживания напрямую связана со средним чеком через ограничение трафика — их нельзя рассматривать изолированно."
+          ]
+        }
+      },
+      {
+        text: "Что должен обязательно учитывать план развития точки ПБО, в отличие от версии для кофейни?",
+        options: [
+          "План развития составляется только операционным директором, точка в нём не участвует",
+          "План развития точки ПБО не отличается от кофейного, показатели скорости и food safety в него не входят",
+          "План должен фокусироваться исключительно на снижении food cost, остальные показатели вторичны",
+          "План должен включать показатели скорости и food safety из чек-листа станций, а не только финансы"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "План развития точки ПБО должен опираться на специфичные для формата данные — станции и food safety, а не только на общие финансовые показатели.",
+          wrong: [
+            "План развития составляется директором точки на основе своих данных, а не только операционным директором.",
+            "Отсутствие показателей скорости и food safety делает план неполным именно для формата ПБО, где это ключевые риски.",
+            "Фокус только на food cost игнорирует операционные риски станций и скорости обслуживания, важные для устойчивого роста точки.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Операционный директор сравнивает две точки: Точка А — выручка 520 000 руб/мес, прибыль 62 000 руб. Точка Б — выручка 380 000 руб/мес, прибыль 71 000 руб. Какая точка эффективнее?",
+        options: [
+          "Точка Б — при меньшей выручке генерирует больше прибыли, рентабельность у неё выше, чем у точки А",
+          "Их нельзя сравнивать — у точек разная выручка, а значит разная база для сравнения",
+          "Они примерно одинаковые по эффективности — разница в прибыли несущественна",
+          "Точка А — выручка выше на 37%, значит она объективно эффективнее"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Рентабельность, а не абсолютная выручка, показывает реальную эффективность — точка Б превращает меньшую выручку в большую прибыль.",
+          wrong: [
+            null,
+            "Разная выручка не мешает сравнению через относительный показатель рентабельности, наоборот — именно для этого он и нужен.",
+            "Разница в 9 000 рублей прибыли при заметно меньшей выручке у точки Б — существенный сигнал в пользу её более высокой рентабельности.",
+            "Более высокая выручка сама по себе не означает более высокую эффективность без учёта структуры затрат и итоговой прибыли."
+          ]
+        }
+      }
+    ]
+  },
+
   1: {
-    title: "Тест по Дню 1 — Роль и мышление ТМ",
+    title: "Тест по Дню 1 — Роль и мышление директора",
     meta: "10 вопросов · ~15 минут",
     questions: [
       {
-        text: "Вы пришли на точку, менеджер смены на месте. Бариста готовит капучино не по рецептуре — добавляет молока больше нормы. Гости есть, очереди нет. Что делаете?",
+        text: "Вы на точке, менеджер тоже на месте. Бариста готовит капучино не по рецептуре — добавляет молока больше нормы. Гости есть, очереди нет. Что делаете?",
         options: [
           "Подхожу к бариста, объясняю ошибку, прошу переделать",
           "Говорю менеджеру: «У тебя бариста нарушает рецептуру» и жду реакции",
@@ -1393,9 +2737,9 @@ const tests = {
         ],
         correct: 2,
         feedback: {
-          correct: "Разница между вариантом Б и В принципиальная. «Говорю менеджеру» публично — тоже подрыв авторитета, потому что бариста видит что его менеджера поправляют. ТМ уводит менеджера приватно, ставит задачу — менеджер сам идёт к бариста и выглядит как управленец.",
+          correct: "Разница между вариантом Б и В принципиальная. «Говорю менеджеру» публично — тоже подрыв авторитета, потому что бариста видит что его менеджера поправляют. Директор уводит менеджера приватно, ставит задачу — менеджер сам идёт к бариста и выглядит как управленец.",
           wrong: [
-            "Прямое обращение к бариста в обход менеджера — классическая ошибка нового ТМ. Команда начинает ориентироваться на ТМ, а не на своего менеджера.",
+            "Прямое обращение к бариста в обход менеджера — классическая ошибка нового директор. Команда начинает ориентироваться на директор, а не на своего менеджера.",
             "Близко к верному, но публичность фразы разрушает авторитет менеджера перед командой. Такие вещи говорятся приватно.",
             null,
             "Откладывать нарушение рецептуры до конца недели — значит позволить точке весь этот период работать с отклонением от стандарта."
@@ -1424,16 +2768,16 @@ const tests = {
       {
         text: "Вы поставили задачу: «До пятницы 18:00 провести инструктаж по стандарту приветствия, все бариста расписываются в листе». В пятницу лист есть, подписи стоят. В субботу бариста приветствуют гостей по-старому. Что произошло?",
         options: [
-          "Менеджер солгал — провести дисциплинарную беседу",
+          "менеджер солгал — провести дисциплинарную беседу",
           "Бариста саботируют — разобраться с каждым лично",
           "Задача выполнена формально: инструктаж был, но без отработки и проверки понимания. Нужен критерий качества, а не только подписи",
           "Стандарт плохо написан — нужно переработать"
         ],
         correct: 2,
         feedback: {
-          correct: "Ловушка постановки задачи. Формально всё выполнено: инструктаж был, подписи есть. Ошибка ТМ — критерий «подпись» не равен «усвоение стандарта». Следующая версия задачи: инструктаж + практическая отработка + выборочная проверка ТМ в течение недели.",
+          correct: "Ловушка постановки задачи. Формально всё выполнено: инструктаж был, подписи есть. Ошибка директор — критерий «подпись» не равен «усвоение стандарта». Следующая версия задачи: инструктаж + практическая отработка + выборочная проверка директор в течение недели.",
           wrong: [
-            "Менеджер выполнил задачу ровно так, как она была поставлена. Обвинять его во лжи несправедливо. Проблема в задаче, не в менеджере.",
+            "менеджер выполнил задачу ровно так, как она была поставлена. Обвинять его во лжи несправедливо. Проблема в задаче, не в менеджере.",
             "Бариста делают то, что им показали. Если проверка была формальной — поведение останется прежним. Это не саботаж.",
             null,
             "Стандарт здесь ни при чём — его никто не изучил по-настоящему."
@@ -1441,7 +2785,7 @@ const tests = {
         }
       },
       {
-        text: "Два ТМ спорят. Первый: «Я всегда использую один стиль — строгий и последовательный». Второй: «Я меняю стиль под каждого сотрудника». Кто прав?",
+        text: "Два директора спорят. Первый: «Я всегда использую один стиль — строгий и последовательный». Второй: «Я меняю стиль под каждого сотрудника». Кто прав?",
         options: [
           "Первый — последовательность важнее гибкости, команда должна знать чего ожидать",
           "Второй — индивидуальный подход всегда эффективнее",
@@ -1450,7 +2794,7 @@ const tests = {
         ],
         correct: 3,
         feedback: {
-          correct: "Нюанс: один и тот же сотрудник может быть R4 в приготовлении кофе и R1 в работе с жалобами. Стиль меняется под задачу, а не под человека целиком. Второй ТМ движется в правильном направлении, но формулировка «под каждого» — упрощение.",
+          correct: "Нюанс: один и тот же сотрудник может быть R4 в приготовлении кофе и R1 в работе с жалобами. Стиль меняется под задачу, а не под человека целиком. Второй директор движется в правильном направлении, но формулировка «под каждого» — упрощение.",
           wrong: [
             "Единый строгий стиль необходим для новичков, но демотивирует опытных. Последовательность в ценностях — да, но не в стиле управления.",
             "«Индивидуальный подход» без привязки к зрелости превращается в хаос. Нельзя строить управление на личных симпатиях.",
@@ -1483,36 +2827,36 @@ const tests = {
         options: [
           "Первый менеджер нелоялен — нужно усилить контроль. Второй правильно выстраивает субординацию",
           "Первый — самостоятельный (R4), делегирующий стиль и чёткие точки отчётности. Второй — зависимый (R2), нужно развивать самостоятельность",
-          "Оба неправильно понимают роль — ТМ должен участвовать во всех решениях",
+          "Оба неправильно понимают роль — директор должен участвовать во всех решениях",
           "Со вторым проще работать — он управляемый. Первого нужно переориентировать"
         ],
         correct: 1,
         feedback: {
-          correct: "Самостоятельный менеджер — актив, а не угроза. Зависимый — риск: если ТМ недоступен, точка встаёт. Задача ТМ — развивать второго до уровня первого.",
+          correct: "Самостоятельный менеджер — актив, а не угроза. Зависимый — риск: если директор недоступен, точка встаёт. Задача директора — развивать второго до уровня первого.",
           wrong: [
             "Самостоятельность — не нелояльность. Усиление контроля над сильным менеджером его демотивирует и снизит результат.",
             null,
-            "ТМ, который участвует во всех решениях — это микроменеджмент. Цель — точки, работающие без его постоянного присутствия.",
-            "«Управляемый» менеджер без самостоятельных решений — операционный риск при любом сбое в доступности ТМ."
+            "директор, который участвует во всех решениях — это микроменеджмент. Цель — точки, работающие без его постоянного присутствия.",
+            "«Управляемый» менеджер без самостоятельных решений — операционный риск при любом сбое в доступности директора."
           ]
         }
       },
       {
-        text: "Что из перечисленного ТМ должен делать лично, а не делегировать?",
+        text: "Что из перечисленного директор должен делать лично, а не делегировать?",
         options: [
           "Составление графика смен на каждой точке",
           "Проведение инструктажей с линейным персоналом",
-          "Индивидуальные беседы с менеджерами точек о результатах и развитии",
+          "Индивидуальные беседы с менеджерами о результатах и развитии",
           "Контроль чистоты зала в час пик"
         ],
         correct: 2,
         feedback: {
-          correct: "Развитие менеджеров — личная функция ТМ, которую нельзя делегировать. Всё остальное — задачи менеджера точки, ТМ контролирует их выполнение.",
+          correct: "Развитие менеджеров — личная функция директор, которую нельзя делегировать. Всё остальное — задачи менеджера, директор контролирует их выполнение.",
           wrong: [
-            "Графики смен — зона менеджера точки. ТМ задаёт параметры и проверяет соответствие.",
-            "Инструктажи с линейным персоналом — зона менеджера точки. ТМ обучает менеджеров, менеджеры обучают команду.",
+            "Графики смен — зона менеджера. Директор задаёт параметры и проверяет соответствие.",
+            "Инструктажи с линейным персоналом — зона менеджера. Директор обучает менеджеров, менеджеры обучают команду.",
             null,
-            "Контроль чистоты зала — задача менеджера смены. ТМ проверяет систему контроля, а не чистоту лично."
+            "Контроль чистоты зала — задача менеджера. Директор проверяет систему контроля, а не чистоту лично."
           ]
         }
       },
@@ -1539,7 +2883,7 @@ const tests = {
         text: "После беседы по модели SBI менеджер ответил: «Я понял, исправлюсь». Через неделю поведение не изменилось. Что пошло не так?",
         options: [
           "Модель SBI не работает с этим менеджером — нужен другой подход",
-          "Менеджер намеренно игнорирует — нужны дисциплинарные меры",
+          "менеджер намеренно игнорирует — нужны дисциплинарные меры",
           "SBI описывает ситуацию, но не формирует договорённость. После SBI нужна конкретная договорённость: что меняется, к какому сроку, как проверяем",
           "Слишком мало одной беседы — нужно повторять SBI еженедельно"
         ],
@@ -1555,7 +2899,7 @@ const tests = {
         }
       },
       {
-        text: "Новый ТМ на второй неделе замечает: менеджер точки систематически занижает выручку в отчётах. Как действовать?",
+        text: "Новый директор на второй неделе замечает: менеджер систематически занижает выручку в отчётах. Как действовать?",
         options: [
           "Немедленно сообщить руководству и потребовать увольнения менеджера",
           "Поговорить с менеджером напрямую: «Я вижу расхождения — объясни»",
@@ -1569,7 +2913,7 @@ const tests = {
             "Требовать увольнения без доказательной базы — потеря доверия руководства. Это может быть ошибка учёта.",
             "Прямой разговор без фактов даёт менеджеру возможность скрыть следы. Сначала — данные.",
             null,
-            "«Слишком рано» — опасная логика. Если факт подтвердится, встанет вопрос: почему ТМ видел и молчал?"
+            "«Слишком рано» — опасная логика. Если факт подтвердится, встанет вопрос: почему директор видел и молчал?"
           ]
         }
       }
@@ -1580,10 +2924,10 @@ const tests = {
     meta: "10 вопросов · ~15 минут",
     questions: [
       {
-        text: "Бариста 17 лет опоздал второй раз за неделю. После первого — было устное предупреждение. Менеджер точки предлагает уволить «чтобы другим неповадно». Ваше решение?",
+        text: "Бариста 17 лет опоздал второй раз за неделю. После первого — было устное предупреждение. Менеджер предлагает уволить «чтобы другим неповадно». Ваше решение?",
         options: [
           "Поддерживаю менеджера — дисциплина важнее одного сотрудника",
-          "Провожу беседу сам, без участия менеджера точки",
+          "Провожу беседу сам, без участия менеджера",
           "Отклоняю предложение менеджера, объясняю принцип поэтапной дисциплины, помогаю менеджеру провести беседу с фиксацией",
           "Предупреждаю ещё раз устно — увольнение на третьем нарушении"
         ],
@@ -1626,10 +2970,10 @@ const tests = {
         ],
         correct: 2,
         feedback: {
-          correct: "Ключевое слово — реальная причина. Люди редко называют настоящую причину ухода сразу. Разговор с ТМ (не с прямым руководителем) даёт другой уровень откровенности.",
+          correct: "Ключевое слово — реальная причина. Люди редко называют настоящую причину ухода сразу. Разговор с директором (не с прямым руководителем) даёт другой уровень откровенности.",
           wrong: [
             "Зарплата редко является реальной причиной ухода лучших сотрудников. Дав деньги без понимания причины — через 2 месяца ситуация повторится.",
-            "Менеджер уже упустил момент для этого разговора — иначе бы знал причину.",
+            "менеджер уже упустил момент для этого разговора — иначе бы знал причину.",
             null,
             "«Кто хочет уйти — уйдёт» — позиция, которая гарантирует высокую текучесть."
           ]
@@ -1660,7 +3004,7 @@ const tests = {
           "Проблема реальная — дисциплина важна сама по себе, вне зависимости от результата",
           "Проблемы нет — результат есть, остальное неважно",
           "Нужно разобраться что именно менеджер называет «не слушаются» — возможно, он применяет директивный стиль к людям которым нужна самостоятельность",
-          "Менеджер слабый — не умеет выстраивать авторитет"
+          "менеджер слабый — не умеет выстраивать авторитет"
         ],
         correct: 2,
         feedback: {
@@ -1693,7 +3037,7 @@ const tests = {
         }
       },
       {
-        text: "Менеджер-женщина 35 лет. Один из бариста (22 года) систематически игнорирует её указания, при этом технически работает хорошо. На замечания: «Хорошо, сделаю» — и не делает. Как действовать ТМ?",
+        text: "Менеджер — женщина 35 лет. Один из бариста (22 года) систематически игнорирует её указания, при этом технически работает хорошо. На замечания: «Хорошо, сделаю» — и не делает. Как действовать директору?",
         options: [
           "Поддержать менеджера публично при всей команде — показать кто главный",
           "Поговорить с бариста лично, объяснить субординацию",
@@ -1721,9 +3065,9 @@ const tests = {
         ],
         correct: 2,
         feedback: {
-          correct: "«Всё нормально» при объективных проблемах означает: менеджер не видит проблем (тревожнее) или не доверяет ТМ (исправимо). Конкретные вопросы по фактам обходят защитную реакцию.",
+          correct: "«Всё нормально» при объективных проблемах означает: менеджер не видит проблем (тревожнее) или не доверяет директор (исправимо). Конкретные вопросы по фактам обходят защитную реакцию.",
           wrong: [
-            "Принять «всё нормально» при наличии данных о проблемах — провалить функцию ТМ.",
+            "Принять «всё нормально» при наличии данных о проблемах — провалить функцию директор.",
             "Прямое опровержение создаёт оборонительную позицию. Менеджер начнёт оправдываться вместо решения проблем.",
             null,
             "Письменный отчёт как реакция — бюрократический ответ на управленческую проблему."
@@ -1750,7 +3094,7 @@ const tests = {
         }
       },
       {
-        text: "Exit-интервью: за квартал трое уходящих сотрудников с разных точек назвали одну причину: «менеджер не слышит». Как действуете?",
+        text: "Exit-интервью: за квартал трое уходящих сотрудников вашей точки назвали одну причину: «менеджер не слышит». Как действуете?",
         options: [
           "Провожу беседу с менеджером: «Три сотрудника сказали одно и то же — ты не слышишь команду»",
           "Игнорирую — люди часто обвиняют руководителя при уходе",
@@ -1775,7 +3119,7 @@ const tests = {
     meta: "10 вопросов · ~15 минут",
     questions: [
       {
-        text: "Вы приходите на плановый визит. Точка выглядит хорошо, команда работает, гостей обслуживают быстро. Но food cost за неделю выше нормы на 8%. Что делаете?",
+        text: "Проверяя точку утром, вы видите: команда работает, гостей обслуживают быстро, всё выглядит хорошо. Но food cost за неделю выше нормы на 8%. Что делаете?",
         options: [
           "Ничего — визуально всё хорошо, цифра могла быть разовой",
           "Немедленно провести инвентаризацию при менеджере",
@@ -1803,7 +3147,7 @@ const tests = {
         ],
         correct: 2,
         feedback: {
-          correct: "Менеджер путает «профессионализм» и «защита от ошибок». Большинство серьёзных ошибок совершают опытные люди — именно потому что они «знают и без списка» и пропускают шаги автоматически.",
+          correct: "менеджер путает «профессионализм» и «защита от ошибок». Большинство серьёзных ошибок совершают опытные люди — именно потому что они «знают и без списка» и пропускают шаги автоматически.",
           wrong: [
             "Опыт не защищает от усталости, отвлечения и переключения задач.",
             "«Потому что регламент» создаёт формальное исполнение без понимания зачем.",
@@ -1813,16 +3157,16 @@ const tests = {
         }
       },
       {
-        text: "Вы организовали тайного гостя. Менеджеры узнали и предупредили команды. Все визиты дают отличные результаты. Что делаете?",
+        text: "Вы организовали тайного гостя на своей точке. Менеджер узнал заранее и предупредил команду. Проверка прошла идеально. Что делаете?",
         options: [
           "Отлично — значит стандарты соблюдаются",
           "Ничего — тайный гость дал данные, они положительные",
-          "Меняю систему: другие проверяющие, другое время. Сопоставляю результаты тайного гостя с реальными отзывами и динамикой среднего чека",
-          "Провожу беседу с менеджерами: предупреждать команду о проверке запрещено"
+          "Меняю систему: другой проверяющий, другое время, не предупреждать менеджера заранее. Сопоставляю результаты тайного гостя с реальными отзывами и динамикой среднего чека",
+          "Провожу беседу с менеджером: предупреждать команду о проверке запрещено"
         ],
         correct: 2,
         feedback: {
-          correct: "Если все визиты идеальны — система сломана, не точки. Нужно перестроить инструмент и верифицировать данные реальными показателями. Средний чек и жалобы — данные, которые не знают о тайном госте.",
+          correct: "Если проверка идеальна только потому что о ней узнали заранее — система сломана, не точка. Нужно перестроить инструмент и верифицировать данные реальными показателями. Средний чек и жалобы — данные, которые не знают о тайном госте.",
           wrong: [
             "Стандарты «соблюдаются» только когда знают о проверке — это театр, а не управление качеством.",
             "Данные недостоверны — принимать их как факт нельзя.",
@@ -1854,7 +3198,7 @@ const tests = {
           "Сокращаю смену в мёртвые часы до 1 человека",
           "Перераспределяю выходы: максимум людей в пик, минимум в провал — с учётом трудового законодательства по несовершеннолетним",
           "Даю задачу менеджеру придумать активности на мёртвые часы для привлечения гостей",
-          "Ничего — трафик определяется локацией, ТМ на него не влияет"
+          "Ничего — трафик определяется локацией, директор на него не влияет"
         ],
         correct: 1,
         feedback: {
@@ -1863,7 +3207,7 @@ const tests = {
             "Сократить до 1 человека — риск. Минимум 2 человека в любую смену.",
             null,
             "Задача «привлечь гостей» без бюджета и инструментов — пустой приказ.",
-            "ТМ не управляет внешним трафиком, но управляет эффективностью ФОТ."
+            "директор не управляет внешним трафиком, но управляет эффективностью ФОТ."
           ]
         }
       },
@@ -1873,7 +3217,7 @@ const tests = {
           "Персонал саботирует — нужны дисциплинарные меры",
           "Объяснение без отработки и системы контроля не формирует новое поведение. Стандарт нужно отработать практически и проверять первые 2 недели ежедневно",
           "Стандарт слишком сложный — нужно упростить",
-          "Менеджер недостаточно авторитетен — команда его не слушает"
+          "менеджер недостаточно авторитетен — команда его не слушает"
         ],
         correct: 1,
         feedback: {
@@ -1887,7 +3231,7 @@ const tests = {
         }
       },
       {
-        text: "Гость оставил отзыв: «Ждал капучино 18 минут, бариста не извинился». Менеджер говорит: «Гость сам виноват, был час пик». Как реагирует ТМ?",
+        text: "Гость оставил отзыв: «Ждал капучино 18 минут, бариста не извинился». Менеджер говорит: «Гость сам виноват, был час пик». Как реагирует директор?",
         options: [
           "Соглашаюсь с менеджером — в час пик ожидание нормально",
           "Прошу менеджера ответить гостю в отзыве с извинениями",
@@ -1909,7 +3253,7 @@ const tests = {
         text: "Чек-листы заполняются месяц, всегда без замечаний. Что это означает?",
         options: [
           "Стандарты соблюдаются отлично — система работает",
-          "Менеджеры стараются — нужно поощрить",
+          "менеджеры стараются — нужно поощрить",
           "Чек-лист превратился в формальность. Без нарушений не бывает — нужен внезапный аудит и сравнение с реальным состоянием точки",
           "Чек-лист слишком простой — нужно добавить пунктов"
         ],
@@ -1925,21 +3269,21 @@ const tests = {
         }
       },
       {
-        text: "Как правильно структурировать рабочую неделю ТМ при 3 точках?",
+        text: "Директор каждый день на точке. Как правильно распределить внимание между ежедневным контролем и административной работой (отчёты, планирование)?",
         options: [
-          "Посещать каждую точку каждый день",
-          "Посещать точки только при проблемах, остальное — административная работа",
-          "2–3 плановых визита на каждую точку в неделю плюс минимум 1 внеплановый, 1 день на административную работу",
-          "1 визит на каждую точку ежедневно, без административного времени"
+          "Всё время на ежедневный контроль — административная работа подождёт",
+          "Фиксированные слоты: утром и вечером контроль по структуре, днём — административные задачи в перерывах между пиками",
+          "Административную работу делать дома, на точке только контроль",
+          "Контроль только когда «чувствуется» что что-то не так"
         ],
-        correct: 2,
+        correct: 1,
         feedback: {
-          correct: "При 3 точках: 6–9 плановых визитов в неделю + внеплановые + 1 день офисной работы. Внеплановые визиты критичны — они не позволяют готовиться к проверке.",
+          correct: "Без структуры день директора превращается в хаотичное тушение пожаров. Утренний и вечерний контроль — фиксированные ритуалы. Административные задачи — в окна между пиками трафика, не путём игнорирования точки.",
           wrong: [
-            "Ежедневные визиты — микроменеджмент. У менеджеров не формируется самостоятельность.",
-            "Реактивный подход гарантирует опоздание. К моменту появления видимой проблемы она уже большая.",
+            "Без отчётности и планирования директор не видит тренды — узнаёт о проблеме только когда она уже большая.",
             null,
-            "Нет административного времени — ТМ превращается в операционный надзор без стратегической работы."
+            "Работа «дома» отделяет директора от реальной картины точки в моменте.",
+            "Контроль «по чувству» — это и есть ошибка №5 из Дня 1: реагирует, а не управляет. Нужна система, а не интуиция."
           ]
         }
       },
@@ -2067,13 +3411,13 @@ const tests = {
         text: "Средний чек 310 руб. Хотите поднять до 360 без изменения цен. Какие три действия дадут наибольший эффект?",
         options: [
           "Убрать дешёвые позиции из меню, переобучить кассиров говорить быстрее",
-          "Обучить персонал апселлу (предлагать десерт к кофе), дорогие позиции на уровне глаз, ввести комбо-предложения",
+          "Обучить персонал апселлу (предлагать десерт к кофе), контролировать выполнение на планёрках, ввести комбо-предложения",
           "Поставить таблички «Попробуйте наш новый напитк» на столах",
           "Увеличить порции — гость почувствует ценность и будет брать больше"
         ],
         correct: 1,
         feedback: {
-          correct: "Три инструмента роста чека без изменения цен: апселл (каждый второй берёт десерт = +80–120 руб к чеку), правильная выкладка (gaze level = buy level), комбо снижают барьер «взять лишнее». Вместе дают 15–20% роста.",
+          correct: "Три инструмента роста чека без изменения цен: апселл (каждый второй берёт десерт = +80–120 руб к чеку), контроль выполнения на ежедневных планёрках, комбо снижают барьер «взять лишнее». Вместе дают 15–20% роста.",
           wrong: [
             "Убирать дешёвые позиции — потеря части аудитории. «Говорить быстрее» не влияет на чек.",
             null,
@@ -2102,16 +3446,16 @@ const tests = {
         }
       },
       {
-        text: "Точка А: выручка 320 000 руб/мес, прибыль 45 000 руб. Точка Б: выручка 210 000 руб/мес, прибыль 52 000 руб. Какая точка эффективнее?",
+        text: "Операционный директор показывает вам данные двух точек сети для сравнения: Точка А — выручка 320 000 руб/мес, прибыль 45 000 руб. Точка Б — выручка 210 000 руб/мес, прибыль 52 000 руб. Какая точка эффективнее и что это значит для вас?",
         options: [
-          "Точка А — выручка выше на 52%",
-          "Точка Б — при меньшей выручке генерирует больше прибыли. Рентабельность Б: 24,8%, А: 14,1%. Нужно понять что делает Б эффективнее и тиражировать",
+          "Точка А — выручка выше на 52%, она явно эффективнее",
+          "Точка Б — при меньшей выручке генерирует больше прибыли. Рентабельность Б: 24,8%, А: 14,1%. Стоит узнать что Б делает иначе и попробовать на своей точке",
           "Они примерно одинаковые — разница в прибыли несущественная",
           "Нельзя сравнивать — у них разная выручка"
         ],
         correct: 1,
         feedback: {
-          correct: "Рентабельность: А = 14,1%, Б = 24,8%. Точка Б зарабатывает почти вдвое больше с каждого рубля выручки. У неё лучше структура затрат. Это повод изучить и применить на точке А.",
+          correct: "Рентабельность: А = 14,1%, Б = 24,8%. Точка Б зарабатывает почти вдвое больше с каждого рубля выручки — у неё лучше структура затрат. Сравнение точек сети — это способ учиться у лучших практик, а не просто констатация фактов.",
           wrong: [
             "Высокая выручка при низкой рентабельности — много работы за мало прибыли.",
             "7 000 руб/месяц разницы = 84 000 руб/год. Несущественной это назвать нельзя.",
@@ -2149,11 +3493,588 @@ const tests = {
         ],
         correct: 2,
         feedback: {
-          correct: "Структура профессионального отчёта при отклонении: факт → причина → план → контроль. Руководство хочет видеть что ТМ управляет ситуацией, а не просто сообщает о потере.",
+          correct: "Структура профессионального отчёта при отклонении: факт → причина → план → контроль. Руководство хочет видеть что директор управляет ситуацией, а не просто сообщает о потере.",
           wrong: [
             "Только цифра без контекста — неполная информация. Руководство задаст вопросы, которые вы могли предвосхитить.",
             "Скрывать отклонение — потеря доверия когда руководство увидит его само.",
             null,
+            "Список внешних факторов без плана действий — перекладывание ответственности."
+          ]
+        }
+      }
+    ]
+  }
+,
+  5: {
+    title: "Итоговый тест — 30 вопросов по всей программе",
+    meta: "30 вопросов · ~45 минут · критерий зачёта 70%",
+    questions: [
+      {
+        text: "Вы на точке, менеджер тоже на месте. Бариста готовит капучино не по рецептуре — добавляет молока больше нормы. Гости есть, очереди нет. Что делаете?",
+        options: [
+          "Подхожу к бариста напрямую, спокойно объясняю ошибку в рецептуре и прошу переделать капучино, чтобы гость не ждал",
+          "Прошу менеджера подойти прямо сейчас и разобраться с рецептурой при мне — считаю вопрос срочным и требующим немедленной реакции",
+          "Фиксирую нарушение в ежедневном отчёте и обсуждаю его с менеджером на плановой еженедельной встрече, без экстренного вмешательства",
+          "Отвожу менеджера в сторону, спокойно объясняю что увидел, и ставлю задачу — дальше он сам разбирается с бариста, я не вмешиваюсь напрямую"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Разница между вариантом Б и В принципиальная. «Говорю менеджеру» публично — тоже подрыв авторитета, потому что бариста видит что его менеджера поправляют. Директор уводит менеджера приватно, ставит задачу — менеджер сам идёт к бариста и выглядит как управленец.",
+          wrong: [
+            "Прямое обращение к бариста в обход менеджера — классическая ошибка нового директор. Команда начинает ориентироваться на директор, а не на своего менеджера.",
+            "Близко к верному, но публичность фразы разрушает авторитет менеджера перед командой. Такие вещи говорятся приватно.",
+            "Откладывать нарушение рецептуры до конца недели — значит позволить точке весь этот период работать с отклонением от стандарта.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Менеджер вашей точки — опытный, работает 1,5 года, результаты стабильные. Он перестал проводить утренние планёрки. На ваш вопрос отвечает: «Они бесполезны, команда всё и так знает». Ваши действия?",
+        options: [
+          "Говорю прямо: планёрки — обязательная часть регламента компании, возобновить их нужно с понедельника без обсуждений",
+          "Провожу несколько планёрок сам вместо менеджера, показываю на практике, как это должно выглядеть и звучать",
+          "Выясняю у менеджера, почему он перестал их проводить, напоминаю зачем нужна утренняя синхронизация, и вместе договариваемся о формате — но не навязываю жёсткий скрипт",
+          "Соглашаюсь с менеджером — раз результаты точки стабильны уже полтора года, формат подачи информации команде не так важен, как итог"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "С опытным менеджером директивный приказ создаёт сопротивление. Игнорировать — значит позволить стандарту размываться. Правильно: диалог, объяснение смысла, гибкость в форме при сохранении функции.",
+          wrong: [
+            "Директивный приказ опытному менеджеру без объяснения причин — путь к формальному исполнению и скрытому сопротивлению.",
+            "Проводить планёрки вместо менеджера — ошибка подмены. Вы показываете команде, что их менеджер не справляется.",
+            null,
+            "Результат сегодня не гарантирует результат завтра. Планёрка — инструмент синхронизации команды. Без неё риски копятся незаметно."
+          ]
+        }
+      },
+      {
+        text: "Вы поставили задачу: «До пятницы 18:00 провести инструктаж по стандарту приветствия, все бариста расписываются в листе». В пятницу лист есть, подписи стоят. В субботу бариста приветствуют гостей по-старому. Что произошло?",
+        options: [
+          "Менеджер солгал о выполнении задачи — нужно провести дисциплинарную беседу и зафиксировать нарушение",
+          "Бариста осознанно саботируют новый стандарт — нужно разобраться с каждым лично и применить дисциплинарные меры",
+          "Задача выполнена формально: инструктаж был, но без отработки и проверки понимания. Нужен критерий качества, а не только подписи",
+          "Стандарт приветствия написан неудачно и непонятен персоналу — нужно полностью переработать формулировку"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Ловушка постановки задачи. Формально всё выполнено: инструктаж был, подписи есть. Ошибка директор — критерий «подпись» не равен «усвоение стандарта». Следующая версия задачи: инструктаж + практическая отработка + выборочная проверка директор в течение недели.",
+          wrong: [
+            "Менеджер выполнил задачу ровно так, как она была поставлена. Обвинять его во лжи несправедливо. Проблема в задаче, не в менеджере.",
+            "Бариста делают то, что им показали. Если проверка была формальной — поведение останется прежним. Это не саботаж.",
+            null,
+            "Стандарт здесь ни при чём — его никто не изучил по-настоящему."
+          ]
+        }
+      },
+      {
+        text: "Два директора спорят. Первый: «Я всегда использую один стиль — строгий и последовательный». Второй: «Я меняю стиль под каждого сотрудника». Кто прав?",
+        options: [
+          "Первый прав — последовательность в стиле управления важнее гибкости, команда должна точно знать, чего от директора ожидать",
+          "Оба неправы одинаково — управленческий стиль должен определяться конкретной рабочей ситуацией, а не особенностями сотрудника",
+          "Второй ближе к верному, но точнее: стиль зависит от уровня зрелости сотрудника в конкретной задаче, а не от личности в целом",
+          "Второй прав — индивидуальный подход к каждому сотруднику почти всегда даёт лучший результат, чем единый стандарт для всех"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Нюанс: один и тот же сотрудник может быть R4 в приготовлении кофе и R1 в работе с жалобами. Стиль меняется под задачу, а не под человека целиком. Второй директор движется в правильном направлении, но формулировка «под каждого» — упрощение.",
+          wrong: [
+            "Единый строгий стиль необходим для новичков, но демотивирует опытных. Последовательность в ценностях — да, но не в стиле управления.",
+            "Ситуация — один из факторов, но ключевой в модели Херси–Бланшара именно уровень зрелости сотрудника в конкретной задаче.",
+            null,
+            "«Индивидуальный подход» без привязки к зрелости превращается в хаос. Нельзя строить управление на личных симпатиях."
+          ]
+        }
+      },
+      {
+        text: "Какая формулировка обратной связи по модели SBI правильная?",
+        options: [
+          "«Мне не нравится, как ты в последнее время ведёшь планёрки — над этим определённо нужно работать»",
+          "«В целом ты хорошо справляешься с задачами, но планёрки, наверное, можно проводить немного эффективнее»",
+          "«Вчера на планёрке ты не дал слово бариста, который поднял руку — в итоге он ушёл со смены без понимания задачи»",
+          "«Ты всегда опаздываешь с отчётами, это безответственно и подрывает доверие ко всей команде»"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Три элемента SBI на месте: конкретная ситуация (вчера, планёрка), конкретное поведение без оценки (не дал слово), измеримое последствие (сотрудник ушёл без понимания задачи). Нет оценки личности, нет обобщений.",
+          wrong: [
+            "«Мне не нравится» — эмоция, не обратная связь. Нет ситуации, нет конкретного поведения.",
+            "Размытый комплимент с намёком. Менеджер не поймёт что конкретно менять.",
+            null,
+            "«Всегда» — обобщение, вызывает защитную реакцию. «Безответственно» — оценка личности. Нет ни ситуации, ни влияния."
+          ]
+        }
+      },
+      {
+        text: "Что из перечисленного директор должен делать лично, а не делегировать?",
+        options: [
+          "Личный контроль чистоты зала и рабочих зон в часы пиковой нагрузки",
+          "Составление и утверждение графика смен персонала на каждой отдельной точке сети",
+          "Индивидуальные беседы с каждым менеджером о результатах его работы и плане развития",
+          "Проведение первичных инструктажей и обучение стандартам с линейным персоналом на месте"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Развитие менеджеров — личная функция директор, которую нельзя делегировать. Всё остальное — задачи менеджера, директор контролирует их выполнение.",
+          wrong: [
+            "Контроль чистоты зала — задача менеджера. Директор проверяет систему контроля, а не чистоту лично.",
+            "Графики смен — зона менеджера. Директор задаёт параметры и проверяет соответствие.",
+            null,
+            "Инструктажи с линейным персоналом — зона менеджера. Директор обучает менеджеров, менеджеры обучают команду."
+          ]
+        }
+      },
+      {
+        text: "Расставьте задачи по приоритету по матрице Эйзенхауэра: (1) звонок — кончились стаканы на точке, (2) план развития точки на квартал, (3) ответить на сообщения в рабочем чате, (4) система адаптации для новых бариста",
+        options: [
+          "3 → 1 → 4 → 2",
+          "1 → 2 → 4 → 3",
+          "2 → 4 → 1 → 3",
+          "1 → 3 → 2 → 4"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Стаканы — срочно и важно (точка стоит), решается немедленно. Квартальный план — важно, несрочно, создаёт долгосрочный результат. Адаптация — важно, несрочно, влияет на текучесть. Чат — иллюзия срочности, редко действительно важен.",
+          wrong: [
+            "Чат первым — та же ловушка. Срочные операционные блокеры решаются первыми.",
+            null,
+            "Откладывать стаканы ради планирования — точка реально теряет выручку прямо сейчас.",
+            "Чат в приоритете — классическая ловушка «иллюзии занятости». Быстрые ответы не двигают результат."
+          ]
+        }
+      },
+      {
+        text: "Новый директор на второй неделе замечает: менеджер систематически занижает выручку в отчётах. Как действовать?",
+        options: [
+          "Сначала собрать доказательную базу: сопоставить кассовые данные, отчёты, физические показатели. Затем эскалировать с фактами",
+          "Пока не вмешиваться — на второй неделе в новой роли рано делать выводы о системном нарушении, нужно понаблюдать",
+          "Поговорить с менеджером напрямую и прямо спросить: «Я вижу расхождения в цифрах — объясни, в чём причина»",
+          "Немедленно сообщить об этом руководству и потребовать увольнения менеджера — искажение отчётности недопустимо в принципе"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Ни «немедленно обвинить» ни «ждать». Правильно: действовать, но с фактами. Обвинение без доказательств на второй неделе — удар по своей репутации. Бездействие — соучастие.",
+          wrong: [
+            null,
+            "«Слишком рано» — опасная логика. Если факт подтвердится, встанет вопрос: почему директор видел и молчал?",
+            "Прямой разговор без фактов даёт менеджеру возможность скрыть следы. Сначала — данные.",
+            "Требовать увольнения без доказательной базы — потеря доверия руководства. Это может быть ошибка учёта."
+          ]
+        }
+      },
+      {
+        text: "Бариста 17 лет опоздал второй раз за неделю. После первого — было устное предупреждение. Менеджер предлагает уволить «чтобы другим неповадно». Ваше решение?",
+        options: [
+          "Поддерживаю решение менеджера уволить сотрудника — жёсткая дисциплина важнее сохранения одного человека в команде",
+          "Предупреждаю бариста ещё раз устно, но фиксирую: при следующем нарушении — увольнение без разговоров",
+          "Провожу дисциплинарную беседу с бариста сам, напрямую, без участия менеджера точки в этом разговоре",
+          "Отклоняю предложение менеджера, объясняю принцип поэтапной дисциплины, помогаю провести беседу с фиксацией"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Два решения в одном: отклонить преждевременное увольнение и обучить менеджера правильному инструменту. «Показательное увольнение» создаёт страх, но не систему.",
+          wrong: [
+            "Поддержать увольнение без прохождения этапов — потеря перспективного сотрудника и сигнал команде: «здесь увольняют быстро».",
+            "Третье устное предупреждение вместо эскалации обесценивает систему.",
+            "Проводить беседу самому, минуя менеджера — снова подрыв авторитета.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Период Рамадана. Менеджер предлагает два варианта: (1) сохранить обычный график, добавить премию за работу в пост; (2) перенести тяжёлые задачи на утро, сократить смены в 14:00–17:00, обеспечить место для ифтара. Что выбрать?",
+        options: [
+          "Ни то ни другое — все сотрудники работают в штатном режиме независимо от религиозных практик",
+          "Комбинировать оба варианта: адаптированный график для тяжёлых задач плюс премию за работу в период поста",
+          "Вариант 1 — материальная мотивация в виде премии работает надёжнее любых изменений графика в пост",
+          "Вариант 2 — адаптация графика снижает ошибки и травмы, ифтар это базовое уважение, которое влияет на лояльность сильнее премии"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Вариант 3 (комбинация) кажется логичным, но в условиях ограниченного бюджета вариант 2 даёт больше за меньшие деньги. Адаптация снижает ошибки и травмы. Ифтар — не привилегия, а базовое уважение в контексте.",
+          wrong: [
+            "Игнорировать Рамадан — не нейтральная позиция. Это разрушает авторитет управленца быстрее любых операционных ошибок.",
+            "Правильное направление, но если бюджет ограничен — адаптация графика важнее премии.",
+            "Премия не устраняет физиологическую усталость от поста. В 15:00 человек, не евший с рассвета, будет совершать больше ошибок вне зависимости от размера премии.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Лучший бариста точки говорит менеджеру что хочет уволиться, причину не называет. Менеджер звонит вам. Как действовать?",
+        options: [
+          "Попросить менеджера самостоятельно узнать причину у бариста и предложить остаться на прежних условиях",
+          "Провести разговор с бариста лично — не чтобы удержать любой ценой, а чтобы понять реальную причину",
+          "Сразу предложить бариста повышение зарплаты — в большинстве случаев денежный вопрос решает намерение уволиться",
+          "Не пытаться удерживать — если человек решил уйти, удержание всё равно не сработает в долгосрочной перспективе"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Ключевое слово — реальная причина. Люди редко называют настоящую причину ухода сразу. Разговор с директором (не с прямым руководителем) даёт другой уровень откровенности.",
+          wrong: [
+            "Менеджер уже упустил момент для этого разговора — иначе бы знал причину.",
+            null,
+            "Зарплата редко является реальной причиной ухода лучших сотрудников. Дав деньги без понимания причины — через 2 месяца ситуация повторится.",
+            "«Кто хочет уйти — уйдёт» — позиция, которая гарантирует высокую текучесть."
+          ]
+        }
+      },
+      {
+        text: "На точке трое бариста с разным опытом: 16 лет (первый месяц), 23 года (8 месяцев), 19 лет (3 месяца, быстрый но с ошибками). Менеджер управляет всеми одинаково. Что скажете менеджеру?",
+        options: [
+          "Нужно найти способ больше мотивировать всех троих одинаково — тогда количество ошибок снизится само собой",
+          "Каждый на разном уровне зрелости: первому нужна структура и обучение, второму — доверие, третьему — жёсткий контроль качества",
+          "Это правильно — единый стандарт управления ко всем сотрудникам без исключений создаёт справедливость и предсказуемость",
+          "Нужно быть строже именно с третьим бариста — при таком уровне ошибок никакой опыт не оправдывает нарушения"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Справедливость — не одинаковость обращения, а соответствие уровню. Одинаковое управление тремя людьми с разным опытом: одного задушит контролем, другого оставит без поддержки, третьему не даст нужной коррекции.",
+          wrong: [
+            "Мотивированный человек, который не понимает где ошибается, будет мотивированно делать ошибки.",
+            null,
+            "Давать одинаковый стиль управления людям на разных уровнях — как давать одинаковое задание первокласснику и десятикласснику.",
+            "Строгость без разбора ошибок не учит. У третьего проблема не в старании, а в том что скорость он ставит выше точности."
+          ]
+        }
+      },
+      {
+        text: "Менеджер жалуется: «Сотрудники не слушаются, делают что хотят». При этом план выручки выполняется, жалоб от гостей нет. Как интерпретировать ситуацию?",
+        options: [
+          "Проблема реальная и требует вмешательства — дисциплина важна сама по себе, независимо от текущих результатов точки",
+          "Нужно разобраться что именно менеджер называет «не слушаются» — возможно, он путает дисциплину с директивным стилем",
+          "Проблемы на самом деле нет — раз план по выручке выполняется и жалоб от гостей нет, остальное не имеет значения",
+          "Менеджер слабый управленец — не умеет выстраивать авторитет перед командой, отсюда и жалобы на непослушание"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "«Не слушаются» при хорошем результате — часто означает, что команда работает самостоятельно, а менеджер ожидает подчинения вместо результата. Прежде чем решать — нужно понять что реально происходит.",
+          wrong: [
+            "Дисциплина — средство, а не цель. Если результат есть — жёсткое «построение» может разрушить то, что работает.",
+            null,
+            "Игнорировать сигнал менеджера неверно. Если он испытывает трудности — это риск выгорания.",
+            "Вывод о слабости без анализа — поспешная оценка."
+          ]
+        }
+      },
+      {
+        text: "Бюджет ограничен, повысить зарплаты невозможно. Какие три действия дадут наибольший эффект на снижение текучести?",
+        options: [
+          "Корпоративные мероприятия, фирменная форма и бесплатный кофе для персонала — это создаёт ощущение принадлежности к команде",
+          "Структурированная адаптация первых 2 недель, регулярная обратная связь от менеджера, видимый горизонт роста",
+          "Штрафы за досрочное увольнение и обязательная двухнедельная отработка — это дисциплинирует и снижает текучесть",
+          "Повышение требований к кандидатам на входе — брать в команду только тех, кто с высокой вероятностью задержится надолго"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Большинство увольнений в первые 3 месяца — из-за плохой адаптации и ощущения невидимости. Оба фактора устраняются без денег — структурой и вниманием.",
+          wrong: [
+            "Корпоративы и кофе — гигиенические факторы. Они не удержат человека, которому не нравится как им управляют.",
+            null,
+            "Принудительное удержание создаёт токсичную атмосферу.",
+            "«Отбор тех кто задержится» — иллюзия. На собеседовании это невозможно предсказать."
+          ]
+        }
+      },
+      {
+        text: "На 1-on-1 менеджер говорит: «Всё нормально, проблем нет». Вы знаете, что на точке высокая текучесть и несколько жалоб за месяц. Как реагируете?",
+        options: [
+          "Задаю уточняющие вопросы по конкретным ситуациям: «Расскажи про последнее увольнение — что произошло?»",
+          "Говорю менеджеру прямо: «Это неправда — у тебя высокая текучесть и несколько жалоб, не ври мне в лицо»",
+          "Принимаю ответ менеджера как есть — он находится на точке каждый день и знает реальную ситуацию лучше меня",
+          "Прерываю встречу на этом моменте и прошу менеджера подготовить письменный отчёт по проблемам к следующей неделе"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "«Всё нормально» при объективных проблемах означает: менеджер не видит проблем (тревожнее) или не доверяет директор (исправимо). Конкретные вопросы по фактам обходят защитную реакцию.",
+          wrong: [
+            null,
+            "Прямое опровержение создаёт оборонительную позицию. Менеджер начнёт оправдываться вместо решения проблем.",
+            "Принять «всё нормально» при наличии данных о проблемах — провалить функцию директор.",
+            "Письменный отчёт как реакция — бюрократический ответ на управленческую проблему."
+          ]
+        }
+      },
+      {
+        text: "Exit-интервью: за квартал трое уходящих сотрудников вашей точки назвали одну причину: «менеджер не слышит». Как действуете?",
+        options: [
+          "Игнорирую эти отзывы — уходящие сотрудники часто задним числом обвиняют руководителя, это обычная практика",
+          "Провожу прямую беседу с менеджером: «Три сотрудника подряд сказали одно и то же — ты не слышишь свою команду», жду объяснений",
+          "Сразу принимаю решение заменить менеджера — три одинаковых случая подряд это уже система, а не совпадение",
+          "Провожу с менеджером развивающую беседу на основе паттерна: не обвиняю, показываю данные, ищем причину вместе"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Три одинаковых ответа — сигнал, который нельзя игнорировать. Но прямое обвинение закрывает менеджера. Правильно: «Я вижу паттерн в данных — давай вместе разберёмся».",
+          wrong: [
+            "Три одинаковых ответа при exit-интервью — редкость. Когда трое говорят одно — это важный сигнал.",
+            "«Три человека сказали» звучит как обвинение с чужих слов. Менеджер займёт оборонительную позицию.",
+            "Три случая — повод для развивающей работы, не замены. Замена воспроизведёт ту же проблему со следующим менеджером.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Проверяя точку утром, вы видите: команда работает, гостей обслуживают быстро, всё выглядит хорошо. Но food cost за неделю выше нормы на 8%. Что делаете?",
+        options: [
+          "Немедленно провожу полную инвентаризацию прямо при менеджере, не объясняя заранее, чтобы увидеть реальную картину",
+          "Задаю менеджеру конкретные вопросы: были ли списания, кто принимал поставки, как контролируется расход — ищу причину до выводов",
+          "Фиксирую отклонение в отчёте и жду результатов следующей недели, чтобы подтвердить, что это устойчивый тренд",
+          "Ничего не предпринимаю — визуально на точке всё в порядке, отклонение по food cost могло быть разовым сбоем в расчётах"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Food cost +8% — деньги уходят прямо сейчас. Инвентаризация сразу без анализа причины — стресс для команды без оснований. Правильно: диагностические вопросы сначала, потом решение.",
+          wrong: [
+            "Возможно, но без предварительного анализа причины это избыточный стресс для команды.",
+            null,
+            "Неделя ожидания при отклонении 8% — это неделя потерь. Отклонение выше 3% требует немедленного анализа.",
+            "«Визуально всё хорошо» и «финансово всё хорошо» — разные вещи. Красивая точка с плохим food cost теряет деньги незаметно."
+          ]
+        }
+      },
+      {
+        text: "Менеджер против чек-листов: «Мои люди профессионалы, им не нужны списки». Что ответите?",
+        options: [
+          "Предлагаю компромиссный вариант — сократить чек-лист до 5 самых критичных пунктов вместо полного списка",
+          "Объясняю функцию чек-листа: он не для проверки профессионализма, а для защиты от человеческого фактора при усталости",
+          "Соглашаюсь с менеджером — команде с таким опытом чек-листы действительно не нужны, это лишняя бюрократия",
+          "Объясняю, что чек-листы обязательны по внутреннему регламенту компании и обсуждению не подлежат, точка"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "Менеджер путает «профессионализм» и «защита от ошибок». Большинство серьёзных ошибок совершают опытные люди — именно потому что они «знают и без списка» и пропускают шаги автоматически.",
+          wrong: [
+            "Компромисс из 5 пунктов без объяснения ценности — капитуляция перед сопротивлением.",
+            null,
+            "Опыт не защищает от усталости, отвлечения и переключения задач.",
+            "«Потому что регламент» создаёт формальное исполнение без понимания зачем."
+          ]
+        }
+      },
+      {
+        text: "Вы организовали тайного гостя на своей точке. Менеджер узнал заранее и предупредил команду. Проверка прошла идеально. Что делаете?",
+        options: [
+          "Ничего не предпринимаю — тайный гость дал результаты, и они положительные, дальше разбираться незачем",
+          "Провожу беседу с менеджером: объясняю, что предупреждать команду о предстоящей проверке категорически запрещено",
+          "Меняю систему проверки: другой проверяющий, другое время, не предупреждать менеджера заранее — иначе результат не имеет смысла",
+          "Отлично — раз проверка прошла идеально, значит стандарты на точке действительно соблюдаются на постоянной основе"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Если проверка идеальна только потому что о ней узнали заранее — система сломана, не точка. Нужно перестроить инструмент и верифицировать данные реальными показателями. Средний чек и жалобы — данные, которые не знают о тайном госте.",
+          wrong: [
+            "Данные недостоверны — принимать их как факт нельзя.",
+            "Беседа нужна, но недостаточна. Нужно изменить саму систему.",
+            null,
+            "Стандарты «соблюдаются» только когда знают о проверке — это театр, а не управление качеством."
+          ]
+        }
+      },
+      {
+        text: "На точке три нарушения: (1) бариста не здоровается с гостями, (2) беспорядок в подсобке, (3) сроки годности на части продуктов не проверялись 2 дня. Как расставить приоритеты?",
+        options: [
+          "1 → 2 → 3 — начинаем с того, что сразу видит гость, это влияет на его первое впечатление о точке",
+          "Разбираем все три нарушения одновременно на одной встрече с менеджером — они одинаково важны",
+          "3 → 1 → 2 — сначала безопасность продукта, потом сервис, потом внутренний порядок",
+          "2 → 3 → 1 — сначала наводим внутренний порядок в подсобке, это база для всего остального"
+        ],
+        correct: 2,
+        feedback: {
+          correct: "Приоритет всегда: безопасность → гостевой опыт → внутренний порядок. Просроченный продукт — риск здоровья гостя и юридическая ответственность.",
+          wrong: [
+            "Видимость для гостя — не главный критерий. Безопасность продукта невидима, но последствия её нарушения несравнимо серьёзнее.",
+            "Когда всё приоритет — ничто не приоритет.",
+            null,
+            "Начинать с подсобки при непроверенных сроках годности — неправильная расстановка рисков."
+          ]
+        }
+      },
+      {
+        text: "Менеджер внедрил стандарт 2 недели назад. Вы приходите — персонал не соблюдает. Менеджер говорит: «Я им объяснил, они всё поняли». Что произошло?",
+        options: [
+          "Персонал осознанно саботирует новый стандарт — здесь нужны дисциплинарные меры вплоть до предупреждений",
+          "Объяснение без отработки и системы контроля не формирует новое поведение — стандарт нужно отработать практически",
+          "Менеджер недостаточно авторитетен в глазах команды — именно поэтому его объяснения никто не воспринимает всерьёз",
+          "Новый стандарт оказался слишком сложным для команды — его нужно упростить, прежде чем требовать соблюдения"
+        ],
+        correct: 1,
+        feedback: {
+          correct: "«Объяснил и они поняли» — самая распространённая иллюзия. Понять ≠ изменить поведение. Новое поведение: демонстрация → практика → обратная связь → повторение → проверка.",
+          wrong: [
+            "Саботаж предполагает намеренное неисполнение. Люди просто не перестроили автоматизм — это задача обучения.",
+            null,
+            "Даже с высоким авторитетом новые паттерны поведения требуют системного внедрения.",
+            "Возможно, но это гипотеза. Сначала убедитесь что стандарт был правильно внедрён."
+          ]
+        }
+      },
+      {
+        text: "Гость оставил отзыв: «Ждал капучино 18 минут, бариста не извинился». Менеджер говорит: «Гость сам виноват, был час пик». Как реагирует директор?",
+        options: [
+          "Два действия: учу менеджера принимать ответственность за гостевой опыт и разбираем операционную причину задержки",
+          "Отвечаю гостю в отзыве лично от имени компании, а операционную причину задержки разбираю позже, отдельно",
+          "Прошу менеджера самостоятельно ответить гостю в отзыве с извинениями, и на этом закрываю вопрос",
+          "Соглашаюсь с позицией менеджера — в час пик такое время ожидания в целом можно считать нормальным явлением"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Позиция «гость сам виноват» — токсичная установка, которая множится в команде. Плюс 18 минут — это операционная проблема. Один ответ на отзыв без изменения процесса — PR без управления.",
+          wrong: [
+            null,
+            "Отвечать за менеджера — снова подмена его функции.",
+            "Ответ гостю — правильный шаг, но без работы с установкой менеджера ситуация повторится.",
+            "18 минут — не норма даже в час пик. Стандарт приготовления капучино 3–4 минуты."
+          ]
+        }
+      },
+      {
+        text: "Аудит выявил 7 нарушений разной степени. Как правильно передать это менеджеру?",
+        options: [
+          "Приоритизирую: критичные исправить сегодня с подтверждением, остальные — письменно с дедлайнами и способом проверки",
+          "Откладываю обсуждение всех 7 пунктов до следующей плановой еженедельной встречи с менеджером",
+          "Перечисляю все 7 нарушений устно на месте и прошу менеджера исправить абсолютно всё до завтрашнего утра",
+          "Отправляю полный список всех 7 нарушений в рабочий чат с одним общим дедлайном на все пункты сразу"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "7 замечаний с одним дедлайном — менеджер не знает с чего начать. Разделить по срочности, дать чёткие сроки и способ подтверждения — это управление, а не список претензий.",
+          wrong: [
+            null,
+            "Ждать плановой встречи при нарушениях безопасности — недопустимо.",
+            "Устный список без фиксации — к завтрашнему дню половина забыта или интерпретирована иначе.",
+            "Список без приоритизации — менеджер не понимает что срочно, что может подождать."
+          ]
+        }
+      },
+      {
+        text: "Выручка точки за неделю: 280 000 руб. Себестоимость продуктов: 91 000 руб. ФОТ: 98 000 руб. Аренда: 75 000 руб. Прочие расходы: 18 000 руб. Чему равна операционная прибыль и это нормально?",
+        options: [
+          "Минус 2 000 руб. — точка убыточна. ФОТ и аренда вместе составляют 62% выручки при норме 45–50%",
+          "Минус 2 000 руб. — операционный убыток есть, но сумма небольшая, ситуацию можно считать некритичной",
+          "182 000 руб. — если считать только выручку минус себестоимость продуктов, результат выглядит хорошим",
+          "91 000 руб. — валовая прибыль в пределах нормы, остальные расходы несущественны"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "280 − 91 − 98 − 75 − 18 = −2 000 руб. Точка убыточна. ФОТ 35% + аренда 26,7% = 61,7% от выручки. Норма: ФОТ 25–30%, аренда до 15–18%. Вместе не более 48–50%.",
+          wrong: [
+            null,
+            "«Небольшой минус некритично» — опасная позиция. Еженедельный убыток 2 000 = 96 000 руб/год, без учёта амортизации.",
+            "182 000 руб — это валовая прибыль (выручка минус только себестоимость). Операционная прибыль считается после всех расходов.",
+            "Смотреть только на валовую прибыль и игнорировать операционные расходы — видеть половину картины."
+          ]
+        }
+      },
+      {
+        text: "За месяц food cost вырос с 28% до 36%. Менеджер объясняет ростом цен поставщиков на 5%. Это объяснение достаточное?",
+        options: [
+          "Нет, объяснение недостаточное — нужно немедленно уволить менеджера за некомпетентность в управлении затратами",
+          "Да, объяснение достаточное — если поставщик поднял закупочные цены, food cost точки закономерно вырастет вслед за этим",
+          "Да, это объяснение достаточное — в текущий кризисный период подобные отклонения по food cost можно считать нормальными",
+          "Нет — рост цен на 5% объясняет рост food cost лишь на 1,4 пункта, остальное — списания или нарушение рецептур"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Математика: 28% × 1,05 = 29,4% — столько должен был вырасти food cost при росте цен на 5%. Реальный рост до 36% — в 5 раз больше объяснимого. Разница требует расследования.",
+          wrong: [
+            "Обвинять менеджера без анализа цифр — та же ошибка в другую сторону.",
+            "Рост цен поставщика и рост food cost — не одно и то же. Один процент роста стоимости сырья даёт значительно меньший процент роста food cost.",
+            "«Кризисный период» не является объяснением математического расхождения.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Точка безубыточности: 210 000 руб/неделю. Фактическая выручка последние 3 недели: 198 000, 203 000, 195 000 руб. Как описать ситуацию и что делать?",
+        options: [
+          "Точка системно работает ниже безубыточности три недели подряд — это тренд. Нужен план: анализ трафика, среднего чека, ФОТ",
+          "Срочно поднять цены на все позиции меню на 10%, чтобы быстро компенсировать недостачу выручки до нормы",
+          "Это небольшое разовое отклонение — стоит подождать ещё месяц и понаблюдать, прежде чем делать выводы о тренде",
+          "Закрыть точку — три недели подряд ниже точки безубыточности означает, что бизнес-модель здесь не работает"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Три недели ниже безубыточности — тренд, не случайность. Средний убыток ~12 000 руб/неделю = ~50 000 руб/месяц. Три недели устойчивого тренда достаточно для действий.",
+          wrong: [
+            null,
+            "Рост цен при падающем трафике ускорит его снижение.",
+            "Ещё месяц ожидания при убытке — ещё +200 000 руб потерь.",
+            "Закрывать без попытки исправить — преждевременное решение с высокими потерями."
+          ]
+        }
+      },
+      {
+        text: "Средний чек 310 руб. Хотите поднять до 360 без изменения цен. Какие три действия дадут наибольший эффект?",
+        options: [
+          "Расставить таблички «Попробуйте наш новый напиток» на всех столах точки и ждать роста среднего чека",
+          "Полностью убрать самые дешёвые позиции из меню и параллельно переобучить кассиров говорить с гостями быстрее",
+          "Увеличить порции во всех напитках — гость почувствует более высокую ценность и станет брать позиции чаще",
+          "Обучить персонал апселлу (предлагать десерт к кофе), контролировать выполнение на планёрках, ввести комбо-предложения"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Три инструмента роста чека без изменения цен: апселл (каждый второй берёт десерт = +80–120 руб к чеку), контроль выполнения на ежедневных планёрках, комбо снижают барьер «взять лишнее». Вместе дают 15–20% роста.",
+          wrong: [
+            "Таблички дают минимальный эффект по сравнению с активным апселлом.",
+            "Убирать дешёвые позиции — потеря части аудитории. «Говорить быстрее» не влияет на чек.",
+            "Увеличение порций повышает себестоимость, снижает маржу при той же выручке.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Операционный директор показывает вам данные двух точек сети для сравнения: Точка А — выручка 320 000 руб/мес, прибыль 45 000 руб. Точка Б — выручка 210 000 руб/мес, прибыль 52 000 руб. Какая точка эффективнее и что это значит для вас?",
+        options: [
+          "Точка Б — при меньшей выручке генерирует больше прибыли, рентабельность у неё 24,8% против 14,1% у точки А",
+          "Их вообще нельзя сравнивать между собой — у точек разная выручка, а значит и разная база для сравнения",
+          "Они примерно одинаковые по эффективности — разница в 7 000 рублей прибыли между точками несущественна",
+          "Точка А — при выручке выше на 52%, чем у точки Б, она объективно более эффективная бизнес-единица сети"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Рентабельность: А = 14,1%, Б = 24,8%. Точка Б зарабатывает почти вдвое больше с каждого рубля выручки — у неё лучше структура затрат. Сравнение точек сети — это способ учиться у лучших практик, а не просто констатация фактов.",
+          wrong: [
+            null,
+            "Сравнивать через показатель рентабельности можно и нужно.",
+            "7 000 руб/месяц разницы = 84 000 руб/год. Несущественной это назвать нельзя.",
+            "Высокая выручка при низкой рентабельности — много работы за мало прибыли."
+          ]
+        }
+      },
+      {
+        text: "Еженедельный отчёт: выручка +12%, трафик +3%, средний чек +9%, food cost −1%, ФОТ +18%. Что требует немедленного внимания?",
+        options: [
+          "Всё в порядке — все ключевые показатели включая выручку показывают устойчивый рост, тревожиться не о чем",
+          "Снижение food cost подозрительно — нужно проверить, не упало ли из-за этого качество продукта на точке",
+          "Нужно сосредоточиться на дальнейшем росте трафика — именно он был самым слабым показателем в этом отчёте",
+          "Рост ФОТ на 18% при росте выручки на 12% — затраты растут быстрее доходов. Если тренд продолжится, прибыль начнёт снижаться"
+        ],
+        correct: 3,
+        feedback: {
+          correct: "Ловушка на «позитивный фрейм». Выручка растёт — кажется всё хорошо. Но ФОТ растёт быстрее выручки. Если выручка +12%, ФОТ должен расти не более чем на 12%. +18% — либо необоснованное увеличение штата, либо переработки.",
+          wrong: [
+            "Рост выручки при опережающем росте затрат — иллюзия успеха.",
+            "Снижение food cost на 1% — позитивный сигнал, не «подозрительный».",
+            "Трафик +3% — нормально. Проблема не в трафике.",
+            null
+          ]
+        }
+      },
+      {
+        text: "Выручка упала на 7% за неделю. Как представляете это в отчёте руководству?",
+        options: [
+          "Указываю факт падения, диагностированную причину (или гипотезу с пометкой), план действий и срок следующей точки контроля",
+          "Не упоминаю падение отдельно — руководство и так увидит эту цифру в общей сводке по всем точкам сети",
+          "Пишу в отчёте только сухую цифру падения выручки на 7% и жду, пока руководство само задаст уточняющие вопросы",
+          "Указываю падение выручки и подробный список внешних факторов, которые могли на это повлиять"
+        ],
+        correct: 0,
+        feedback: {
+          correct: "Структура профессионального отчёта при отклонении: факт → причина → план → контроль. Руководство хочет видеть что директор управляет ситуацией, а не просто сообщает о потере.",
+          wrong: [
+            null,
+            "Скрывать отклонение — потеря доверия когда руководство увидит его само.",
+            "Только цифра без контекста — неполная информация. Руководство задаст вопросы, которые вы могли предвосхитить.",
             "Список внешних факторов без плана действий — перекладывание ответственности."
           ]
         }
@@ -2172,6 +4093,51 @@ let selectedAnswer = null;
 let answered = false;
 let completedTests = {};
 let currentDayView = 1;
+let currentTrack = localStorage.getItem('tm_track') || null;
+
+// ============================================================
+// TRACK SELECTION
+// ============================================================
+function applyTrackChrome() {
+  const sc = document.getElementById('sidebar-coffee');
+  const sp = document.getElementById('sidebar-pbo');
+  const headerTitle = document.getElementById('header-title');
+  const headerSub = document.getElementById('header-track-sub');
+  const switchBtn = document.getElementById('switch-track-btn');
+  if (currentTrack === 'coffee') {
+    sc.style.display = 'block';
+    sp.style.display = 'none';
+    headerTitle.textContent = 'Программа обучения директоров точек';
+    headerSub.textContent = 'Директора точек сети кофеен — интенсив 5 дней';
+    switchBtn.style.display = 'inline';
+  } else if (currentTrack === 'pbo') {
+    sc.style.display = 'none';
+    sp.style.display = 'block';
+    headerTitle.textContent = 'Программа обучения директоров ПБО';
+    headerSub.textContent = 'Директора точек Маковский / Crispy — интенсив 5 дней';
+    switchBtn.style.display = 'inline';
+  } else {
+    sc.style.display = 'none';
+    sp.style.display = 'none';
+    headerTitle.textContent = 'Программа обучения директоров точек';
+    headerSub.textContent = 'Выберите программу';
+    switchBtn.style.display = 'none';
+  }
+}
+
+function selectTrack(track) {
+  currentTrack = track;
+  localStorage.setItem('tm_track', track);
+  applyTrackChrome();
+  showView(track === 'pbo' ? 'overview-pbo' : 'overview');
+}
+
+function showTrackSelect() {
+  currentTrack = null;
+  localStorage.removeItem('tm_track');
+  applyTrackChrome();
+  showView('track-select');
+}
 
 // ============================================================
 // NAVIGATION
@@ -2185,8 +4151,10 @@ function showView(id) {
   const target = document.getElementById('view-' + id);
   target.classList.add('active');
   target.style.display = 'block';
-  if (id === 'overview') {
-    document.querySelector('.nav-item').classList.add('active');
+  if (id === 'overview' || id === 'overview-pbo') {
+    const activeSidebar = currentTrack === 'pbo' ? document.getElementById('sidebar-pbo') : document.getElementById('sidebar-coffee');
+    const firstNav = activeSidebar && activeSidebar.querySelector('.nav-item');
+    if (firstNav) firstNav.classList.add('active');
   }
 }
 
@@ -2197,13 +4165,27 @@ function showDayView(day) {
     v.style.display = 'none';
   });
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const target = document.getElementById('view-day-' + day);
+
+  const prefix = currentTrack === 'pbo' ? 'view-pbo-day-' : 'view-day-';
+  const navPrefix = currentTrack === 'pbo' ? 'nav-pbo-day-' : 'nav-day-';
+  const target = document.getElementById(prefix + day);
   target.classList.add('active');
   target.style.display = 'block';
-  document.getElementById('nav-day-' + day).classList.add('active');
-  if (completedTests[day]) {
-    document.getElementById('test-btn-' + day).textContent = '✓ Тест пройден';
-    document.getElementById('test-btn-' + day).style.background = '#4caf7d';
+  const navEl = document.getElementById(navPrefix + day);
+  if (navEl) navEl.classList.add('active');
+
+  if (currentTrack === 'pbo') {
+    const testBtn = document.getElementById('test-btn-pbo-' + day);
+    if (completedTests['pbo' + day] && testBtn) {
+      testBtn.textContent = `✓ Тест пройден (${completedTests['pbo' + day].score}%)`;
+      testBtn.style.background = '#4caf7d';
+    }
+  } else {
+    const testBtn = document.getElementById('test-btn-' + day);
+    if (completedTests[day] && testBtn) {
+      testBtn.textContent = '✓ Тест пройден';
+      testBtn.style.background = '#4caf7d';
+    }
   }
 }
 
@@ -2216,7 +4198,8 @@ function showTestView(day) {
 
   document.getElementById('test-title').textContent = tests[day].title;
   document.getElementById('test-meta').textContent = tests[day].meta;
-  document.getElementById('test-back-link').onclick = () => showDayView(day);
+  const numericDay = (typeof day === 'string' && day.indexOf('pbo') === 0) ? parseInt(day.slice(3), 10) : day;
+  document.getElementById('test-back-link').onclick = () => showDayView(numericDay);
 
   document.querySelectorAll('.view').forEach(v => {
     v.classList.remove('active');
@@ -2236,6 +4219,7 @@ function renderQuestion() {
   const test = tests[currentTest];
   const q = test.questions[currentQuestion];
   const total = test.questions.length;
+  const isFinalTest = (currentTest === 5); // итоговый тест — без подсказок во время прохождения
 
   document.getElementById('q-counter').textContent = `Вопрос ${currentQuestion + 1} из ${total}`;
   
@@ -2263,7 +4247,10 @@ function renderQuestion() {
   
   q.options.forEach((opt, i) => {
     let cls = 'option';
-    if (answered) {
+    if (isFinalTest) {
+      // Итоговый тест: только факт выбора, без подсветки верно/неверно
+      if (selectedAnswer === i) cls += ' selected';
+    } else if (answered) {
       if (i === q.correct) cls += ' correct';
       else if (i === answers[currentQuestion] && i !== q.correct) cls += ' wrong';
     } else if (selectedAnswer === i) {
@@ -2277,7 +4264,7 @@ function renderQuestion() {
 
   html += `</div>`;
 
-  if (answered) {
+  if (!isFinalTest && answered) {
     const isCorrect = answers[currentQuestion] === q.correct;
     const fbClass = isCorrect ? 'positive' : 'negative';
     const fbLabel = isCorrect ? '✓ Верно' : '✗ Неверно';
@@ -2295,7 +4282,11 @@ function renderQuestion() {
   document.getElementById('btn-prev').style.display = currentQuestion > 0 ? 'block' : 'none';
   
   const btnNext = document.getElementById('btn-next');
-  if (answered) {
+  if (isFinalTest) {
+    btnNext.textContent = (currentQuestion === total - 1) ? 'Завершить тест' : 'Далее →';
+    btnNext.disabled = selectedAnswer === null;
+    btnNext.onclick = goNextFinal;
+  } else if (answered) {
     if (currentQuestion === test.questions.length - 1) {
       btnNext.textContent = 'Завершить тест';
       btnNext.disabled = false;
@@ -2312,10 +4303,22 @@ function renderQuestion() {
   }
 }
 
+function goNextFinal() {
+  if (selectedAnswer === null) return;
+  answers[currentQuestion] = selectedAnswer;
+  const total = tests[currentTest].questions.length;
+  if (currentQuestion === total - 1) {
+    showResults();
+    return;
+  }
+  currentQuestion++;
+  selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
+  renderQuestion();
+}
+
 function selectAnswer(i) {
-  if (answered) return;
+  if (currentTest !== 5 && answered) return;
   selectedAnswer = i;
-  document.getElementById('btn-next').disabled = false;
   renderQuestion();
 }
 
@@ -2337,6 +4340,7 @@ function nextQuestion() {
 
 function prevQuestion() {
   if (currentQuestion > 0) {
+    if (currentTest === 5 && selectedAnswer !== null) answers[currentQuestion] = selectedAnswer;
     currentQuestion--;
     selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
     answered = answers[currentQuestion] !== undefined;
@@ -2346,6 +4350,7 @@ function prevQuestion() {
 
 // ============================================================
 // RESULTS
+
 // ============================================================
 function showResults() {
   const test = tests[currentTest];
@@ -2384,7 +4389,22 @@ function showResults() {
   ring.textContent = pct + '%';
   
   let ringClass, title, desc;
-  if (pct >= 80) {
+  if (currentTest === 5) {
+    // Итоговый тест аттестации — критерии зачёта 70% / пересдача 50-69% / переобучение <50%
+    if (pct >= 70) {
+      ringClass = 'excellent';
+      title = 'Зачёт';
+      desc = `${correct} из ${total} правильных ответов (${pct}%). Порог зачёта 70% пройден — результат идёт в лист аттестации.`;
+    } else if (pct >= 50) {
+      ringClass = 'good';
+      title = 'Пересдача в течение недели';
+      desc = `${correct} из ${total} правильных ответов (${pct}%). Результат ниже порога зачёта (70%), но выше 50% — пересдача даётся в течение недели. Обратитесь к ведущему.`;
+    } else {
+      ringClass = 'poor';
+      title = 'Повторное обучение по проблемным блокам';
+      desc = `${correct} из ${total} правильных ответов (${pct}%). Результат ниже 50% — требуется повторное обучение по темам, где допущены ошибки, прежде чем повторная попытка.`;
+    }
+  } else if (pct >= 80) {
     ringClass = 'excellent';
     title = 'Отличный результат';
     desc = `${correct} из ${total} правильных ответов. Материал дня усвоен уверенно. Вы понимаете ключевые концепции и умеете применять их в ситуативных задачах.`;
@@ -2408,6 +4428,31 @@ function showResults() {
   answers.forEach((ans, i) => {
     if (ans !== test.questions[i].correct) wrongQ.push(i);
   });
+
+  if (currentTest === 5) {
+    // Итоговый тест — полный разбор всех вопросов, показывается только сейчас
+    const letters = ['А', 'Б', 'В', 'Г'];
+    breakdownHTML += `<div class="breakdown-row">
+      <div class="breakdown-icon">📊</div>
+      <div class="breakdown-text"><strong>Итог:</strong> ${correct} верных из ${total}, ${total - correct} неверных.</div>
+    </div>`;
+    test.questions.forEach((q, i) => {
+      const userAns = answers[i];
+      const isCorrect = userAns === q.correct;
+      const icon = isCorrect ? '✅' : '❌';
+      let text = `<strong>Вопрос ${i + 1}:</strong> ${q.text}<br>`;
+      text += `Правильный ответ (${letters[q.correct]}): ${q.options[q.correct]}`;
+      if (!isCorrect) {
+        text += `<br>Ваш ответ (${userAns !== undefined ? letters[userAns] : '—'}): ${userAns !== undefined ? q.options[userAns] : 'не отвечено'}`;
+      }
+      breakdownHTML += `<div class="breakdown-row">
+        <div class="breakdown-icon">${icon}</div>
+        <div class="breakdown-text">${text}</div>
+      </div>`;
+    });
+    document.getElementById('result-breakdown').innerHTML = breakdownHTML;
+    return;
+  }
 
   if (pct >= 80) {
     breakdownHTML += `<div class="breakdown-row">
@@ -2463,19 +4508,40 @@ function showResults() {
 // PROGRESS
 // ============================================================
 function updateProgress() {
-  const count = Object.keys(completedTests).length;
-  const pct = (count / 4) * 100;
-  document.getElementById('main-progress').style.width = pct + '%';
-  document.getElementById('progress-text').textContent = `${count} из 4 тестов пройдено`;
-  
-  Object.keys(completedTests).forEach(day => {
+  const coffeeKeys = Object.keys(completedTests).filter(k => /^[1-5]$/.test(k));
+  const pboKeys = Object.keys(completedTests).filter(k => /^pbo[1-4]$/.test(k));
+
+  const coffeeCount = coffeeKeys.length;
+  const coffeePct = (coffeeCount / 5) * 100;
+  const mainProgress = document.getElementById('main-progress');
+  const progressText = document.getElementById('progress-text');
+  if (mainProgress) mainProgress.style.width = coffeePct + '%';
+  if (progressText) progressText.textContent = `${coffeeCount} из 5 тестов пройдено`;
+
+  const pboCount = pboKeys.length;
+  const pboPct = (pboCount / 4) * 100;
+  const pboMainProgress = document.getElementById('pbo-main-progress');
+  const pboProgressText = document.getElementById('pbo-progress-text');
+  if (pboMainProgress) pboMainProgress.style.width = pboPct + '%';
+  if (pboProgressText) pboProgressText.textContent = `${pboCount} из 4 тестов пройдено`;
+
+  coffeeKeys.forEach(day => {
     const navItem = document.getElementById('nav-day-' + day);
-    if (navItem) {
-      navItem.classList.add('completed');
-    }
+    if (navItem) navItem.classList.add('completed');
     const btn = document.getElementById('test-btn-' + day);
     if (btn) {
       btn.textContent = `✓ Тест пройден (${completedTests[day].score}%)`;
+      btn.style.background = '#4caf7d';
+    }
+  });
+
+  pboKeys.forEach(key => {
+    const n = key.slice(3);
+    const navItem = document.getElementById('nav-pbo-day-' + n);
+    if (navItem) navItem.classList.add('completed');
+    const btn = document.getElementById('test-btn-pbo-' + n);
+    if (btn) {
+      btn.textContent = `✓ Тест пройден (${completedTests[key].score}%)`;
       btn.style.background = '#4caf7d';
     }
   });
