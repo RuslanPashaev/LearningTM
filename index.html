@@ -1972,6 +1972,7 @@
 
   function doLogout() {
     localStorage.removeItem('tm_participant');
+    localStorage.removeItem('tm_test_progress');
     participantName = '';
     document.getElementById('participant-display').textContent = '';
     document.getElementById('logout-btn').style.display = 'none';
@@ -4837,17 +4838,56 @@ function showDayView(day) {
   }
 }
 
-function showTestView(day) {
-  currentTest = day;
-  currentQuestion = 0;
-  answers = [];
-  selectedAnswer = null;
-  answered = false;
+// ============================================================
+// СОХРАНЕНИЕ ПРОГРЕССА ТЕСТА (localStorage)
+// ============================================================
+function saveTestProgress() {
+  try {
+    localStorage.setItem('tm_test_progress', JSON.stringify({
+      test: currentTest,
+      currentQuestion: currentQuestion,
+      answers: answers,
+    }));
+  } catch (e) {}
+}
 
+function loadTestProgress(day) {
+  try {
+    const raw = localStorage.getItem('tm_test_progress');
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    if (saved.test !== day) return null;
+    return saved;
+  } catch (e) {
+    return null;
+  }
+}
+
+function clearTestProgress() {
+  try { localStorage.removeItem('tm_test_progress'); } catch (e) {}
+}
+
+function showTestView(day) {
   document.getElementById('test-title').textContent = tests[day].title;
   document.getElementById('test-meta').textContent = tests[day].meta;
   const numericDay = (typeof day === 'string' && day.indexOf('pbo') === 0) ? parseInt(day.slice(3), 10) : day;
   document.getElementById('test-back-link').onclick = () => showDayView(numericDay);
+
+  const saved = loadTestProgress(day);
+  if (saved) {
+    // Продолжаем с того же места, где остановились
+    currentTest = day;
+    currentQuestion = saved.currentQuestion;
+    answers = saved.answers;
+    selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
+    answered = answers[currentQuestion] !== undefined;
+  } else {
+    currentTest = day;
+    currentQuestion = 0;
+    answers = [];
+    selectedAnswer = null;
+    answered = false;
+  }
 
   document.querySelectorAll('.view').forEach(v => {
     v.classList.remove('active');
@@ -4961,11 +5001,12 @@ function goNextFinal() {
   }
   currentQuestion++;
   selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
+  saveTestProgress();
   renderQuestion();
 }
 
 function selectAnswer(i) {
-  if (currentTest !== 5 && answered) return;
+  if (currentTest !== 5 && currentTest !== 'pbo5' && answered) return;
   selectedAnswer = i;
   renderQuestion();
 }
@@ -4974,6 +5015,7 @@ function confirmAnswer() {
   if (selectedAnswer === null) return;
   answers[currentQuestion] = selectedAnswer;
   answered = true;
+  saveTestProgress();
   renderQuestion();
 }
 
@@ -4982,6 +5024,7 @@ function nextQuestion() {
     currentQuestion++;
     selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
     answered = answers[currentQuestion] !== undefined;
+    saveTestProgress();
     renderQuestion();
   }
 }
@@ -4992,6 +5035,7 @@ function prevQuestion() {
     currentQuestion--;
     selectedAnswer = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
     answered = answers[currentQuestion] !== undefined;
+    saveTestProgress();
     renderQuestion();
   }
 }
@@ -5011,6 +5055,7 @@ function showResults() {
   
   const pct = Math.round((correct / total) * 100);
   completedTests[currentTest] = { score: pct, correct, total };
+  clearTestProgress();
 
   // Отправить результат в Google Таблицу
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbz-CNpPwG5K3gVRUlr_bIkdCqYlo3QIPtuuWTU1t5hbVDSI7fZqv_lw2ObTKh49uanVAg/exec";
