@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Программа обучения директоров точек</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
@@ -635,7 +636,6 @@
 </style>
 </head>
 <body>
-
 <!-- LOGIN SCREEN -->
 <div id="login-screen" style="
   position:fixed; inset:0; z-index:9999;
@@ -643,7 +643,7 @@
   display:flex; align-items:center; justify-content:center;
   font-family:'IBM Plex Sans',sans-serif;
 ">
-  <div style="
+<div style="
     background:#161616;
     border:1px solid #7a5e28;
     border-radius:12px;
@@ -651,52 +651,47 @@
     width:100%; max-width:420px;
     text-align:center;
   ">
-    <div style="font-size:11px;letter-spacing:3px;color:#c9a84c;margin-bottom:12px;">СЕТЬ КОФЕЕН · ЧР</div>
-    <div style="font-family:'Playfair Display',serif;font-size:26px;color:#e8e2d9;margin-bottom:8px;">Программа обучения</div>
-    <div style="font-size:13px;color:#8a8278;margin-bottom:32px;">Директор точки</div>
-
-    <div style="text-align:left;margin-bottom:16px;">
-      <label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ИМЯ</label>
-      <input id="inp-name" type="text" placeholder="Введите ваше имя" style="
+<div style="font-size:11px;letter-spacing:3px;color:#c9a84c;margin-bottom:12px;">СЕТЬ КОФЕЕН · ЧР</div>
+<div style="font-family:'Playfair Display',serif;font-size:26px;color:#e8e2d9;margin-bottom:8px;">Программа обучения</div>
+<div style="font-size:13px;color:#8a8278;margin-bottom:32px;">Директор точки</div>
+<div style="text-align:left;margin-bottom:16px;">
+<label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ИМЯ</label>
+<input id="inp-name" onblur="this.style.borderColor='#2a2a2a'" onfocus="this.style.borderColor='#c9a84c'" placeholder="Введите ваше имя" style="
         width:100%;padding:12px 16px;
         background:#1f1f1f;border:1px solid #2a2a2a;
         border-radius:6px;color:#e8e2d9;font-size:15px;
         outline:none;font-family:'IBM Plex Sans',sans-serif;
         transition:border 0.2s;
-      " onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#2a2a2a'">
-    </div>
-
-    <div style="text-align:left;margin-bottom:28px;">
-      <label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ФАМИЛИЯ</label>
-      <input id="inp-surname" type="text" placeholder="Введите вашу фамилию" style="
+      " type="text"/>
+</div>
+<div style="text-align:left;margin-bottom:28px;">
+<label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ФАМИЛИЯ</label>
+<input id="inp-surname" onblur="this.style.borderColor='#2a2a2a'" onfocus="this.style.borderColor='#c9a84c'" placeholder="Введите вашу фамилию" style="
         width:100%;padding:12px 16px;
         background:#1f1f1f;border:1px solid #2a2a2a;
         border-radius:6px;color:#e8e2d9;font-size:15px;
         outline:none;font-family:'IBM Plex Sans',sans-serif;
         transition:border 0.2s;
-      " onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#2a2a2a'">
-    </div>
-
-    <div style="text-align:left;margin-bottom:28px;">
-      <label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ДОЛЖНОСТЬ</label>
-      <select id="inp-role" style="
+      " type="text"/>
+</div>
+<div style="text-align:left;margin-bottom:28px;">
+<label style="font-size:11px;letter-spacing:1px;color:#8a8278;display:block;margin-bottom:6px;">ДОЛЖНОСТЬ</label>
+<select id="inp-role" onblur="this.style.borderColor='#2a2a2a'" onfocus="this.style.borderColor='#c9a84c'" style="
         width:100%;padding:12px 16px;
         background:#1f1f1f;border:1px solid #2a2a2a;
         border-radius:6px;color:#e8e2d9;font-size:15px;
         outline:none;font-family:'IBM Plex Sans',sans-serif;
         transition:border 0.2s;
-      " onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#2a2a2a'">
-        <option value="" disabled selected>Выберите должность</option>
-        <option value="director_coffee">Директор кофейни</option>
-        <option value="manager_coffee">Менеджер кофейни</option>
-        <option value="director_pbo">Директор ПБО</option>
-        <option value="manager_pbo">Менеджер ПБО</option>
-      </select>
-    </div>
-
-    <div id="login-error" style="color:#e05555;font-size:12px;margin-bottom:12px;display:none;">Введите имя, фамилию и выберите должность</div>
-
-    <button onclick="doLogin()" style="
+      ">
+<option disabled="" selected="" value="">Выберите должность</option>
+<option value="director_coffee">Директор кофейни</option>
+<option value="manager_coffee">Менеджер кофейни</option>
+<option value="director_pbo">Директор ПБО</option>
+<option value="manager_pbo">Менеджер ПБО</option>
+</select>
+</div>
+<div id="login-error" style="color:#e05555;font-size:12px;margin-bottom:12px;display:none;">Введите имя, фамилию и выберите должность</div>
+<button onclick="doLogin()" onmouseout="this.style.background='#c9a84c'" onmouseover="this.style.background='#e8c96e'" style="
       width:100%;padding:14px;
       background:#c9a84c;color:#000;
       border:none;border-radius:6px;
@@ -704,1235 +699,1056 @@
       cursor:pointer;letter-spacing:0.5px;
       font-family:'IBM Plex Sans',sans-serif;
       transition:background 0.2s;
-    " onmouseover="this.style.background='#e8c96e'" onmouseout="this.style.background='#c9a84c'">
+    ">
       Начать обучение →
     </button>
-
-    <div style="font-size:11px;color:#8a8278;margin-top:20px;">
+<div style="font-size:11px;color:#8a8278;margin-top:20px;">
       Доступ к программе · 5 дней · 5 тестов
     </div>
-  </div>
 </div>
-
+</div>
 <div class="header">
-  <div class="header-inner">
-    <div class="company-tag" id="header-tag">Сеть кофеен · Чеченская Республика · HoReCa</div>
-    <h1 id="header-title">Программа обучения директоров точек</h1>
-    <div class="header-sub"><span id="header-track-sub">Директора точек сети кофеен — интенсив 5 дней</span> &nbsp;|&nbsp; <span id="participant-display" style="color:#c9a84c;font-weight:600;"></span> <span id="logout-btn" onclick="doLogout()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">выйти</span> <span id="switch-track-btn" onclick="showTrackSelect()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">сменить программу</span></div>
-    <div class="header-meta">
-      <div class="meta-chip">5 дней · 11:00–13:00 · очно</div>
-      <div class="meta-chip">3–4 участника</div>
-      <div class="meta-chip">Тесты + ОС после каждого дня</div>
-      <div class="meta-chip">Домашние задания</div>
-    </div>
-  </div>
+<div class="header-inner">
+<div class="company-tag" id="header-tag">Сеть кофеен · Чеченская Республика · HoReCa</div>
+<h1 id="header-title">Программа обучения директоров точек</h1>
+<div class="header-sub"><span id="header-track-sub">Директора точек сети кофеен — интенсив 5 дней</span>  |  <span id="participant-display" style="color:#c9a84c;font-weight:600;"></span> <span id="logout-btn" onclick="doLogout()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">выйти</span> <span id="switch-track-btn" onclick="showTrackSelect()" style="display:none;cursor:pointer;color:#8a8278;font-size:11px;margin-left:10px;text-decoration:underline;">сменить программу</span></div>
+<div class="header-meta">
+<div class="meta-chip">5 дней · 11:00–13:00 · очно</div>
+<div class="meta-chip">3–4 участника</div>
+<div class="meta-chip">Тесты + ОС после каждого дня</div>
+<div class="meta-chip">Домашние задания</div>
 </div>
-
+</div>
+</div>
 <div class="layout">
-  <aside class="sidebar">
-    <div class="sidebar-sticky" id="sidebar-coffee" style="display:none">
-      <div class="nav-label">Навигация</div>
-      <div class="nav-item active" onclick="showView('overview')">
-        <div class="nav-day" style="border-radius:4px; font-size:9px;">ОБЗ</div>
-        <div class="nav-text">
-          <div class="nav-text-main">Обзор программы</div>
-          <div class="nav-text-sub">Цели и компетенции</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(1)" id="nav-day-1">
-        <div class="nav-day">1</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 1</div>
-          <div class="nav-text-sub">Роль и мышление директора</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(2)" id="nav-day-2">
-        <div class="nav-day">2</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 2</div>
-          <div class="nav-text-sub">Управление командой</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(3)" id="nav-day-3">
-        <div class="nav-day">3</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 3</div>
-          <div class="nav-text-sub">Операционное управление</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(4)" id="nav-day-4">
-        <div class="nav-day">4</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 4</div>
-          <div class="nav-text-sub">Финансы и показатели</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(5)" id="nav-day-5">
-        <div class="nav-day">5</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 5</div>
-          <div class="nav-text-sub">Итоговая аттестация</div>
-        </div>
-      </div>
-
-      <div class="progress-section">
-        <div class="nav-label">Прогресс</div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="main-progress" style="width:0%"></div>
-        </div>
-        <div class="progress-text" id="progress-text">0 из 5 тестов пройдено</div>
-      </div>
-    </div>
-
-    <div class="sidebar-sticky" id="sidebar-pbo" style="display:none">
-      <div class="nav-label">Навигация · ПБО</div>
-      <div class="nav-item active" onclick="showView('overview-pbo')">
-        <div class="nav-day" style="border-radius:4px; font-size:9px;">ОБЗ</div>
-        <div class="nav-text">
-          <div class="nav-text-main">Обзор программы</div>
-          <div class="nav-text-sub">Цели и компетенции</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(1)" id="nav-pbo-day-1">
-        <div class="nav-day">1</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 1</div>
-          <div class="nav-text-sub">Роль и мышление директора</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(2)" id="nav-pbo-day-2">
-        <div class="nav-day">2</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 2</div>
-          <div class="nav-text-sub">Дисциплина и мотивация</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(3)" id="nav-pbo-day-3">
-        <div class="nav-day">3</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 3</div>
-          <div class="nav-text-sub">Станции, стандарты, food safety</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(4)" id="nav-pbo-day-4">
-        <div class="nav-day">4</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 4</div>
-          <div class="nav-text-sub">Финансы и показатели</div>
-        </div>
-      </div>
-      <div class="nav-item" onclick="showDayView(5)" id="nav-pbo-day-5">
-        <div class="nav-day">5</div>
-        <div class="nav-text">
-          <div class="nav-text-main">День 5</div>
-          <div class="nav-text-sub">Итоговая аттестация</div>
-        </div>
-      </div>
-
-      <div class="progress-section">
-        <div class="nav-label">Прогресс</div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="pbo-main-progress" style="width:0%"></div>
-        </div>
-        <div class="progress-text" id="pbo-progress-text">0 из 4 тестов пройдено</div>
-      </div>
-    </div>
-  </aside>
-
-  <main class="main">
-
-    <!-- OVERVIEW -->
-    <!-- TRACK SELECT -->
-    <div class="view active" id="view-track-select" style="display:block">
-      <div class="overview-note">
-        <h3>Выберите программу обучения</h3>
-        <p>Управленческий костяк программы общий для всех форматов. Кейсы, метрики и специалистные блоки различаются по концепции точки.</p>
-      </div>
-      <div class="overview-grid" style="grid-template-columns: repeat(2, 1fr);">
-        <div class="day-card" onclick="selectTrack('coffee')" style="cursor:pointer;">
-          <div class="day-card-num">☕</div>
-          <div class="day-card-title">Директор кофейни</div>
-          <div class="day-card-theme">Coffee Story · Nutland — 5 дней, готовая программа с тестами</div>
-        </div>
-        <div class="day-card" onclick="selectTrack('pbo')" style="cursor:pointer;">
-          <div class="day-card-num">🍗</div>
-          <div class="day-card-title">Директор ПБО</div>
-          <div class="day-card-theme">Маковский · Crispy — 5 дней, станции и food safety</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OVERVIEW: PBO -->
-    <div class="view" id="view-overview-pbo" style="display:none">
-      <div class="overview-note">
-        <h3>Цель программы</h3>
-        <p>Обучить и развить директоров точек ПБО, способных самостоятельно управлять предприятием быстрого обслуживания: обеспечивать дисциплину, мотивацию команды, работу по станциям, food safety и рост показателей.</p>
-      </div>
-
-      <div class="overview-grid">
-        <div class="day-card" onclick="showDayView(1)">
-          <div class="day-card-num">01</div>
-          <div class="day-card-title">Роль и мышление директора</div>
-          <div class="day-card-theme">Матрица ответственности · SMART · SBI · Ситуативное лидерство на станциях · Битрикс24</div>
-        </div>
-        <div class="day-card" onclick="showDayView(2)">
-          <div class="day-card-num">02</div>
-          <div class="day-card-title">Дисциплина и мотивация</div>
-          <div class="day-card-theme">Кассовая дисциплина · Красные линии food safety · 1-on-1 · Служба безопасности</div>
-        </div>
-        <div class="day-card" onclick="showDayView(3)">
-          <div class="day-card-num">03</div>
-          <div class="day-card-title">Станции, стандарты, food safety</div>
-          <div class="day-card-theme">Аудит по станциям · МПК · Критические контрольные точки · Ротация персонала · Техобслуживание</div>
-        </div>
-        <div class="day-card" onclick="showDayView(4)">
-          <div class="day-card-num">04</div>
-          <div class="day-card-title">Финансы и показатели</div>
-          <div class="day-card-theme">Формула выручки · Скорость обслуживания · BSC · Маркетинг · iiko</div>
-        </div>
-        <div class="day-card" onclick="showDayView(5)">
-          <div class="day-card-num">05</div>
-          <div class="day-card-title">Итоговая аттестация</div>
-          <div class="day-card-theme">Категория «Директор ПБО» в общем инструменте аттестации</div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Ключевые особенности программы ПБО</div>
-      <div class="competency-grid">
-        <div class="comp-card">
-          <h4>Станции вместо общей точки</h4>
-          <ul class="comp-list">
-            <li>Касса, кухня, жаровня, обслуживание, хранение, зал — отдельный аудит по каждой</li>
-            <li>Ротация персонала между станциями</li>
-            <li>Кросс-обучение как элемент карьерного трека</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <h4>Food safety выше по критичности</h4>
-          <ul class="comp-list">
-            <li>Критические контрольные точки (температура, сроки, ККТ)</li>
-            <li>Ежедневный чек-лист на 12 пунктов</li>
-            <li>Нарушение = красная линия, не рядовая ошибка</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <h4>Скорость обслуживания</h4>
-          <ul class="comp-list">
-            <li>Новый фактор формулы выручки — секунды на гостя</li>
-            <li>Ограничивает трафик в час пик физически</li>
-            <li>Отдельная колонка в еженедельном отчёте</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <h4>Кассовая дисциплина</h4>
-          <ul class="comp-list">
-            <li>Высокий приоритет — высокий оборот на точку</li>
-            <li>Инкассация, сторно, возвраты — зона СБ</li>
-            <li>Эскалация выше рядового нарушения стандарта</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- OVERVIEW: COFFEE -->
-    <div class="view" id="view-overview" style="display:none">
-      <div class="overview-note">
-        <h3>Цель программы</h3>
-        <p>Обучить и развить директоров точек, способных самостоятельно управлять своей кофейней: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый директор знает свою роль, инструменты влияния и умеет применять их в работе.</p>
-      </div>
-
-      <div class="overview-grid">
-        <div class="day-card" onclick="showDayView(1)">
-          <div class="day-card-num">01</div>
-          <div class="day-card-title">Роль и мышление директора</div>
-          <div class="day-card-theme">Самоопределение · Зоны ответственности · Переход из исполнителя в управленца · Битрикс24</div>
-        </div>
-        <div class="day-card" onclick="showDayView(2)">
-          <div class="day-card-num">02</div>
-          <div class="day-card-title">Управление командой</div>
-          <div class="day-card-theme">Дисциплина · Мотивация · Удержание · Работа с молодёжью 16+ · Финансовая безопасность</div>
-        </div>
-        <div class="day-card" onclick="showDayView(3)">
-          <div class="day-card-num">03</div>
-          <div class="day-card-title">Операционное управление</div>
-          <div class="day-card-theme">Стандарты · Ежедневный контроль качества · Работа с менеджером · Техобслуживание · Оборудование</div>
-        </div>
-        <div class="day-card" onclick="showDayView(4)">
-          <div class="day-card-num">04</div>
-          <div class="day-card-title">Финансы и показатели</div>
-          <div class="day-card-theme">P&L кофейни · KPI · Влияние на выручку · Управление себестоимостью · Маркетинг · iiko</div>
-        </div>
-        <div class="day-card" onclick="showDayView(5)">
-          <div class="day-card-num">05</div>
-          <div class="day-card-title">Итоговая аттестация</div>
-          <div class="day-card-theme">Комплексный тест · Защита плана развития точки · Обратная связь</div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Ключевые компетенции программы</div>
-      <div class="competency-grid">
-        <div class="comp-card">
-          <h4>Управленческие компетенции</h4>
-          <ul class="comp-list">
-            <li>Постановка задач и контроль исполнения</li>
-            <li>Управленческое общение и обратная связь</li>
-            <li>Принятие решений в нестандартных ситуациях</li>
-            <li>Работа с конфликтами в команде</li>
-            <li>Делегирование и распределение полномочий</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <h4>Операционные компетенции</h4>
-          <ul class="comp-list">
-            <li>Знание стандартов и процессов кофейни</li>
-            <li>Методология проверки и аудита точки</li>
-            <li>Управление качеством и гостевым сервисом</li>
-            <li>Контроль товарного учёта и списаний</li>
-            <li>Управление расписанием и нагрузкой</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <h4>Финансовые компетенции</h4>
-          <ul class="comp-list">
-            <li>Чтение и анализ базового P&L</li>
-            <li>Понимание структуры выручки кофейни</li>
-            <li>Управление ФОТ и себестоимостью</li>
-            <li>Работа с KPI: выручка, ср. чек, трафик</li>
-            <li>Планирование и прогнозирование</li>
-          </ul>
-        </div>
-        <div class="comp-card">
-          <h4>HR-компетенции</h4>
-          <ul class="comp-list">
-            <li>Адаптация и ввод в должность</li>
-            <li>Нематериальная мотивация</li>
-            <li>Работа с молодёжью 16+</li>
-            <li>Удержание ключевых сотрудников</li>
-            <li>Exit-интервью и причины ухода</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- DAY 1 VIEW -->
-    <div class="view" id="view-day-1" style="display:none">
-      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">01</div>
-        <div>
-          <div class="day-title">Роль и мышление директора точки</div>
-          <div class="day-goal">Цель: каждый директор чётко понимает, кто он, за что отвечает, и в чём принципиальное отличие его роли от менеджера</div>
-          <div class="day-tags">
-            <span class="tag gold">Управленческое мышление</span>
-            <span class="tag">Зоны ответственности</span>
-            <span class="tag">Самооценка</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card">
-        <div class="block-time">11:00–11:15</div>
-        <div class="block-content">
-          <div class="block-title">Открытие. Знакомство. Контракт группы</div>
-          <div class="block-desc">Ожидания участников, правила работы на неделю, формат обучения. Каждый называет свою главную управленческую проблему прямо сейчас.</div>
-          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:15–12:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 1. Кто такой директор в кофейном бизнесе</div>
-          <div class="block-desc">Структура управления: головной офис → директор → менеджер → линейный персонал. Чем директор отличается от управляющего точкой. Матрица ответственности: что директор делает сам, что делегирует, что контролирует. Типичные ошибки первых 3 месяцев в роли.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-          </div>
-        </div>
-      </div>
-
-      
-      
+<aside class="sidebar">
+<div class="sidebar-sticky" id="sidebar-coffee" style="display:none">
+<div class="nav-label">Навигация</div>
+<div class="nav-item active" onclick="showView('overview')">
+<div class="nav-day" style="border-radius:4px; font-size:9px;">ОБЗ</div>
+<div class="nav-text">
+<div class="nav-text-main">Обзор программы</div>
+<div class="nav-text-sub">Цели и компетенции</div>
+</div>
+</div>
+<div class="nav-item" id="nav-day-1" onclick="showDayView(1)">
+<div class="nav-day">1</div>
+<div class="nav-text">
+<div class="nav-text-main">День 1</div>
+<div class="nav-text-sub">Роль и мышление директора</div>
+</div>
+</div>
+<div class="nav-item" id="nav-day-2" onclick="showDayView(2)">
+<div class="nav-day">2</div>
+<div class="nav-text">
+<div class="nav-text-main">День 2</div>
+<div class="nav-text-sub">Управление командой</div>
+</div>
+</div>
+<div class="nav-item" id="nav-day-3" onclick="showDayView(3)">
+<div class="nav-day">3</div>
+<div class="nav-text">
+<div class="nav-text-main">День 3</div>
+<div class="nav-text-sub">Операционное управление</div>
+</div>
+</div>
+<div class="nav-item" id="nav-day-4" onclick="showDayView(4)">
+<div class="nav-day">4</div>
+<div class="nav-text">
+<div class="nav-text-main">День 4</div>
+<div class="nav-text-sub">Финансы и показатели</div>
+</div>
+</div>
+<div class="nav-item" id="nav-day-5" onclick="showDayView(5)">
+<div class="nav-day">5</div>
+<div class="nav-text">
+<div class="nav-text-main">День 5</div>
+<div class="nav-text-sub">Итоговая аттестация</div>
+</div>
+</div>
+<div class="progress-section">
+<div class="nav-label">Прогресс</div>
+<div class="progress-bar-wrap">
+<div class="progress-bar-fill" id="main-progress" style="width:0%"></div>
+</div>
+<div class="progress-text" id="progress-text">0 из 5 тестов пройдено</div>
+</div>
+</div>
+<div class="sidebar-sticky" id="sidebar-pbo" style="display:none">
+<div class="nav-label">Навигация · ПБО</div>
+<div class="nav-item active" onclick="showView('overview-pbo')">
+<div class="nav-day" style="border-radius:4px; font-size:9px;">ОБЗ</div>
+<div class="nav-text">
+<div class="nav-text-main">Обзор программы</div>
+<div class="nav-text-sub">Цели и компетенции</div>
+</div>
+</div>
+<div class="nav-item" id="nav-pbo-day-1" onclick="showDayView(1)">
+<div class="nav-day">1</div>
+<div class="nav-text">
+<div class="nav-text-main">День 1</div>
+<div class="nav-text-sub">Роль и мышление директора</div>
+</div>
+</div>
+<div class="nav-item" id="nav-pbo-day-2" onclick="showDayView(2)">
+<div class="nav-day">2</div>
+<div class="nav-text">
+<div class="nav-text-main">День 2</div>
+<div class="nav-text-sub">Дисциплина и мотивация</div>
+</div>
+</div>
+<div class="nav-item" id="nav-pbo-day-3" onclick="showDayView(3)">
+<div class="nav-day">3</div>
+<div class="nav-text">
+<div class="nav-text-main">День 3</div>
+<div class="nav-text-sub">Станции, стандарты, безопасность продукта</div>
+</div>
+</div>
+<div class="nav-item" id="nav-pbo-day-4" onclick="showDayView(4)">
+<div class="nav-day">4</div>
+<div class="nav-text">
+<div class="nav-text-main">День 4</div>
+<div class="nav-text-sub">Финансы и показатели</div>
+</div>
+</div>
+<div class="nav-item" id="nav-pbo-day-5" onclick="showDayView(5)">
+<div class="nav-day">5</div>
+<div class="nav-text">
+<div class="nav-text-main">День 5</div>
+<div class="nav-text-sub">Итоговая аттестация</div>
+</div>
+</div>
+<div class="progress-section">
+<div class="nav-label">Прогресс</div>
+<div class="progress-bar-wrap">
+<div class="progress-bar-fill" id="pbo-main-progress" style="width:0%"></div>
+</div>
+<div class="progress-text" id="pbo-progress-text">0 из 4 тестов пройдено</div>
+</div>
+</div>
+</aside>
+<main class="main">
+<!-- OVERVIEW -->
+<!-- TRACK SELECT -->
+<div class="view active" id="view-track-select" style="display:block">
+<div class="overview-note">
+<h3>Выберите программу обучения</h3>
+<p>Управленческий костяк программы общий для всех форматов. Кейсы, метрики и специалистные блоки различаются по концепции точки.</p>
+</div>
+<div class="overview-grid" style="grid-template-columns: repeat(2, 1fr);">
+<div class="day-card" onclick="selectTrack('coffee')" style="cursor:pointer;">
+<div class="day-card-num">☕</div>
+<div class="day-card-title">Директор кофейни</div>
+<div class="day-card-theme">Coffee Story · Nutland — 5 дней, готовая программа с тестами</div>
+</div>
+<div class="day-card" onclick="selectTrack('pbo')" style="cursor:pointer;">
+<div class="day-card-num">🍗</div>
+<div class="day-card-title">Директор ПБО</div>
+<div class="day-card-theme">Маковский · Crispy — 5 дней, станции и безопасность продукта</div>
+</div>
+</div>
+</div>
+<!-- OVERVIEW: PBO -->
+<div class="view" id="view-overview-pbo" style="display:none">
+<div class="overview-note">
+<h3>Цель программы</h3>
+<p>Обучить и развить директоров точек ПБО, способных самостоятельно управлять предприятием быстрого обслуживания: обеспечивать дисциплину, мотивацию команды, работу по станциям, безопасность продукта и рост показателей.</p>
+</div>
+<div class="overview-grid">
+<div class="day-card" onclick="showDayView(1)">
+<div class="day-card-num">01</div>
+<div class="day-card-title">Роль и мышление директора</div>
+<div class="day-card-theme">Матрица ответственности · SMART · SBI · Ситуативное лидерство · Матрица Эйзенхауэра · Битрикс24</div>
+</div>
+<div class="day-card" onclick="showDayView(2)">
+<div class="day-card-num">02</div>
+<div class="day-card-title">Дисциплина и мотивация</div>
+<div class="day-card-theme">Кассовая дисциплина · Красные линии: безопасность продукта · 1-on-1</div>
+</div>
+<div class="day-card" onclick="showDayView(3)">
+<div class="day-card-num">03</div>
+<div class="day-card-title">Станции, стандарты, безопасность продукта</div>
+<div class="day-card-theme">Аудит по станциям · МПК · Критические контрольные точки · Ротация персонала · Маркетинг · Техобслуживание</div>
+</div>
+<div class="day-card" onclick="showDayView(4)">
+<div class="day-card-num">04</div>
+<div class="day-card-title">Финансы и показатели</div>
+<div class="day-card-theme">Формула выручки · Скорость обслуживания · BSC · iiko</div>
+</div>
+<div class="day-card" onclick="showDayView(5)">
+<div class="day-card-num">05</div>
+<div class="day-card-title">Итоговая аттестация</div>
+<div class="day-card-theme">Категория «Директор ПБО» в общем инструменте аттестации</div>
+</div>
+</div>
+<div class="schedule-label">Ключевые особенности программы ПБО</div>
+<div class="competency-grid">
+<div class="comp-card">
+<h4>Станции вместо общей точки</h4>
+<ul class="comp-list">
+<li>Касса, кухня, жаровня, обслуживание, хранение, зал — отдельный аудит по каждой</li>
+<li>Ротация персонала между станциями</li>
+<li>Кросс-обучение как элемент карьерного трека</li>
+</ul>
+</div>
+<div class="comp-card">
+<h4>Food safety выше по критичности</h4>
+<ul class="comp-list">
+<li>Критические контрольные точки (температура, сроки, ККТ)</li>
+<li>Ежедневный чек-лист на 12 пунктов</li>
+<li>Нарушение = красная линия, не рядовая ошибка</li>
+</ul>
+</div>
+<div class="comp-card">
+<h4>Скорость обслуживания</h4>
+<ul class="comp-list">
+<li>Новый фактор формулы выручки — секунды на гостя</li>
+<li>Ограничивает трафик в час пик физически</li>
+<li>Отдельная колонка в еженедельном отчёте</li>
+</ul>
+</div>
+<div class="comp-card">
+<h4>Кассовая дисциплина</h4>
+<ul class="comp-list">
+<li>Высокий приоритет — высокий оборот на точку</li>
+<li>Инкассация, сторно, возвраты — зона СБ</li>
+<li>Эскалация выше рядового нарушения стандарта</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- OVERVIEW: COFFEE -->
+<div class="view" id="view-overview" style="display:none">
+<div class="overview-note">
+<h3>Цель программы</h3>
+<p>Обучить и развить директоров точек, способных самостоятельно управлять своей кофейней: обеспечивать дисциплину, мотивацию команды, операционное качество и рост показателей. По итогам — каждый директор знает свою роль, инструменты влияния и умеет применять их в работе.</p>
+</div>
+<div class="overview-grid">
+<div class="day-card" onclick="showDayView(1)">
+<div class="day-card-num">01</div>
+<div class="day-card-title">Роль и мышление директора</div>
+<div class="day-card-theme">Самоопределение · Зоны ответственности · Переход из исполнителя в управленца · Битрикс24</div>
+</div>
+<div class="day-card" onclick="showDayView(2)">
+<div class="day-card-num">02</div>
+<div class="day-card-title">Управление командой</div>
+<div class="day-card-theme">Дисциплина · Мотивация · Удержание · Работа с молодёжью 16+ · Финансовая безопасность</div>
+</div>
+<div class="day-card" onclick="showDayView(3)">
+<div class="day-card-num">03</div>
+<div class="day-card-title">Операционное управление</div>
+<div class="day-card-theme">Стандарты · Ежедневный контроль качества · Работа с менеджером · Техобслуживание · Оборудование</div>
+</div>
+<div class="day-card" onclick="showDayView(4)">
+<div class="day-card-num">04</div>
+<div class="day-card-title">Финансы и показатели</div>
+<div class="day-card-theme">P&amp;L кофейни · KPI · Влияние на выручку · Управление себестоимостью · Маркетинг · iiko</div>
+</div>
+<div class="day-card" onclick="showDayView(5)">
+<div class="day-card-num">05</div>
+<div class="day-card-title">Итоговая аттестация</div>
+<div class="day-card-theme">Комплексный тест · Защита плана развития точки · Обратная связь</div>
+</div>
+</div>
+<div class="schedule-label">Ключевые компетенции программы</div>
+<div class="competency-grid">
+<div class="comp-card">
+<h4>Управленческие компетенции</h4>
+<ul class="comp-list">
+<li>Постановка задач и контроль исполнения</li>
+<li>Управленческое общение и обратная связь</li>
+<li>Принятие решений в нестандартных ситуациях</li>
+<li>Работа с конфликтами в команде</li>
+<li>Делегирование и распределение полномочий</li>
+</ul>
+</div>
+<div class="comp-card">
+<h4>Операционные компетенции</h4>
+<ul class="comp-list">
+<li>Знание стандартов и процессов кофейни</li>
+<li>Методология проверки и аудита точки</li>
+<li>Управление качеством и гостевым сервисом</li>
+<li>Контроль товарного учёта и списаний</li>
+<li>Управление расписанием и нагрузкой</li>
+</ul>
+</div>
+<div class="comp-card">
+<h4>Финансовые компетенции</h4>
+<ul class="comp-list">
+<li>Чтение и анализ базового P&amp;L</li>
+<li>Понимание структуры выручки кофейни</li>
+<li>Управление ФОТ и себестоимостью</li>
+<li>Работа с KPI: выручка, ср. чек, трафик</li>
+<li>Планирование и прогнозирование</li>
+</ul>
+</div>
+<div class="comp-card">
+<h4>HR-компетенции</h4>
+<ul class="comp-list">
+<li>Адаптация и ввод в должность</li>
+<li>Нематериальная мотивация</li>
+<li>Работа с молодёжью 16+</li>
+<li>Удержание ключевых сотрудников</li>
+<li>Exit-интервью и причины ухода</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- DAY 1 VIEW -->
+<div class="view" id="view-day-1" style="display:none">
+<div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">01</div>
+<div>
+<div class="day-title">Роль и мышление директора точки</div>
+<div class="day-goal">Цель: каждый директор чётко понимает, кто он, за что отвечает, и в чём принципиальное отличие его роли от менеджера</div>
+<div class="day-tags">
+<span class="tag gold">Управленческое мышление</span>
+<span class="tag">Зоны ответственности</span>
+<span class="tag">Самооценка</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card">
+<div class="block-time">11:00–11:15</div>
+<div class="block-content">
+<div class="block-title">Открытие. Знакомство. Контракт группы</div>
+<div class="block-desc">Ожидания участников, правила работы на неделю, формат обучения. Каждый называет свою главную управленческую проблему прямо сейчас.</div>
+<div class="block-methods"><span class="method-chip practice">Практика</span></div>
+</div>
+</div>
 <div class="block-card important">
-        <div class="block-time">12:00–12:50</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2. Управленческий стиль и ситуативное лидерство</div>
-          <div class="block-desc">Модель Херси–Бланшара: 4 уровня зрелости сотрудника, 4 стиля управления. Как выбирать стиль под конкретного сотрудника. Применение в кофейне: стажёр, опытный бариста, менеджер. Работа в группах: разбор 3 реальных ситуаций из реальных ситуаций.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      <div class="block-card important">
-        <div class="block-time">14:00–15:00 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 3. Постановка задач и контроль — модель SMART+</div>
-          <div class="block-desc">Почему задачи не выполняются: 5 причин. Структура правильной задачи: результат, срок, ресурс, критерий оценки. Точки контроля: промежуточный и итоговый. Практика: каждый директор ставит 2 задачи своему «сотруднику» — группа даёт обратную связь.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      
-
-      
-
-      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
-        <div class="block-time">15:00–15:25 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 4. Битрикс24 — частые вопросы</div>
-          <div class="block-desc">Специалист отвечает на частые вопросы директоров по работе в Битрикс24: постановка и контроль задач, документооборот, чаты и согласования. Формат FAQ — приносите свои вопросы заранее.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 1</h3>
-        <div class="hw-item">
-          <span class="hw-badge theory">Теория</span>
-          <div class="hw-text">Прочитать материал «10 ошибок нового руководителя в общепите» (выдаётся на бумаге). Выписать 3 ошибки, которые вы уже допускали или рискуете допустить. Написать письменно — что сделаете иначе.</div>
-        </div>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">До завтрашнего утра поставить 1 задачу менеджеру своей кофейни по модели SMART. Записать формулировку. Завтра разбираем в группе.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(1)" id="test-btn-1">
+<div class="block-time">11:15–12:00</div>
+<div class="block-content">
+<div class="block-title">Блок 1. Кто такой директор в кофейном бизнесе</div>
+<div class="block-desc">Структура управления: головной офис → директор → менеджер → линейный персонал. Чем директор отличается от управляющего точкой. Матрица ответственности: что директор делает сам, что делегирует, что контролирует. Типичные ошибки первых 3 месяцев в роли.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:00–12:50</div>
+<div class="block-content">
+<div class="block-title">Блок 2. Управленческий стиль и ситуативное лидерство</div>
+<div class="block-desc">Модель Херси–Бланшара: 4 уровня зрелости сотрудника, 4 стиля управления. Как выбирать стиль под конкретного сотрудника. Применение в кофейне: стажёр, опытный бариста, менеджер. Работа в группах: разбор 3 реальных ситуаций из реальных ситуаций.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">14:00–15:00 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 3. Постановка задач и контроль — модель SMART+</div>
+<div class="block-desc">Почему задачи не выполняются: 5 причин. Структура правильной задачи: результат, срок, ресурс, критерий оценки. Точки контроля: промежуточный и итоговый. Практика: каждый директор ставит 2 задачи своему «сотруднику» — группа даёт обратную связь.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+<div class="block-time">15:00–15:25 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 4. Битрикс24 — частые вопросы</div>
+<div class="block-desc">Специалист отвечает на частые вопросы директоров по работе в Битрикс24: постановка и контроль задач, документооборот, чаты и согласования. Формат FAQ — приносите свои вопросы заранее.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+</div>
+</div>
+</div>
+<div class="hw-section">
+<h3>Домашнее задание — День 1</h3>
+<div class="hw-item">
+<span class="hw-badge theory">Теория</span>
+<div class="hw-text">Прочитать материал «10 ошибок нового руководителя в общепите» (выдаётся на бумаге). Выписать 3 ошибки, которые вы уже допускали или рискуете допустить. Написать письменно — что сделаете иначе.</div>
+</div>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">До завтрашнего утра поставить 1 задачу менеджеру своей кофейни по модели SMART. Записать формулировку. Завтра разбираем в группе.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-1" onclick="showTestView(1)">
         ✦ Пройти тест по Дню 1
       </button></div>
-
-    <!-- DAY 2 VIEW -->
-    </div>
-
-    <div class="view" id="view-day-2" style="display:none">
-      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">02</div>
-        <div>
-          <div class="day-title">Управление командой в кофейне</div>
-          <div class="day-goal">Цель: директор умеет выстраивать дисциплину без давления, мотивировать молодых сотрудников, снижать текучесть персонала и применять инструменты в работе</div>
-          <div class="day-tags">
-            <span class="tag gold">Дисциплина</span>
-            <span class="tag">Мотивация</span>
-            <span class="tag">Удержание</span>
-            <span class="tag">Молодёжь 16+</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card">
-        <div class="block-time">11:00–11:15</div>
-        <div class="block-content">
-          <div class="block-title">Разбор ДЗ. Задачи по SMART — что получилось, что нет</div>
-          <div class="block-desc">Каждый зачитывает свою задачу. Группа оценивает по чек-листу. Итог — корректировка формулировок.</div>
-          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:15–12:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 5. Дисциплина — это система</div>
-          <div class="block-desc">Почему сотрудники нарушают правила: 3 реальные причины. Система дисциплины: правила → напоминание → предупреждение → последствия. Как реагировать на опоздания, прогулы, нарушение формы. Специфика: молодые сотрудники от 16 лет — особенности трудового законодательства, как говорить с ними и с их родителями. Как вести себя в конфликте — стратегии для разных ситуаций.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-          </div>
-        </div>
-      </div>
-
-      
-      
+<!-- DAY 2 VIEW -->
+</div>
+<div class="view" id="view-day-2" style="display:none">
+<div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">02</div>
+<div>
+<div class="day-title">Управление командой в кофейне</div>
+<div class="day-goal">Цель: директор умеет выстраивать дисциплину без давления, мотивировать молодых сотрудников, снижать текучесть персонала и применять инструменты в работе</div>
+<div class="day-tags">
+<span class="tag gold">Дисциплина</span>
+<span class="tag">Мотивация</span>
+<span class="tag">Удержание</span>
+<span class="tag">Молодёжь 16+</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card">
+<div class="block-time">11:00–11:15</div>
+<div class="block-content">
+<div class="block-title">Разбор ДЗ. Задачи по SMART — что получилось, что нет</div>
+<div class="block-desc">Каждый зачитывает свою задачу. Группа оценивает по чек-листу. Итог — корректировка формулировок.</div>
+<div class="block-methods"><span class="method-chip practice">Практика</span></div>
+</div>
+</div>
 <div class="block-card important">
-        <div class="block-time">12:00–12:50</div>
-        <div class="block-content">
-          <div class="block-title">Блок 6. Мотивация в HoReCa: что реально работает</div>
-          <div class="block-desc">Пирамида потребностей Маслоу применительно к линейному персоналу кофейни. Материальная vs нематериальная мотивация — что важнее для молодых сотрудников. Конкретные инструменты: нематериальная мотивация в рамках исламской культуры (признание, уважение, развитие). Признание результатов. Рамадан и его влияние на производительность — как управлять командой в этот период. Разработка карты мотиваторов для каждой точки.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      <div class="block-card important">
-        <div class="block-time">14:00–15:00 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 7. Текучесть персонала — управление и снижение</div>
-          <div class="block-desc">Стоимость текучести: считаем вместе на реальных цифрах. Почему уходят из кофеен — топ-5 причин. Адаптация нового сотрудника: план первых 2 недель, роль директора в нём. Инструменты удержания без повышения зарплаты. Exit-интервью: как проводить и что с этим делать. Разбор кейса: сотрудник собирается уволиться — как директор должен действовать.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      
-
-      
-
-      <div class="block-card" style="border-color: var(--red, #e05555);">
-        <div class="block-time">15:00–15:35 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 8. Служба безопасности — превенция краж и обмана</div>
-          <div class="block-desc">Представитель СБ разбирает реальные кейсы краж и обмана на точках: типичные схемы, как их распознать на раннем этапе. Превентивные меры: контроль кассы, контроль поставок, работа с подозрениями без обвинений. Обсуждение текущих проблем с группой — что директора уже замечали на своих точках.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-            <span class="method-chip case">Кейсы</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 2</h3>
-        <div class="hw-item">
-          <span class="hw-badge theory">Теория</span>
-          <div class="hw-text">Написать «Карту мотиваторов» для каждого менеджера своей точки (минимум 2 человека): кто что ценит на работе, что демотивирует, что удержит. Формат — таблица на бумаге.</div>
-        </div>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">Провести короткий 1-on-1 с менеджером своей точки (15 минут). Три вопроса: что идёт хорошо, что мешает работать, что нужно от меня. Записать ответы и принести завтра.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(2)" id="test-btn-2">
-        ✦ Пройти тест по Дню 2
-      </button></div>
-
-    <!-- DAY 3 VIEW -->
-    </div>
-
-    <div class="view" id="view-day-3" style="display:none">
-      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">03</div>
-        <div>
-          <div class="day-title">Операционное управление кофейней</div>
-          <div class="day-goal">Цель: директор знает, как устроены операции кофейни, умеет проводить аудит точки и влиять на качество через системные инструменты, а не ручное управление</div>
-          <div class="day-tags">
-            <span class="tag gold">Стандарты</span>
-            <span class="tag">Аудит точки</span>
-            <span class="tag">Качество</span>
-            <span class="tag">Процессы</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card">
-        <div class="block-time">11:00–11:15</div>
-        <div class="block-content">
-          <div class="block-title">Разбор ДЗ. Результаты 1-on-1 с менеджерами</div>
-          <div class="block-desc">Что узнали о своих точках. Какие инсайты про мотиваторов получили. Что планируют изменить.</div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:15–12:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 9. Стандарты кофейни — основа всего</div>
-          <div class="block-desc">Зачем нужны стандарты в HoReCa: гостевой опыт, безопасность, управляемость. Ключевые блоки стандартов: открытие/закрытие, приготовление, сервис, чистота, товарный учёт. Как внедрять стандарты в уже работающую точку (без сопротивления персонала).</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-          </div>
-        </div>
-      </div>
-
-      
-      
+<div class="block-time">11:15–12:00</div>
+<div class="block-content">
+<div class="block-title">Блок 5. Дисциплина — это система</div>
+<div class="block-desc">Почему сотрудники нарушают правила: 3 реальные причины. Система дисциплины: правила → напоминание → предупреждение → последствия. Как реагировать на опоздания, прогулы, нарушение формы. Специфика: молодые сотрудники от 16 лет — особенности трудового законодательства, как говорить с ними и с их родителями. Как вести себя в конфликте — стратегии для разных ситуаций.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+</div>
+</div>
+</div>
 <div class="block-card important">
-        <div class="block-time">12:00–12:50</div>
-        <div class="block-content">
-          <div class="block-title">Блок 10. Ежедневный контроль качества на точке</div>
-          <div class="block-desc">Структура ежедневного контроля директора: утром (отчёт за вчера, проверка предыдущих замечаний), в течение дня («пульс» точки, наблюдение за пиком), вечером (разговор с менеджером, приоритеты, задачи на завтра). Что смотреть в первую очередь: топ-10 точек контроля. Как фиксировать нарушения и давать задачи на исправление. Разбор кейса: за день директор замечает 5 нарушений — как расставить приоритеты. Ролевая игра: директор проводит вечерний разговор с менеджером.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      <div class="block-card important">
-        <div class="block-time">14:00–15:00 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 11. Управление качеством продукта и сервиса</div>
-          <div class="block-desc">Кофейный продукт: что влияет на качество чашки (кратко, без технологии). Сервис в кофейне: ожидания гостей, типичные жалобы. Работа с жалобами гостей: модель LAST (Listen–Apologize–Solve–Thank). Как директор объективно проверяет качество, даже находясь на точке постоянно: тайный гость, отзывы, независимые показатели. Mystery guest: как организовать дёшево.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      
-
-      
-
-      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
-        <div class="block-time">15:00–15:25 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 12. Техобслуживание — частые поломки и скорость решения</div>
-          <div class="block-desc">Специалист департамента техобслуживания разбирает частые поломки оборудования на точках: кофемашины, кофемолки, холодильное оборудование. Как директору правильно описывать проблему для быстрого решения. Норматив скорости реагирования. Что директор может сделать сам до приезда специалиста.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card" style="border-color: var(--gold);">
-        <div class="block-time">15:25–16:05 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 13. Шеф-бариста — глубокая чистка оборудования</div>
-          <div class="block-desc">Шеф-бариста разбирает полный цикл чистки: почему кофейные масла окисляются за несколько часов и портят вкус, ежедневная чистка кофемолки и жерновов (чистящие гранулы + периодическая полная разборка), вечерняя чистка эспрессо-машины и Backflush — обратная промывка группы (5 циклов по 10 секунд + тестовая порция), уход за паровыми трубками, замачивание холдеров и корзин (нельзя замачивать деревянные ручки). Каждый директор получает чек-лист закрытия кофейной станции — 12 пунктов для проверки перед уходом смены.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 3</h3>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">Провести мини-аудит одной своей точки по действующему чек-листу аудита (карточка «Чек-лист аудита точки» уже есть у вас). Зафиксировать нарушения, поставить задачи менеджеру с дедлайнами. Принести заполненный чек-лист завтра.</div>
-        </div>
-        <div class="hw-item">
-          <span class="hw-badge theory">Теория</span>
-          <div class="hw-text">Прочитать материал «Стандарты HoReCa: зачем и как» (выдаётся). Написать 3 стандарта, которых сейчас нет на вашей точке, но они критически нужны.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(3)" id="test-btn-3">
-        ✦ Пройти тест по Дню 3
-      </button></div>
-
-    <!-- DAY 4 VIEW -->
-    </div>
-
-    <div class="view" id="view-day-4" style="display:none">
-      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">04</div>
-        <div>
-          <div class="day-title">Финансовое управление и KPI кофейни</div>
-          <div class="day-goal">Цель: директор читает базовую финансовую отчётность точки, понимает из чего складывается прибыль, и знает конкретные рычаги влияния на каждый показатель</div>
-          <div class="day-tags">
-            <span class="tag gold">P&L кофейни</span>
-            <span class="tag">KPI</span>
-            <span class="tag">Выручка</span>
-            <span class="tag">Себестоимость</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card">
-        <div class="block-time">11:00–11:15</div>
-        <div class="block-content">
-          <div class="block-title">Разбор ДЗ. Результаты аудита точек</div>
-          <div class="block-desc">Каждый директор представляет чек-лист: какие нарушения нашли, какие задачи поставили. Обсуждение — что было сложно увидеть.</div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:15–12:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 13. Финансовая анатомия кофейни</div>
-          <div class="block-desc">Структура P&L кофейни: выручка, себестоимость продуктов (COGS), валовая прибыль, ФОТ, аренда, прочие расходы, EBITDA. Типичные пропорции в кофейном бизнесе. Что находится в зоне влияния директор, а что — нет. Разбор реального (обезличенного) P&L кофейни: ищем проблемы вместе. Как читать отчёт за неделю и делать выводы.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-          </div>
-        </div>
-      </div>
-
-      
-      
+<div class="block-time">12:00–12:50</div>
+<div class="block-content">
+<div class="block-title">Блок 6. Мотивация в HoReCa: что реально работает</div>
+<div class="block-desc">Пирамида Маслоу применительно к линейному персоналу. Материальная vs нематериальная мотивация, нематериальная — в рамках исламской культуры (признание, уважение, развитие). Рамадан и управление командой в этот период. Практика: карта мотиваторов для точки.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
 <div class="block-card important">
-        <div class="block-time">12:00–12:50</div>
-        <div class="block-content">
-          <div class="block-title">Блок 14. Выручка кофейни — рычаги роста</div>
-          <div class="block-desc">Формула выручки: трафик × средний чек. Как директор влияет на трафик: локация, видимость, часы работы, скорость обслуживания. Как директор влияет на средний чек: апселл, ассортимент, акции. Анализ часов пик и провалов: как перераспределить усилия. Расчёт упущенной выручки — практика на цифрах. Локальный маркетинг кофейни: что директор может делать без бюджета.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      <div class="block-card important">
-        <div class="block-time">14:00–15:00 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 15. Себестоимость и ФОТ — управление затратами</div>
-          <div class="block-desc">Food cost кофейни: норматив, как считается, что на него влияет. Списания и потери: типичные причины в кофейне. Как директор контролирует расход сырья. ФОТ: как считать эффективность персонала (выручка на сотрудника в смену). Планирование графиков под трафик. Практика: составить оптимальный график смен под конкретный профиль трафика.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      
-
-      
-
-      
-
-      <div class="block-card" style="border-color: var(--green, #4caf7d);">
-        <div class="block-time">15:00–15:30 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 16. Маркетинг — что нужно знать директору</div>
-          <div class="block-desc">Специалист отдела маркетинга рассказывает: какие акции и активности планируются на ближайший период, как директор может локально поддержать федеральную акцию на своей точке, какие материалы и POS присылает маркетинг и как их использовать. Обратная связь от маркетинга в обе стороны.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card" style="border-color: var(--purple, #8b6fe8);">
-        <div class="block-time">15:30–16:15 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 17. iiko и отчётность — обучение от финансового отдела</div>
-          <div class="block-desc">Специалист финансового отдела разбирает 6 ключевых процессов в iiko: акты списания (заносятся в реальном времени, комментарий обязателен — без него акт удаляется и уходит в инвентаризацию), накладные на закупки «на стороне» (контрагент «Я Беркат», оплата через торговую кассу, изъятия на продукты запрещены), запрещённые счета на точке (5xx — склад Локали Маркет, 7xx — Главный офис, 8xx — расходы УК, 9xx — стройобъекты), правила изъятий с корректным комментарием и счётом, платёжная ведомость (проверка расписания и явок сотрудников), инвентаризация (заносится 30/31 числа, заготовки — отдельным листом), и заполнение БСЦ (данные из Отчёта о прибылях и убытках, дедлайн отправки финансисту — до 5 числа).</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-            <span class="method-chip practice">Практика в iiko</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 4</h3>
-        <div class="hw-item">
-          <span class="hw-badge theory">Теория</span>
-          <div class="hw-text">Написать «План развития точки» на 1 месяц: минимум 5 конкретных действий с цифровыми целями (что измеряем, какой целевой результат). Формат свободный — главное: конкретно и с цифрами.</div>
-        </div>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">Подготовить устную презентацию плана на 5–7 минут. Завтра каждый защищает его перед группой. Это часть аттестации.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(4)" id="test-btn-4">
-        ✦ Пройти тест по Дню 4
-      </button></div>
-
-    <!-- DAY 5 VIEW -->
-    </div>
-
-    <div class="view" id="view-day-5" style="display:none">
-      <div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">05</div>
-        <div>
-          <div class="day-title">Итоговая аттестация и финальная обратная связь</div>
-          <div class="day-goal">Цель: проверить полноту усвоения программы, зафиксировать индивидуальные зоны роста каждого директора, вручить сертификаты</div>
-          <div class="day-tags">
-            <span class="tag gold">Аттестация</span>
-            <span class="tag">Защита плана</span>
-            <span class="tag">Сертификация</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card important">
-        <div class="block-time">11:00–12:00</div>
-        <div class="block-content">
-          <div class="block-title">Итоговый тест — 30 вопросов по всей программе</div>
-          <div class="block-desc">Письменно. Охватывает все 4 дня: управление, команда, операции, финансы. Критерий зачёта: 70% и выше. При 50–69% — пересдача в течение недели. Ниже 50% — повторное обучение по проблемным блокам.</div>
-          <div class="block-methods"><span class="method-chip theory">Аттестация</span></div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView(5)" id="test-btn-5">
-        ✦ Пройти итоговый тест
-      </button></div>
-
-      
-      
-<div class="block-card important">
-        <div class="block-time">12:00–13:00</div>
-        <div class="block-content">
-          <div class="block-title">Защита плана развития точки</div>
-          <div class="block-desc">Каждый директор: 5–7 минут презентация + 5 минут вопросы от группы и ведущего. Критерии оценки: конкретность целей, реалистичность, понимание рычагов влияния, уверенность изложения. Оценочный лист заполняет ведущий — итоги отдаются каждому лично.</div>
-          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
-        </div>
-      </div>
-
-      
-
-      <div class="block-card">
-        <div class="block-time">14:00–15:00 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Индивидуальные сессии обратной связи</div>
-          <div class="block-desc">Ведущий встречается с каждым директором 20–25 минут: сильные стороны, зоны роста, персональные рекомендации. Каждый получает письменный профиль компетенций по итогам недели. Фиксируются 2–3 развивающие задачи на ближайший месяц.</div>
-          <div class="block-methods"><span class="method-chip practice">Практика</span></div>
-        </div>
-      </div>
-
-      
-
-      
-
-      <div class="hw-section" style="border-color: var(--gold-dim); background: rgba(201,168,76,0.04);">
-        <h3>После программы — план на 30 дней</h3>
-        <div class="hw-item">
-          <span class="hw-badge practice">Неделя 1</span>
-          <div class="hw-text">Провести полный аудит своей точки по чек-листу. Внедрить 1 новый стандарт. Провести 1-on-1 с каждым ключевым менеджером своей точки.</div>
-        </div>
-        <div class="hw-item">
-          <span class="hw-badge practice">Неделя 2–3</span>
-          <div class="hw-text">Запустить план развития точки, защищённый на аттестации. Начать еженедельные отчёты по своему шаблону.</div>
-        </div>
-        <div class="hw-item">
-          <span class="hw-badge theory">День 30</span>
-          <div class="hw-text">Встреча с HRD: что внедрено, какие результаты, корректировка целей. Промежуточная оценка компетенций.</div>
-        </div>
-      </div>
-
-    <!-- TESTS -->
-    </div>
-
-    <!-- ============ PBO DAYS ============ -->
-    <div class="view" id="view-pbo-day-1" style="display:none">
-      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">01</div>
-        <div>
-          <div class="day-title">Роль и мышление директора ПБО</div>
-          <div class="day-goal">Цель: директор понимает свою роль, матрицу ответственности и умеет применять SMART, SBI и ситуативное лидерство на кейсах станций</div>
-          <div class="day-tags">
-            <span class="tag gold">Управленческое мышление</span>
-            <span class="tag">Зоны ответственности</span>
-            <span class="tag">Станции</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card important">
-        <div class="block-time">11:00–11:45</div>
-        <div class="block-content">
-          <div class="block-title">Блок 1. Матрица ответственности директора ПБО</div>
-          <div class="block-desc">На точке ПБО одновременно работает несколько станций и больше людей в смене, чем на точке с одним прилавком — выше цена ошибки в моменте. Директор физически не может стоять на станции — его роль ещё дальше от исполнения и ближе к системе контроля. Разбор: что директор делает лично (присутствие в час пик, контроль критических точек безопасности продукта, беседы с менеджерами, P&L), что делегирует (ротация по станциям, инструктажи, график смен). Почему именно так: если директор лично составляет график вместо утверждения — менеджер никогда не научится балансировать нагрузку; если директор ни разу не проверяет food safety лично — он не может отвечать за результат перед комиссией.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:45–12:20</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2. SMART — цели по скорости и точности</div>
-          <div class="block-desc">Формула не меняется, меняются метрики: не средний чек, а скорость обслуживания, точность заказа, время ожидания на кассе/выдаче. Фирменный норматив: 90 секунд ожидания в очереди + 90 секунд обслуживания. Практика: «За 4 недели снизить среднее время обслуживания с текущих 130 до норматива 90 секунд за счёт перераспределения менеджеров на кухню и жаровню в часы пик». Каждый директор формулирует SMART-цель по своей точке на основе показателя скорости или точности за последний месяц. Частые ошибки: цель без владельца («нужно улучшить сервис» — непонятно, кто отвечает), цель-процесс вместо результата («проводить больше инструктажей» вместо конкретной цифры), цель без даты промежуточной проверки.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">12:20–13:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 3. SBI и ситуативное лидерство на станциях</div>
-          <div class="block-desc">SBI на кейсе жаровни: ситуация («вчера в час пик на станции жаровни»), поведение («не проверил температуру фритюра по графику»), влияние («продукт вышел ниже стандарта, гость вернул заказ»). Что не является SBI: ярлыки («ты всегда халатно относишься»), оценки без конкретики («мне не нравится, как ты работаешь»), фидбек с задержкой в день и больше — модель работает только по свежим ситуациям. Ситуативное лидерство: модель Херси-Бланшара, 4 уровня зрелости (R1 — хочет, но не умеет, до R4 — умеет и уверен), каждому свой стиль от директивного до делегирующего. Кейс с тремя сотрудниками разного уровня зрелости — новичок на кассе, опытный на жаровне, быстрый, но с ошибками на кухне. Разбор: каждому — свой стиль управления.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
-        <div class="block-time">14:00–14:25 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 4. Битрикс24 — частые вопросы</div>
-          <div class="block-desc">Кросс-брендовый материал, единый для всех точек холдинга.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 1</h3>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">Сформулировать одну SMART-цель по своей точке на основе показателя скорости обслуживания или точности заказа за последний месяц. Записать формулировку — завтра разбираем в группе.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo1')" id="test-btn-pbo-1">
-        ✦ Пройти тест по Дню 1
-      </button></div>
-    </div>
-
-    <div class="view" id="view-pbo-day-2" style="display:none">
-      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">02</div>
-        <div>
-          <div class="day-title">Дисциплина, мотивация, удержание, 1-on-1</div>
-          <div class="day-goal">Цель: директор умеет применять поэтапную дисциплину с учётом красных линий ПБО (касса, food safety) и вести 1-on-1 с фокусом на кросс-обучение</div>
-          <div class="day-tags">
-            <span class="tag gold">Кассовая дисциплина</span>
-            <span class="tag">Красные линии</span>
-            <span class="tag">Удержание</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card important">
-        <div class="block-time">11:00–11:45</div>
-        <div class="block-content">
-          <div class="block-title">Блок 1. Система дисциплины — акценты для ПБО</div>
-          <div class="block-desc">Ключевые риски дисциплины на точке ПБО — кассовая дисциплина и нарушение критических точек безопасности продукта (не проверил температуру, не соблюдал сроки годности): это красные линии, эскалируются немедленно, минуя поэтапную дисциплину. Почему именно эти два: последствие необратимо или неприемлемо по риску — кассовое расхождение либо ошибка (проверяется процедурой), либо хищение (дело СБ), а непроверенная температура или просроченное сырьё — прямой риск для здоровья гостя уже с первого раза. Обычные нарушения (опоздание, ошибка сборки) обратимы — для них работает поэтапность. Фирменное правило кассы: один кассир — один ящик, на время перерыва менеджер блокирует ящик ключом, кассир несёт полную материальную ответственность, менеджеры не имеют права пользоваться чужой кассой.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:45–12:15</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2. Кейс: третье нарушение подряд</div>
-          <div class="block-desc">Сотрудник опоздал второй раз за неделю, менеджер предлагает уволить «чтобы другим неповадно». Решение: отклонить, объяснить принцип поэтапной дисциплины, помочь провести беседу с фиксацией. Отдельно: если нарушение — сокрытие недостачи или срыв food safety, поэтапность не применяется, это немедленная эскалация в СБ.</div>
-          <div class="block-methods">
-            <span class="method-chip case">Кейс</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">12:15–13:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 3. 1-on-1 и мотивация — новые темы для ПБО</div>
-          <div class="block-desc">Структура встречи не меняется. Новые темы: готовность к кросс-обучению на другую станцию как элемент карьерного трека, личная статистика по точности/скорости, причины частых просьб поменяться сменами — ранний сигнал выгорания от станции с высокой нагрузкой. Частые ошибки 1-on-1: встреча превращается в отчёт менеджера без обратной связи директора; встреча регулярно отменяется при загруженности (менеджер считывает это как «развитие не приоритет»); план действий не фиксируется письменно, и следующая встреча начинается с нуля. Мотивация при ограниченном бюджете: видимый карьерный трек линейный персонал → тренер станции → менеджер смены → замдиректора → директор — работает сильнее любой разовой премии. Прямые затраты на подбор и адаптацию одного нового сотрудника — около 35 713 ₽, без учёта потерь от ошибок новичка и демотивации команды.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
-        <div class="block-time">14:00–14:30 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 4. Служба безопасности — превенция хищений</div>
-          <div class="block-desc">Зона риска широкая: несколько станций с сырьём одновременно, высокий кассовый оборот, приём поставок большого объёма. Акцент на кассовой дисциплине и контроле перемещения продукта между станциями.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 2</h3>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">Карта мотиваторов — заполнить бланк по своей команде.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo2')" id="test-btn-pbo-2">
-        ✦ Пройти тест по Дню 2
-      </button></div>
-    </div>
-
-    <div class="view" id="view-pbo-day-3" style="display:none">
-      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">03</div>
-        <div>
-          <div class="day-title">Стандарты, ежедневный контроль, МПК + Станции и food safety</div>
-          <div class="day-goal">Цель: директор умеет провести аудит по каждой станции отдельно и понимает критические контрольные точки food safety</div>
-          <div class="day-tags">
-            <span class="tag gold">Станции</span>
-            <span class="tag">Food safety</span>
-            <span class="tag">МПК</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card important">
-        <div class="block-time">11:00–11:40</div>
-        <div class="block-content">
-          <div class="block-title">Блок 1. Аудит по станциям</div>
-          <div class="block-desc">Директор проводит аудит по каждой станции отдельно: касса (дисциплина, кассовая ответственность, знание категорий CHAMPS), кухня (подготовка овощей, соусов, сыра, тортилий и булочек — сроки хранения и температура), жаровня (панировка, температура и фильтрация фритюра, время жарки по min/max), обслуживание (напитки, десерты, мороженое, кофемашина), хранение (сроки годности, ротация FIFO), зал (чистота, норматив 90 секунд ожидания + 90 секунд обслуживания).</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:40–12:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2. Приоритизация нарушений и МПК</div>
-          <div class="block-desc">Три нарушения одновременно: не поздоровался с гостем, беспорядок в хранении, сроки годности не проверялись 2 дня. Порядок приоритизации: сначала безопасность продукта, затем сервис, затем внутренний порядок — нарушение по срокам годности сырья на жаровне и кухне несёт наибольший риск для здоровья гостя. МПК в ПБО строится на фирменных категориях CHAMPS (Cleanliness, Hospitality, Accuracy, Maintenance, Product quality, Speed) — это не самодельный чек-лист, а стандарт бренда, который обязан знать каждый сотрудник, включая кассира.</div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:40–12:00 (доп.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2а. Кассовая дисциплина — фирменный стандарт</div>
-          <div class="block-desc">Один кассир — один денежный ящик. Если кассир уходит на перерыв, менеджер блокирует его ящик ключом — никто, включая менеджеров, не имеет права работать в чужой кассе. Кассир несёт полную материальную ответственность за свой ящик. На одной кассе одновременно не могут работать два и более сотрудников. Директор транслирует эти правила как незыблемые, а не как рекомендации.</div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">12:00–12:15</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2б. Незабываемый сервис и работа с жалобой</div>
-          <div class="block-desc">Фирменный принцип гостевого опыта: делать правильно, делать особенным, делать быстро. При жалобе гостя — алгоритм из 4 шагов: выслушать и понять, извиниться, решить проблему на месте (или эскалировать менеджеру), поблагодарить гостя за обратную связь. Обращение к менеджеру обязательно в случаях: инородный предмет в еде, требование возврата денег, оскорбления или угрозы, травма или жалоба на безопасность.</div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">12:00–13:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 3. Новый блок — Станции и food safety</div>
-          <div class="block-desc">Директор не готовит на станциях сам, но должен уметь провести полноценный аудит без участия менеджера, отличить системную проблему от разовой ошибки, обучить нового менеджера принципам станции. Как отличить: разовая ошибка — один сотрудник, единичный случай, причина ясна и устранена сразу; системная проблема — повторяется у разных сотрудников, совпадает по времени (например, всегда в пересменку), менеджер объясняет одно и то же каждый раз. Директор не принимает объяснение менеджера на веру — проверяет станцию сам, без предупреждения, в разное время суток. Реальные процедуры food safety на станции жаровни: фильтрация открытого и закрытого фритюра со средствами индивидуальной защиты, распознавание признаков разложения жира, соблюдение min/max по времени жарки, мытьё инвентаря методом трёх ванн. Общие для всех станций: мытьё рук не реже раза в 60 минут (от 30 секунд), протирка поверхностей ежечасно, FIFO и маркировка партий. Ежедневный чек-лист food safety — директор выборочно проверяет заполнение лично минимум раз в неделю. Кросс-обучение по станциям сертифицируется тренером-наставником по фирменной модели «тренер рассказывает-показывает → тренер рассказывает, стажёр показывает → стажёр рассказывает-показывает», не менее 60% команды должны владеть двумя и более станциями.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
-        <div class="block-time">14:00–14:30 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 4. Техобслуживание оборудования</div>
-          <div class="block-desc">Фритюрницы, жарочные шкафы, льдогенераторы — простой станции в час пик стоит выручки на порядок дороже: альтернативной станции чаще всего нет.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 3</h3>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">Заполнить чек-лист станций своей точки по всем 6 зонам (касса, кухня, жаровня, обслуживание, хранение, зал) — фактическое состояние. Принести на разбор в начале Дня 4.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo3')" id="test-btn-pbo-3">
-        ✦ Пройти тест по Дню 3
-      </button></div>
-    </div>
-
-    <div class="view" id="view-pbo-day-4" style="display:none">
-      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">04</div>
-        <div>
-          <div class="day-title">P&L, BSC, формула выручки, iiko</div>
-          <div class="day-goal">Цель: директор видит скорость обслуживания как ограничитель трафика и умеет читать еженедельный отчёт с новыми метриками</div>
-          <div class="day-tags">
-            <span class="tag gold">P&L</span>
-            <span class="tag">Скорость обслуживания</span>
-            <span class="tag">BSC</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Расписание дня</div>
-
-      <div class="block-card important">
-        <div class="block-time">11:00–11:45</div>
-        <div class="block-content">
-          <div class="block-title">Блок 1. Формула выручки — новый фактор</div>
-          <div class="block-desc">Базовая формула выручки — трафик × средний чек. В ПБО добавляется третий фактор — скорость обслуживания напрямую ограничивает трафик в час пик: точка физически не может обслужить больше гостей, чем позволяет пропускная способность станций и кассы. Фирменный норматив — 90 секунд ожидания + 90 секунд обслуживания. Как читать P&L точки: food cost — норма 30–32% от выручки; ФОТ растёт вместе с выручкой, но не должен опережать её; операционная прибыль (выручка минус все статьи расходов) — а не сама выручка — показывает реальное здоровье точки. Кейс: выручка +12%, трафик +3%, средний чек +9%, ФОТ +18%, среднее время обслуживания выросло с 78 до 94 секунд — точка вышла за норматив, рост времени обслуживания в моменте съедает потенциальный трафик, более высокий средний чек может маскировать потерю гостей, которые не достояли в очереди.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-            <span class="method-chip case">Кейс</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">11:45–12:15</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2. BSC — действующая система (единая для Маковский и Crispy)</div>
-          <div class="block-desc">Веса: количество жалоб — 15%, время обслуживания — 15%, время обслуживания на доставке — 10%, план по товарообороту — 20%, средний чек — 20%, производительность — 20%. Каждый показатель оценивается по 5-балльной шкале от факта к цели. Итоговый балл BSC определяет размер премиального фонда точки помесячно: ниже 3,0 — фонд 0 ₽, 3,0–3,5 — 60 000 ₽, 3,6–3,9 — 70 000 ₽, 4,0–4,5 — 80 000 ₽, 4,6–5,0 — 90 000 ₽. Фонд делится между директором и менеджерами: 40% / 60% на точках с 3 менеджерами смены, 30% / 70% на точках с 4 менеджерами смены.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">12:15–12:30</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2а. Корректировки премии</div>
-          <div class="block-desc">МПК: одна красная проверка — удержание 5% от премии, две — 10%, три — 15%, четыре — 20%; четыре зелёные проверки — плюс 10% к премии. Рейтинги: три показателя в цели — плюс 5%, два показателя не в цели — минус 5% (если в цели два показателя из трёх — удержания нет). Отдельно — градация по товарообороту точки: корректирует итоговый % премии в диапазоне от −30% (точки с ТО менее 4 млн) до +15% (точки с ТО более 12 млн).</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">12:30–12:45</div>
-        <div class="block-content">
-          <div class="block-title">Блок 2б. Еженедельный отчёт — новые колонки</div>
-          <div class="block-desc">Помимо базовых финансовых показателей (выручка, трафик, средний чек, ФОТ) — среднее время обслуживания в секундах, доля заказов с ошибкой сборки, food cost по ключевым станциям отдельно.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Теория</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card important">
-        <div class="block-time">12:45–13:00</div>
-        <div class="block-content">
-          <div class="block-title">Блок 3. Матрица Эйзенхауэра и план развития точки</div>
-          <div class="block-desc">Расставить по приоритету: сломался фритюр, план развития точки на квартал, сообщения в рабочем чате, система адаптации для новых сотрудников на кассе. Логика приоритизации: сначала критичное операционное (простой оборудования = прямая потеря выручки прямо сейчас), затем стратегическое важное несрочное. Разбор ДЗ Дня 3 (чек-лист станций) как основа для плана развития точки.</div>
-          <div class="block-methods">
-            <span class="method-chip practice">Практика</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-card" style="border-color: var(--blue, #5b9bd5);">
-        <div class="block-time">14:00–14:30 (опц.)</div>
-        <div class="block-content">
-          <div class="block-title">Блок 4. Маркетинг + Финансовый отдел</div>
-          <div class="block-desc">Кросс-брендовые материалы, единые для всех точек холдинга.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Специалист</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hw-section">
-        <h3>Домашнее задание — День 4</h3>
-        <div class="hw-item">
-          <span class="hw-badge practice">Практика</span>
-          <div class="hw-text">План развития точки — бланк без изменений в структуре, заполнить с учётом показателей скорости обслуживания и food safety из ДЗ Дня 3.</div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo4')" id="test-btn-pbo-4">
-        ✦ Пройти тест по Дню 4
-      </button></div>
-    </div>
-
-    <div class="view" id="view-pbo-day-5" style="display:none">
-      <div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
-      <div class="day-header">
-        <div class="day-num-big">05</div>
-        <div>
-          <div class="day-title">Итоговая аттестация</div>
-          <div class="day-goal">Структурных изменений от общей модели нет — инструмент аттестации уже поддерживает категорию «Директор ПБО»</div>
-          <div class="day-tags">
-            <span class="tag gold">Аттестация</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-label">Компоненты аттестации — без изменений от общей модели</div>
-
-      <div class="block-card important">
-        <div class="block-content">
-          <div class="block-title">Тест — 20% · Защита плана точки (до/после) — 35% · Кейс-интервью — 30% · Наблюдение за 5 дней — 15%</div>
-          <div class="block-desc">Отличие от общей модели только в содержании кейс-интервью и итогового теста — они отражают специфику ПБО: станции, food safety, скорость обслуживания, кассовая дисциплина. Итоговый тест — 30 вопросов по материалу всех 4 дней, критерий зачёта 70%. Сценарии кейс-интервью для комиссии по 6 компетентностным блокам — пока в разработке.</div>
-          <div class="block-methods">
-            <span class="method-chip theory">Аттестация</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="test-btn-wrap"><button class="test-btn" onclick="showTestView('pbo5')" id="test-btn-pbo-5">
-        ✦ Пройти итоговый тест
-      </button></div>
-    </div>
-
-    <div class="view" id="view-test" style="display:none">
-      <div class="back-link" id="test-back-link">← Вернуться к дню</div>
-      <div class="test-header">
-        <div>
-          <div class="test-title" id="test-title">Тест по Дню 1</div>
-          <div class="test-meta" id="test-meta">10 вопросов · ~15 минут</div>
-        </div>
-        <div class="question-counter">
-          <div id="q-counter">Вопрос 1 из 10</div>
-          <div class="question-progress" id="q-dots"></div>
-        </div>
-      </div>
-      <div id="question-area"></div>
-      <div class="nav-btns">
-        <button class="btn-secondary" onclick="prevQuestion()" id="btn-prev" style="display:none">← Назад</button>
-        <button class="btn-primary" onclick="nextQuestion()" id="btn-next" disabled>Далее →</button>
-      </div>
-    </div>
-
-    <!-- RESULTS -->
-    <div class="view" id="view-results" style="display:none">
-      <div class="back-link" id="results-back-link">← Вернуться к дню</div>
-      <div class="results-card">
-        <div class="score-ring" id="score-ring"></div>
-        <div class="result-title" id="result-title"></div>
-        <div class="result-desc" id="result-desc"></div>
-      </div>
-      <div class="result-breakdown" id="result-breakdown"></div>
-      <button class="btn-primary" id="results-btn" style="margin: 0 auto; display:block">Перейти к следующему дню →</button>
-    </div>
-
-  </main>
+<div class="block-time">14:00–15:00 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 7. Текучесть персонала — управление и снижение</div>
+<div class="block-desc">Стоимость текучести: считаем вместе на реальных цифрах. Почему уходят из кофеен — топ-5 причин. Адаптация нового сотрудника: план первых 2 недель, роль директора в нём. Инструменты удержания без повышения зарплаты. Exit-интервью: как проводить и что с этим делать. Разбор кейса: сотрудник собирается уволиться — как директор должен действовать.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
 </div>
 
+<div class="hw-section">
+<h3>Домашнее задание — День 2</h3>
+<div class="hw-item">
+<span class="hw-badge theory">Теория</span>
+<div class="hw-text">Написать «Карту мотиваторов» для каждого менеджера своей точки (минимум 2 человека): кто что ценит на работе, что демотивирует, что удержит. Формат — таблица на бумаге.</div>
+</div>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">Провести короткий 1-on-1 с менеджером своей точки (15 минут). Три вопроса: что идёт хорошо, что мешает работать, что нужно от меня. Записать ответы и принести завтра.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-2" onclick="showTestView(2)">
+        ✦ Пройти тест по Дню 2
+      </button></div>
+<!-- DAY 3 VIEW -->
+</div>
+<div class="view" id="view-day-3" style="display:none">
+<div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">03</div>
+<div>
+<div class="day-title">Операционное управление кофейней</div>
+<div class="day-goal">Цель: директор знает, как устроены операции кофейни, умеет проводить аудит точки и влиять на качество через системные инструменты, а не ручное управление</div>
+<div class="day-tags">
+<span class="tag gold">Стандарты</span>
+<span class="tag">Аудит точки</span>
+<span class="tag">Качество</span>
+<span class="tag">Процессы</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card">
+<div class="block-time">11:00–11:15</div>
+<div class="block-content">
+<div class="block-title">Разбор ДЗ. Результаты 1-on-1 с менеджерами</div>
+<div class="block-desc">Что узнали о своих точках. Какие инсайты про мотиваторов получили. Что планируют изменить.</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">11:15–12:00</div>
+<div class="block-content">
+<div class="block-title">Блок 9. Стандарты кофейни — основа всего</div>
+<div class="block-desc">Зачем нужны стандарты в HoReCa: гостевой опыт, безопасность, управляемость. Ключевые блоки стандартов: открытие/закрытие, приготовление, сервис, чистота, товарный учёт. Как внедрять стандарты в уже работающую точку (без сопротивления персонала).</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:00–12:50</div>
+<div class="block-content">
+<div class="block-title">Блок 10. Ежедневный контроль качества на точке</div>
+<div class="block-desc">Структура ежедневного контроля: утром — отчёт и проверка замечаний, днём — «пульс» точки, вечером — разговор с менеджером и задачи на завтра. Топ-10 точек контроля, приоритизация нарушений. Ролевая игра: вечерний разговор с менеджером.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">14:00–15:00 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 11. Управление качеством продукта и сервиса</div>
+<div class="block-desc">Кофейный продукт: что влияет на качество чашки (кратко, без технологии). Сервис в кофейне: ожидания гостей, типичные жалобы. Работа с жалобами гостей: модель LAST (Listen–Apologize–Solve–Thank). Как директор объективно проверяет качество, даже находясь на точке постоянно: тайный гость, отзывы, независимые показатели. Mystery guest: как организовать дёшево.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+<div class="block-time">15:00–15:25 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 12. Техобслуживание — частые поломки и скорость решения</div>
+<div class="block-desc">Специалист департамента техобслуживания разбирает частые поломки оборудования на точках: кофемашины, кофемолки, холодильное оборудование. Как директору правильно описывать проблему для быстрого решения. Норматив скорости реагирования. Что директор может сделать сам до приезда специалиста.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--gold);">
+<div class="block-time">15:25–16:05 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 13. Шеф-бариста — глубокая чистка оборудования</div>
+<div class="block-desc">Шеф-бариста: цикл чистки — кофемолка и жернова ежедневно, эспрессо-машина и Backflush вечером (5 циклов по 10 сек), паровые трубки, холдеры (деревянные ручки не замачивать). Директор получает чек-лист закрытия станции на 12 пунктов.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="hw-section">
+<h3>Домашнее задание — День 3</h3>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">Провести мини-аудит одной своей точки по действующему чек-листу аудита (карточка «Чек-лист аудита точки» уже есть у вас). Зафиксировать нарушения, поставить задачи менеджеру с дедлайнами. Принести заполненный чек-лист завтра.</div>
+</div>
+<div class="hw-item">
+<span class="hw-badge theory">Теория</span>
+<div class="hw-text">Прочитать материал «Стандарты HoReCa: зачем и как» (выдаётся). Написать 3 стандарта, которых сейчас нет на вашей точке, но они критически нужны.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-3" onclick="showTestView(3)">
+        ✦ Пройти тест по Дню 3
+      </button></div>
+<!-- DAY 4 VIEW -->
+</div>
+<div class="view" id="view-day-4" style="display:none">
+<div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">04</div>
+<div>
+<div class="day-title">Финансовое управление и KPI кофейни</div>
+<div class="day-goal">Цель: директор читает базовую финансовую отчётность точки, понимает из чего складывается прибыль, и знает конкретные рычаги влияния на каждый показатель</div>
+<div class="day-tags">
+<span class="tag gold">P&amp;L кофейни</span>
+<span class="tag">KPI</span>
+<span class="tag">Выручка</span>
+<span class="tag">Себестоимость</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card">
+<div class="block-time">11:00–11:15</div>
+<div class="block-content">
+<div class="block-title">Разбор ДЗ. Результаты аудита точек</div>
+<div class="block-desc">Каждый директор представляет чек-лист: какие нарушения нашли, какие задачи поставили. Обсуждение — что было сложно увидеть.</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">11:15–12:00</div>
+<div class="block-content">
+<div class="block-title">Блок 13. Финансовая анатомия кофейни</div>
+<div class="block-desc">Структура P&amp;L кофейни: выручка, себестоимость продуктов (COGS), валовая прибыль, ФОТ, аренда, прочие расходы, EBITDA. Типичные пропорции в кофейном бизнесе. Что находится в зоне влияния директор, а что — нет. Разбор реального (обезличенного) P&amp;L кофейни: ищем проблемы вместе. Как читать отчёт за неделю и делать выводы.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:00–12:50</div>
+<div class="block-content">
+<div class="block-title">Блок 14. Выручка кофейни — рычаги роста</div>
+<div class="block-desc">Формула выручки: трафик × средний чек. Как директор влияет на трафик: локация, видимость, часы работы, скорость обслуживания. Как директор влияет на средний чек: апселл, ассортимент, акции. Анализ часов пик и провалов: как перераспределить усилия. Расчёт упущенной выручки — практика на цифрах. Локальный маркетинг кофейни: что директор может делать без бюджета.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">14:00–15:00 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 15. Себестоимость и ФОТ — управление затратами</div>
+<div class="block-desc">Food cost кофейни: норматив, как считается, что на него влияет. Списания и потери: типичные причины в кофейне. Как директор контролирует расход сырья. ФОТ: как считать эффективность персонала (выручка на сотрудника в смену). Планирование графиков под трафик. Практика: составить оптимальный график смен под конкретный профиль трафика.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--green, #4caf7d);">
+<div class="block-time">15:00–15:30 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 16. Маркетинг — что нужно знать директору</div>
+<div class="block-desc">Специалист отдела маркетинга рассказывает: какие акции и активности планируются на ближайший период, как директор может локально поддержать федеральную акцию на своей точке, какие материалы и POS присылает маркетинг и как их использовать. Обратная связь от маркетинга в обе стороны.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--purple, #8b6fe8);">
+<div class="block-time">15:30–16:15 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 17. iiko и отчётность — обучение от финансового отдела</div>
+<div class="block-desc">Финотдел — 6 процессов в iiko: акты списания (комментарий обязателен), накладные «на стороне» (контрагент «Я Беркат»), запрещённые счета (5xx/7xx/8xx/9xx), правила изъятий, платёжная ведомость, инвентаризация 30/31 числа, БСЦ — дедлайн до 5 числа.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+<span class="method-chip practice">Практика в iiko</span>
+</div>
+</div>
+</div>
+<div class="hw-section">
+<h3>Домашнее задание — День 4</h3>
+<div class="hw-item">
+<span class="hw-badge theory">Теория</span>
+<div class="hw-text">Написать «План развития точки» на 1 месяц: минимум 5 конкретных действий с цифровыми целями (что измеряем, какой целевой результат). Формат свободный — главное: конкретно и с цифрами.</div>
+</div>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">Подготовить устную презентацию плана на 5–7 минут. Завтра каждый защищает его перед группой. Это часть аттестации.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-4" onclick="showTestView(4)">
+        ✦ Пройти тест по Дню 4
+      </button></div>
+<!-- DAY 5 VIEW -->
+</div>
+<div class="view" id="view-day-5" style="display:none">
+<div class="back-link" onclick="showView('overview')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">05</div>
+<div>
+<div class="day-title">Итоговая аттестация и финальная обратная связь</div>
+<div class="day-goal">Цель: проверить полноту усвоения программы, зафиксировать индивидуальные зоны роста каждого директора, вручить сертификаты</div>
+<div class="day-tags">
+<span class="tag gold">Аттестация</span>
+<span class="tag">Защита плана</span>
+<span class="tag">Сертификация</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card important">
+<div class="block-time">11:00–12:00</div>
+<div class="block-content">
+<div class="block-title">Итоговый тест — 30 вопросов по всей программе</div>
+<div class="block-desc">Письменно. Охватывает все 4 дня: управление, команда, операции, финансы. Критерий зачёта: 70% и выше. При 50–69% — пересдача в течение недели. Ниже 50% — повторное обучение по проблемным блокам.</div>
+<div class="block-methods"><span class="method-chip theory">Аттестация</span></div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-5" onclick="showTestView(5)">
+        ✦ Пройти итоговый тест
+      </button></div>
+<div class="block-card important">
+<div class="block-time">12:00–13:00</div>
+<div class="block-content">
+<div class="block-title">Защита плана развития точки</div>
+<div class="block-desc">Каждый директор: 5–7 минут презентация + 5 минут вопросы от группы и ведущего. Критерии оценки: конкретность целей, реалистичность, понимание рычагов влияния, уверенность изложения. Оценочный лист заполняет ведущий — итоги отдаются каждому лично.</div>
+<div class="block-methods"><span class="method-chip practice">Практика</span></div>
+</div>
+</div>
+<div class="block-card">
+<div class="block-time">14:00–15:00 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Индивидуальные сессии обратной связи</div>
+<div class="block-desc">Ведущий встречается с каждым директором 20–25 минут: сильные стороны, зоны роста, персональные рекомендации. Каждый получает письменный профиль компетенций по итогам недели. Фиксируются 2–3 развивающие задачи на ближайший месяц.</div>
+<div class="block-methods"><span class="method-chip practice">Практика</span></div>
+</div>
+</div>
+<div class="hw-section" style="border-color: var(--gold-dim); background: rgba(201,168,76,0.04);">
+<h3>После программы — план на 30 дней</h3>
+<div class="hw-item">
+<span class="hw-badge practice">Неделя 1</span>
+<div class="hw-text">Провести полный аудит своей точки по чек-листу. Внедрить 1 новый стандарт. Провести 1-on-1 с каждым ключевым менеджером своей точки.</div>
+</div>
+<div class="hw-item">
+<span class="hw-badge practice">Неделя 2–3</span>
+<div class="hw-text">Запустить план развития точки, защищённый на аттестации. Начать еженедельные отчёты по своему шаблону.</div>
+</div>
+<div class="hw-item">
+<span class="hw-badge theory">День 30</span>
+<div class="hw-text">Встреча с HRD: что внедрено, какие результаты, корректировка целей. Промежуточная оценка компетенций.</div>
+</div>
+</div>
+<!-- TESTS -->
+</div>
+<!-- ============ PBO DAYS ============ -->
+<div class="view" id="view-pbo-day-1" style="display:none">
+<div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">01</div>
+<div>
+<div class="day-title">Роль и мышление директора ПБО</div>
+<div class="day-goal">Цель: директор понимает свою роль, матрицу ответственности и умеет применять SMART, SBI и ситуативное лидерство на кейсах станций</div>
+<div class="day-tags">
+<span class="tag gold">Управленческое мышление</span>
+<span class="tag">Зоны ответственности</span>
+<span class="tag">Станции</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card important">
+<div class="block-time">11:00–11:45</div>
+<div class="block-content">
+<div class="block-title">Блок 1. Матрица ответственности директора ПБО</div>
+<div class="block-desc">Директор физически не может стоять на станции — роль ближе к системе контроля. Делает лично: присутствие в пик, контроль критических точек безопасности продукта, беседы с менеджерами, P&amp;L. Делегирует: ротацию, инструктажи, график смен (сам утверждает).</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">11:45–12:20</div>
+<div class="block-content">
+<div class="block-title">Блок 2. SMART — цели по скорости и точности</div>
+<div class="block-desc">Метрики: скорость обслуживания, точность заказа, время ожидания. Норматив — 5 минут от заказа до выдачи. Практика: своя SMART-цель по скорости или точности. Частые ошибки: цель без владельца, цель-процесс вместо результата, без даты проверки.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:20–13:00</div>
+<div class="block-content">
+<div class="block-title">Блок 3. SBI и ситуативное лидерство на станциях</div>
+<div class="block-desc">SBI на кейсе жаровни: ситуация → поведение → влияние. Не SBI: ярлыки, оценки без конкретики, задержка больше дня. Ситуативное лидерство: модель Херси-Бланшара, 4 уровня зрелости (R1–R4), свой стиль каждому. Кейс — три сотрудника разного уровня.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+<div class="block-time">14:00–14:25 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 4. Битрикс24 — частые вопросы</div>
+<div class="block-desc">Кросс-брендовый материал, единый для всех точек холдинга.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+</div>
+</div>
+</div>
+<div class="block-card important" style="">
+<div class="block-content">
+<div class="block-title">Блок 5. Матрица Эйзенхауэра — приоритизация задач директора</div>
+<div class="block-desc">Инструмент на 2 оси: срочность и важность. A — срочно и важно (делать сейчас), B — важно, не срочно (планировать), C — делегировать, D — убрать. Практика: расставить реальные задачи по приоритету, начиная с критичного операционного.</div>
+<div class="block-methods">
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div><div class="hw-section">
+<h3>Домашнее задание — День 1</h3>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">Сформулировать одну SMART-цель по своей точке на основе показателя скорости обслуживания или точности заказа за последний месяц. Записать формулировку — завтра разбираем в группе.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-pbo-1" onclick="showTestView('pbo1')">
+        ✦ Пройти тест по Дню 1
+      </button></div>
+</div>
+<div class="view" id="view-pbo-day-2" style="display:none">
+<div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">02</div>
+<div>
+<div class="day-title">Дисциплина, мотивация, удержание, 1-on-1</div>
+<div class="day-goal">Цель: директор умеет применять поэтапную дисциплину с учётом красных линий ПБО (касса, безопасность продукта) и вести 1-on-1 с фокусом на кросс-обучение</div>
+<div class="day-tags">
+<span class="tag gold">Кассовая дисциплина</span>
+<span class="tag">Красные линии</span>
+<span class="tag">Удержание</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card important">
+<div class="block-time">11:00–11:45</div>
+<div class="block-content">
+<div class="block-title">Блок 1. Система дисциплины — акценты для ПБО</div>
+<div class="block-desc">Красные линии — кассовая дисциплина и безопасность продукта: эскалация немедленно, минуя поэтапность. Расхождение кассы — ошибка или хищение, просрочка — риск для здоровья с первого раза. Правило кассы: один кассир — один ящик, менеджеры чужую кассу не трогают.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">11:45–12:15</div>
+<div class="block-content">
+<div class="block-title">Блок 2. Кейс: третье нарушение подряд</div>
+<div class="block-desc">Сотрудник опоздал второй раз за неделю, менеджер предлагает уволить «чтобы другим неповадно». Решение: отклонить, объяснить принцип поэтапной дисциплины, помочь провести беседу с фиксацией. Отдельно: если нарушение — сокрытие недостачи или срыв норм безопасности продукта, поэтапность не применяется, это немедленная эскалация в СБ.</div>
+<div class="block-methods">
+<span class="method-chip case">Кейс</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:15–13:00</div>
+<div class="block-content">
+<div class="block-title">Блок 3. 1-on-1 и мотивация — новые темы для ПБО</div>
+<div class="block-desc">Новые темы 1-on-1: готовность к кросс-обучению, статистика по станции, частые просьбы поменяться сменами — сигнал выгорания. Частые ошибки: встреча = отчёт менеджера, отмена при загрузке, план не фиксируется. Карьерный трек мотивирует сильнее премии; найм нового — ≈35 713 ₽.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+
+<div class="hw-section">
+<h3>Домашнее задание — День 2</h3>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">Карта мотиваторов — заполнить бланк по своей команде.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-pbo-2" onclick="showTestView('pbo2')">
+        ✦ Пройти тест по Дню 2
+      </button></div>
+</div>
+<div class="view" id="view-pbo-day-3" style="display:none">
+<div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">03</div>
+<div>
+<div class="day-title">Стандарты, ежедневный контроль, МПК + Станции и безопасность продукта</div>
+<div class="day-goal">Цель: директор умеет провести аудит по каждой станции отдельно и понимает критические контрольные точки безопасности продукта</div>
+<div class="day-tags">
+<span class="tag gold">Станции</span>
+<span class="tag">Food safety</span>
+<span class="tag">МПК</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card important">
+<div class="block-time">11:00–11:40</div>
+<div class="block-content">
+<div class="block-title">Блок 1. Аудит по станциям</div>
+<div class="block-desc">Директор проводит аудит по каждой станции отдельно: касса, кухня, жаровня, обслуживание, хранение, зал — у каждой свои критические точки. Норматив зала — 5 минут от заказа до выдачи.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">11:40–12:00</div>
+<div class="block-content">
+<div class="block-title">Блок 2. Приоритизация нарушений и МПК</div>
+<div class="block-desc">Приоритизация нарушений: сначала безопасность продукта, затем сервис, затем порядок — просрочка сырья несёт наибольший риск. МПК строится на категориях CHAMPS (Cleanliness, Hospitality, Accuracy, Maintenance, Product quality, Speed) — фирменный стандарт, не самодельный список.</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">11:40–12:00 (доп.)</div>
+<div class="block-content">
+<div class="block-title">Блок 2а. Кассовая дисциплина — фирменный стандарт</div>
+<div class="block-desc">Один кассир — один денежный ящик. Если кассир уходит на перерыв, менеджер блокирует его ящик ключом — никто, включая менеджеров, не имеет права работать в чужой кассе. Кассир несёт полную материальную ответственность за свой ящик. На одной кассе одновременно не могут работать два и более сотрудников. Директор транслирует эти правила как незыблемые, а не как рекомендации.</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:00–12:15</div>
+<div class="block-content">
+<div class="block-title">Блок 2б. Сервис и работа с жалобой</div>
+<div class="block-desc">Принцип гостевого опыта: правильно, особенно, быстро. Жалоба — модель LAST: выслушать, извиниться, решить (или эскалировать), поблагодарить. Обязательная эскалация: инородный предмет, возврат денег, угрозы, травма.</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:00–13:00</div>
+<div class="block-content">
+<div class="block-title">Блок 3. Новый блок — Станции и безопасность продукта</div>
+<div class="block-desc">Директор не готовит на станциях сам, но проводит аудит без менеджера и отличает системную проблему (повтор у разных людей) от разовой ошибки — проверяет лично, без предупреждения, минимум раз в неделю. Кросс-обучение сертифицируется тренером-наставником; не менее 60% команды получают должность «Универсал».</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+<span class="method-chip practice">Практика</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+<div class="block-time">14:00–14:30 (опц.)</div>
+<div class="block-content">
+<div class="block-title">Блок 4. Техобслуживание оборудования</div>
+<div class="block-desc">Фритюрницы, жарочные шкафы, льдогенераторы — простой станции в час пик стоит выручки на порядок дороже: альтернативной станции чаще всего нет.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+</div>
+</div>
+</div>
+<div class="block-card" style="border-color: var(--blue, #5b9bd5);">
+<div class="block-content">
+<div class="block-title">Блок 5. Маркетинг — не «скидка» и не реклама</div>
+<div class="block-desc">Маркетинг — ценность, ради которой гость выбирает вас, даже если дороже: продукт, отношение, смысл (ЗАЧЕМ, а не ЧТО). Задачи: привлечь своего гостя, отличаться от конкурентов, лояльность, прибыль. Роль директора: ДНК бренда, архитектор опыта, главный стратег.</div>
+<div class="block-methods">
+<span class="method-chip theory">Специалист</span>
+</div>
+</div>
+</div><div class="hw-section">
+<h3>Домашнее задание — День 3</h3>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">Провести личный аудит одной станции по памяти, из того, что разобрали сегодня. Записать все найденные нарушения и поставить менеджеру задачи с дедлайнами. Принести на разбор в начале Дня 4.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-pbo-3" onclick="showTestView('pbo3')">
+        ✦ Пройти тест по Дню 3
+      </button></div>
+</div>
+<div class="view" id="view-pbo-day-4" style="display:none">
+<div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">04</div>
+<div>
+<div class="day-title">P&amp;L, BSC, формула выручки, iiko</div>
+<div class="day-goal">Цель: директор видит скорость обслуживания как ограничитель трафика и умеет читать еженедельный отчёт с новыми метриками</div>
+<div class="day-tags">
+<span class="tag gold">P&amp;L</span>
+<span class="tag">Скорость обслуживания</span>
+<span class="tag">BSC</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Расписание дня</div>
+<div class="block-card important">
+<div class="block-time">11:00–11:45</div>
+<div class="block-content">
+<div class="block-title">Блок 1. Формула выручки — новый фактор</div>
+<div class="block-desc">Выручка = трафик × средний чек. В ПБО третий фактор — скорость ограничивает трафик в пик, норматив 5 минут. P&amp;L: food cost 30–32%, ФОТ не должен опережать выручку, важна операционная прибыль, а не сама выручка. Кейс: рост чека может маскировать потерю гостей при превышении норматива.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+<span class="method-chip case">Кейс</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">11:45–12:15</div>
+<div class="block-content">
+<div class="block-title">Блок 2. BSC — действующая система (единая для Маковский и Crispy)</div>
+<div class="block-desc">Веса BSC: жалобы 15%, время обслуживания 15%, доставка 10%, товарооборот 20%, средний чек 20%, производительность 20%. Балл определяет фонд: от 0 ₽ (ниже 3,0) до 90 000 ₽ (4,6–5,0). Делится 40/60 при 3 менеджерах, 30/70 при 4.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:15–12:30</div>
+<div class="block-content">
+<div class="block-title">Блок 2а. Корректировки премии</div>
+<div class="block-desc">МПК: 1 красная проверка = −5% от премии, 2 = −10%, 3 = −15%, 4 = −20%; 4 зелёные = +10%. Рейтинги: 3 показателя в цели = +5%, 2 не в цели = −5%. Товарооборот корректирует премию от −30% до +15%.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+</div>
+</div>
+</div>
+<div class="block-card important">
+<div class="block-time">12:30–12:45</div>
+<div class="block-content">
+<div class="block-title">Блок 2б. Еженедельный отчёт — новые колонки</div>
+<div class="block-desc">Помимо базовых финансовых показателей (выручка, трафик, средний чек, ФОТ) — среднее время обслуживания в секундах, доля заказов с ошибкой сборки, food cost по ключевым станциям отдельно.</div>
+<div class="block-methods">
+<span class="method-chip theory">Теория</span>
+</div>
+</div>
+</div>
+<div class="hw-section">
+<h3>Домашнее задание — День 4</h3>
+<div class="hw-item">
+<span class="hw-badge practice">Практика</span>
+<div class="hw-text">План развития точки — бланк без изменений в структуре, заполнить с учётом показателей скорости обслуживания и безопасности продукта из ДЗ Дня 3.</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-pbo-4" onclick="showTestView('pbo4')">
+        ✦ Пройти тест по Дню 4
+      </button></div>
+</div>
+<div class="view" id="view-pbo-day-5" style="display:none">
+<div class="back-link" onclick="showView('overview-pbo')">← Вернуться к обзору</div>
+<div class="day-header">
+<div class="day-num-big">05</div>
+<div>
+<div class="day-title">Итоговая аттестация</div>
+<div class="day-goal">Структурных изменений от общей модели нет — инструмент аттестации уже поддерживает категорию «Директор ПБО»</div>
+<div class="day-tags">
+<span class="tag gold">Аттестация</span>
+</div>
+</div>
+</div>
+<div class="schedule-label">Компоненты аттестации — без изменений от общей модели</div>
+<div class="block-card important">
+<div class="block-content">
+<div class="block-title">Тест — 20% · Защита плана точки (до/после) — 35% · Кейс-интервью — 30% · Наблюдение за 5 дней — 15%</div>
+<div class="block-desc">Отличие от общей модели только в содержании кейс-интервью и итогового теста — они отражают специфику ПБО: станции, безопасность продукта, скорость обслуживания, кассовая дисциплина. Итоговый тест — 30 вопросов по материалу всех 4 дней, критерий зачёта 70%. Сценарии кейс-интервью для комиссии по 6 компетентностным блокам — пока в разработке.</div>
+<div class="block-methods">
+<span class="method-chip theory">Аттестация</span>
+</div>
+</div>
+</div>
+<div class="test-btn-wrap"><button class="test-btn" id="test-btn-pbo-5" onclick="showTestView('pbo5')">
+        ✦ Пройти итоговый тест
+      </button></div>
+</div>
+<div class="view" id="view-test" style="display:none">
+<div class="back-link" id="test-back-link">← Вернуться к дню</div>
+<div class="test-header">
+<div>
+<div class="test-title" id="test-title">Тест по Дню 1</div>
+<div class="test-meta" id="test-meta">10 вопросов · ~15 минут</div>
+</div>
+<div class="question-counter">
+<div id="q-counter">Вопрос 1 из 10</div>
+<div class="question-progress" id="q-dots"></div>
+</div>
+</div>
+<div id="question-area"></div>
+<div class="nav-btns">
+<button class="btn-secondary" id="btn-prev" onclick="prevQuestion()" style="display:none">← Назад</button>
+<button class="btn-primary" disabled="" id="btn-next" onclick="nextQuestion()">Далее →</button>
+</div>
+</div>
+<!-- RESULTS -->
+<div class="view" id="view-results" style="display:none">
+<div class="back-link" id="results-back-link">← Вернуться к дню</div>
+<div class="results-card">
+<div class="score-ring" id="score-ring"></div>
+<div class="result-title" id="result-title"></div>
+<div class="result-desc" id="result-desc"></div>
+</div>
+<div class="result-breakdown" id="result-breakdown"></div>
+<button class="btn-primary" id="results-btn" style="margin: 0 auto; display:block">Перейти к следующему дню →</button>
+</div>
+</main>
+</div>
 <script>
 
   let participantName = '';
@@ -2017,11 +1833,11 @@ const tests = {
           "Ротацию персонала по станциям в течение смены",
           "Ежедневные предсменные инструктажи с командой",
           "Оперативную расстановку персонала в час пик",
-          "Контроль критических точек food safety минимум раз в смену"
+          "Контроль критических точек безопасности продукта минимум раз в смену"
         ],
         correct: 3,
         feedback: {
-          correct: "Личный контроль критических точек food safety — прямая зона ответственности директора, не делегируемая менеджерам.",
+          correct: "Личный контроль критических точек безопасности продукта — прямая зона ответственности директора, не делегируемая менеджерам.",
           wrong: [
             "Ротация по станциям — операционная задача, которую директор делегирует менеджерам.",
             "Предсменные инструктажи проводят менеджеры, директор эту задачу делегирует.",
@@ -2034,18 +1850,18 @@ const tests = {
         text: "Фирменный норматив скорости обслуживания на точке ПБО составляет —",
         options: [
           "Норматив не фиксирован и определяется каждой точкой самостоятельно",
-          "90 секунд ожидания и 90 секунд обслуживания",
-          "120 секунд ожидания и 90 секунд обслуживания",
-          "60 секунд ожидания и 60 секунд обслуживания"
+          "5 минут от заказа до выдачи гостю",
+          "10 минут от заказа до выдачи гостю",
+          "3 минуты от заказа до выдачи гостю"
         ],
         correct: 1,
         feedback: {
-          correct: "Фирменный норматив — 90 секунд ожидания в очереди плюс 90 секунд обслуживания, независимо от конкретной точки.",
+          correct: "Фирменный норматив — 5 минут от заказа до выдачи гостю, независимо от конкретной точки.",
           wrong: [
             "Норматив зафиксирован единым для всех точек, а не определяется индивидуально.",
             null,
-            "120/90 — завышенный норматив ожидания, не совпадает со стандартом.",
-            "60/60 — заниженный норматив, не соответствует фирменному стандарту."
+            "10 минут — завышенный норматив, не совпадает со стандартом.",
+            "3 минуты — заниженный норматив, не соответствует фирменному стандарту."
           ]
         }
       },
@@ -2205,18 +2021,18 @@ const tests = {
         text: "Сотрудник фритюра дважды за смену не отметил проверку температуры масла по графику. Менеджер считает это мелочью, раз продукт визуально в порядке. Какая оценка соответствует материалам программы?",
         options: [
           "Менеджер прав — если продукт выглядит нормально, повода для тревоги нет",
-          "Это красная линия food safety вне зависимости от визуального результата",
+          "Это красная линия безопасности продукта вне зависимости от визуального результата",
           "Вопрос вообще не относится к зоне ответственности директора",
           "Это стандартное нарушение — обычное устное предупреждение"
         ],
         correct: 1,
         feedback: {
-          correct: "Нарушение критической точки food safety — красная линия сама по себе, визуальная норма продукта не отменяет риска и не смягчает нарушение.",
+          correct: "Нарушение критической точки безопасности продукта — красная линия сама по себе, визуальная норма продукта не отменяет риска и не смягчает нарушение.",
           wrong: [
             "Визуальная норма продукта не гарантирует безопасность партии — именно поэтому это не мелочь.",
             null,
             "Food safety на точке — прямая зона ответственности директора, а не то, что можно проигнорировать.",
-            "Обычное устное предупреждение недостаточно для нарушения критической точки food safety."
+            "Обычное устное предупреждение недостаточно для нарушения критической точки безопасности продукта."
           ]
         }
       },
@@ -2392,7 +2208,7 @@ const tests = {
         }
       },
       {
-        text: "Что из перечисленного относится к критическим контрольным точкам (ККТ) food safety на станции жаровни, а не к общему порядку?",
+        text: "Что из перечисленного относится к критическим контрольным точкам (ККТ) безопасности продукта на станции жаровни, а не к общему порядку?",
         options: [
           "Цвет форменной одежды сотрудника станции",
           "Скорость движения очереди в зале",
@@ -2404,7 +2220,7 @@ const tests = {
           correct: "Температура и время удержания готового продукта — прямой риск для здоровья гостя, поэтому это критическая контрольная точка, а не вопрос эстетики или порядка.",
           wrong: [
             "Цвет формы — стандарт внешнего вида, не связан с безопасностью пищевого продукта.",
-            "Скорость очереди в зале — операционный показатель сервиса, не критическая точка food safety.",
+            "Скорость очереди в зале — операционный показатель сервиса, не критическая точка безопасности продукта.",
             null,
             "Аккуратность выкладки — вопрос презентации, не безопасности продукта."
           ]
@@ -2449,20 +2265,20 @@ const tests = {
         }
       },
       {
-        text: "Еженедельный отчёт: выручка +12%, ФОТ +18%, среднее время обслуживания выросло с 78 до 94 секунд. Какой вывод наиболее точен?",
+        text: "Еженедельный отчёт: выручка +12%, ФОТ +18%, среднее время от заказа до выдачи выросло с 4 до 6 минут. Какой вывод наиболее точен?",
         options: [
           "Всё в полном порядке — раз выручка растёт, на остальные показатели можно не обращать внимания",
-          "Точка вышла за норматив 90 секунд, а рост чека может маскировать потерю гостей в очереди",
-          "94 секунды — вполне себе в пределах нормы, тревожиться незачем",
+          "Точка вышла за норматив 5 минут, а рост чека может маскировать потерю гостей в очереди",
+          "6 минут — вполне себе в пределах нормы, тревожиться незачем",
           "Рост ФОТ на 18% — единственная проблема, время обслуживания к делу не относится"
         ],
         correct: 1,
         feedback: {
-          correct: "Точка превысила норматив 90 секунд, и вместе с опережающим ростом ФОТ это сигнал: рост выручки может маскировать реальную потерю гостей, не достоявших в очереди.",
+          correct: "Точка превысила норматив 5 минут, и вместе с опережающим ростом ФОТ это сигнал: рост выручки может маскировать реальную потерю гостей, не достоявших в очереди.",
           wrong: [
             "Рост выручки сам по себе не гарантирует здоровье экономики точки при опережающем росте затрат и времени обслуживания.",
             null,
-            "94 секунды превышают норматив в 90 секунд — это уже выход за рамки, а не пограничное значение.",
+            "6 минут превышают норматив в 5 минут — это уже выход за рамки, а не пограничное значение.",
             "Рост времени обслуживания напрямую связан с ограничением трафика и не может игнорироваться как отдельный фактор."
           ]
         }
@@ -2829,7 +2645,7 @@ const tests = {
           wrong: [
             "Обвинение во лжи — это самое простое объяснение, но оно не учитывает, что формальный инструктаж без отработки часто не даёт реального понимания.",
             null,
-            "Процедура проверки температуры стандартна во всей индустрии — упрощение снижает food safety, а не решает проблему обучения.",
+            "Процедура проверки температуры стандартна во всей индустрии — упрощение снижает безопасность продукта, а не решает проблему обучения.",
             "Замена менеджера не решает системную проблему формата обучения — на его месте окажется тот же результат при том же процессе инструктажа."
           ]
         }
@@ -2915,7 +2731,7 @@ const tests = {
         options: [
           "Улучшить скорость обслуживания на точке в ближайшее время",
           "Сделать так, чтобы гости меньше ждали заказ на кассе",
-          "За 4 недели снизить время обслуживания со 130 до норматива 90 секунд перестановкой менеджеров в пик",
+          "За 4 недели снизить время от заказа до выдачи с 7 до норматива 5 минут перестановкой менеджеров в пик",
           "Повысить эффективность работы кухни насколько это в целом возможно"
         ],
         correct: 2,
@@ -3017,7 +2833,7 @@ const tests = {
           "Нужно сначала проверить, не устал ли сотрудник — если да, замечание не нужно вообще",
           "Соглашаюсь с менеджером — это действительно мелкая недоработка, если продукт визуально в порядке",
           "Достаточно напомнить о графике проверок в общем чате точки, без личной беседы",
-          "Нарушение критической точки food safety — красная линия вне зависимости от вида продукта визуально"
+          "Нарушение критической точки безопасности продукта — красная линия вне зависимости от вида продукта визуально"
         ],
         correct: 3,
         feedback: {
@@ -3167,7 +2983,7 @@ const tests = {
   },
   'pbo3': {
     title: "Тест — День 3 (ПБО)",
-    meta: "Станции, стандарты, food safety · 10 вопросов",
+    meta: "Станции, стандарты, безопасность продукта · 10 вопросов",
     questions: [
       {
         text: "На точке три проблемы одновременно: (1) сотрудник не поздоровался с гостем, (2) беспорядок в зоне хранения, (3) сроки годности сырья на станции жаровни не проверялись 2 дня. Как расставить приоритеты?",
@@ -3202,13 +3018,13 @@ const tests = {
           wrong: [
             null,
             "Единый чек-лист без адаптации под станцию не покрывает специфические риски производства ПБО.",
-            "Ограничение только кассой оставляет без контроля станции с наибольшим риском food safety — кухню и жаровню.",
+            "Ограничение только кассой оставляет без контроля станции с наибольшим риском для безопасности продукта — кухню и жаровню.",
             "Отказ от МПК снимает независимый контроль качества именно там, где риск ошибки выше всего."
           ]
         }
       },
       {
-        text: "Какая из перечисленных проверок является критической контрольной точкой (ККТ) food safety, а не просто элементом общего порядка?",
+        text: "Какая из перечисленных проверок является критической контрольной точкой (ККТ) безопасности продукта, а не просто элементом общего порядка?",
         options: [
           "Температура готового продукта на выдаче и время его удержания до подачи гостю",
           "Скорость движения очереди в зале в час пик",
@@ -3227,21 +3043,21 @@ const tests = {
         }
       },
       {
-        text: "Зачем нужен ежедневный чек-лист food safety на 12 пунктов, если директор и так доверяет своей команде?",
+        text: "Директор проверяет станции лично, без предупреждения менеджера, а не полагается только на его отчёты. Зачем?",
         options: [
-          "Чек-лист заменяет необходимость личного участия директора в аудите станций",
-          "Чек-лист — защита от человеческого фактора при усталости, а не проверка профессионализма сотрудника",
-          "Чек-лист не нужен опытной команде — это лишняя бюрократия, если результаты стабильны",
-          "Чек-лист нужен только для проверяющих органов, на реальную работу точки не влияет"
+          "Потому что менеджерам в принципе нельзя доверять ни при каких условиях",
+          "Личная проверка — единственный способ отличить системную проблему станции от разовой ошибки, о которой менеджер может не знать",
+          "Это формальное требование без практического смысла для реальной работы точки",
+          "Потому что менеджеры физически не успевают проверять станции самостоятельно"
         ],
         correct: 1,
         feedback: {
-          correct: "Чек-лист существует не потому, что команде не доверяют, а потому что даже профессионал может пропустить шаг при высокой нагрузке и усталости.",
+          correct: "Менеджер может добросовестно ошибаться или не замечать повторяющийся паттерн. Личный аудит директора без предупреждения — способ увидеть станцию такой, какая она есть в обычный день, а не в момент подготовки к проверке.",
           wrong: [
-            "Заполненный чек-лист без выборочной личной проверки директора теряет часть контрольной функции.",
+            "Проблема не в доверии как таковом, а в том, что нужен независимый источник данных о реальном состоянии станции.",
             null,
-            "Опыт команды не устраняет риск человеческого фактора при усталости и многозадачности в час пик.",
-            "Чек-лист влияет на реальную безопасность продукта ежедневно, а не только формально существует для проверок."
+            "Именно личная проверка отличает системную проблему станции от разовой ошибки конкретного сотрудника — это её практический смысл.",
+            "Дело не в физической возможности менеджера, а в необходимости независимой точки контроля для директора."
           ]
         }
       },
@@ -3353,7 +3169,7 @@ const tests = {
           correct: "Совместный полноценный аудит передаёт не просто факты о станциях, а логику принятия решений — то, что менеджер не освоит по одному показу.",
           wrong: [
             "Полная передача обучения тренеру лишает нового менеджера прямого контакта с директором и пониманием управленческой логики, а не только техники станции.",
-            "Ограничение только кассой оставляет менеджера без понимания станций производства, где сосредоточены основные риски food safety.",
+            "Ограничение только кассой оставляет менеджера без понимания станций производства, где сосредоточены основные риски для безопасности продукта.",
             "Однократный общий показ не даёт менеджеру понимания логики приоритизации, только поверхностное знакомство со станциями.",
             null
           ]
@@ -3408,7 +3224,7 @@ const tests = {
         options: [
           "Скорость обслуживания — измеримый показатель, отдельный от стандартов, заслуживает свой вес",
           "Потому что скорость обслуживания невозможно измерить объективно вообще никак",
-          "Потому что скорость обслуживания важнее food safety и должна иметь наибольший вес из всех показателей",
+          "Потому что скорость обслуживания важнее безопасности продукта и должна иметь наибольший вес из всех показателей",
           "Потому что МПК в принципе больше не нужен для точек формата ПБО"
         ],
         correct: 0,
@@ -3417,7 +3233,7 @@ const tests = {
           wrong: [
             null,
             "Скорость обслуживания измеряется объективно в секундах по данным iiko — это не субъективный показатель.",
-            "Скорость обслуживания важна, но не важнее food safety — оба показателя нужны, просто с разными весами.",
+            "Скорость обслуживания важна, но не важнее безопасности продукта — оба показателя нужны, просто с разными весами.",
             "МПК остаётся необходимым инструментом проверки стандартов независимо от введения отдельного веса на скорость."
           ]
         }
@@ -3521,16 +3337,16 @@ const tests = {
         text: "Что обязательно должен учитывать план развития точки ПБО?",
         options: [
           "План развития составляется только операционным директором, точка в нём не участвует",
-          "План развития ограничивается финансовыми показателями, скорость и food safety в него не входят",
+          "План развития ограничивается финансовыми показателями, скорость и безопасность продукта в него не входят",
           "План должен фокусироваться исключительно на снижении food cost, остальные показатели вторичны",
-          "План должен включать показатели скорости и food safety из чек-листа станций, а не только финансы"
+          "План должен включать показатели скорости и безопасности продукта, а не только финансовые"
         ],
         correct: 3,
         feedback: {
-          correct: "План развития точки ПБО должен опираться на специфичные для формата данные — станции и food safety, а не только на общие финансовые показатели.",
+          correct: "План развития точки ПБО должен опираться на специфичные для формата данные — станции и безопасность продукта, а не только на общие финансовые показатели.",
           wrong: [
             "План развития составляется директором точки на основе своих данных, а не только операционным директором.",
-            "Отсутствие показателей скорости и food safety делает план неполным именно для формата ПБО, где это ключевые риски.",
+            "Отсутствие показателей скорости и безопасности продукта делает план неполным именно для формата ПБО, где это ключевые риски.",
             "Фокус только на food cost игнорирует операционные риски станций и скорости обслуживания, важные для устойчивого роста точки.",
             null
           ]
