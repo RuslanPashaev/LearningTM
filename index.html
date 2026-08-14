@@ -7567,8 +7567,13 @@ function showResults() {
     if (ans !== test.questions[i].correct) wrongQ.push(i);
   });
 
-  if (currentTest === 5 || currentTest === 'pbo5' || currentTest === 'mpbofinal') {
-    // Итоговый тест — полный разбор всех вопросов, показывается только сейчас
+  if (currentTest === 'mpbofinal') {
+    // Итоговая аттестация менеджеров ПБО — только результат, без разбора вопросов и ответов.
+    // Не делаем return здесь: ниже по коду настраиваются кнопка "Завершить программу"
+    // и ссылка "назад" — их нужно не пропустить.
+    document.getElementById('result-breakdown').innerHTML = '';
+  } else if (currentTest === 5 || currentTest === 'pbo5') {
+    // Итоговый тест аттестации директоров — полный разбор всех вопросов, показывается только сейчас
     const letters = ['А', 'Б', 'В', 'Г'];
     breakdownHTML += `<div class="breakdown-row">
       <div class="breakdown-icon">📊</div>
@@ -7592,42 +7597,44 @@ function showResults() {
     return;
   }
 
-  if (pct >= 80) {
-    breakdownHTML += `<div class="breakdown-row">
-      <div class="breakdown-icon">✅</div>
-      <div class="breakdown-text"><strong>Сильные стороны:</strong> Уверенное владение материалом по всем темам дня. Ситуативные задачи решены правильно.</div>
-    </div>`;
-  }
-
-  if (wrongQ.length > 0) {
-    wrongQ.slice(0, 3).forEach(idx => {
-      const q = test.questions[idx];
+  if (currentTest !== 'mpbofinal') {
+    if (pct >= 80) {
       breakdownHTML += `<div class="breakdown-row">
-        <div class="breakdown-icon">⚠️</div>
-        <div class="breakdown-text"><strong>Зона роста — вопрос ${idx + 1}:</strong> ${q.text.substring(0, 80)}... 
-        Правильный ответ: ${q.options[q.correct]}</div>
+        <div class="breakdown-icon">✅</div>
+        <div class="breakdown-text"><strong>Сильные стороны:</strong> Уверенное владение материалом по всем темам дня. Ситуативные задачи решены правильно.</div>
       </div>`;
-    });
-  }
+    }
 
-  if (pct >= 80) {
-    breakdownHTML += `<div class="breakdown-row">
-      <div class="breakdown-icon">🎯</div>
-      <div class="breakdown-text"><strong>Рекомендация:</strong> Переходите к следующему дню. Закрепите знания через домашнее задание.</div>
-    </div>`;
-  } else if (pct >= 60) {
-    breakdownHTML += `<div class="breakdown-row">
-      <div class="breakdown-icon">📖</div>
-      <div class="breakdown-text"><strong>Рекомендация:</strong> Повторите темы по ошибочным вопросам перед следующим днём. Задайте вопросы ведущему на утреннем разборе.</div>
-    </div>`;
-  } else {
-    breakdownHTML += `<div class="breakdown-row">
-      <div class="breakdown-icon">🔄</div>
-      <div class="breakdown-text"><strong>Рекомендация:</strong> Вернитесь к материалам дня, особенно к темам блоков с ошибками. Поговорите с ведущим до начала следующего дня.</div>
-    </div>`;
-  }
+    if (wrongQ.length > 0) {
+      wrongQ.slice(0, 3).forEach(idx => {
+        const q = test.questions[idx];
+        breakdownHTML += `<div class="breakdown-row">
+          <div class="breakdown-icon">⚠️</div>
+          <div class="breakdown-text"><strong>Зона роста — вопрос ${idx + 1}:</strong> ${q.text.substring(0, 80)}... 
+          Правильный ответ: ${q.options[q.correct]}</div>
+        </div>`;
+      });
+    }
 
-  document.getElementById('result-breakdown').innerHTML = breakdownHTML;
+    if (pct >= 80) {
+      breakdownHTML += `<div class="breakdown-row">
+        <div class="breakdown-icon">🎯</div>
+        <div class="breakdown-text"><strong>Рекомендация:</strong> Переходите к следующему дню. Закрепите знания через домашнее задание.</div>
+      </div>`;
+    } else if (pct >= 60) {
+      breakdownHTML += `<div class="breakdown-row">
+        <div class="breakdown-icon">📖</div>
+        <div class="breakdown-text"><strong>Рекомендация:</strong> Повторите темы по ошибочным вопросам перед следующим днём. Задайте вопросы ведущему на утреннем разборе.</div>
+      </div>`;
+    } else {
+      breakdownHTML += `<div class="breakdown-row">
+        <div class="breakdown-icon">🔄</div>
+        <div class="breakdown-text"><strong>Рекомендация:</strong> Вернитесь к материалам дня, особенно к темам блоков с ошибками. Поговорите с ведущим до начала следующего дня.</div>
+      </div>`;
+    }
+
+    document.getElementById('result-breakdown').innerHTML = breakdownHTML;
+  }
 
   let curNumericDay = currentTest;
   let nextDay = null;
